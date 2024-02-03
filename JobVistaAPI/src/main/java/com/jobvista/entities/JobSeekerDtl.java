@@ -90,5 +90,7 @@ public class JobSeekerDtl {
     @NotNull
     @Column(name = "js_creation_date", nullable = false)
     private Instant jsCreationDate;
+    
+    
 
 }
