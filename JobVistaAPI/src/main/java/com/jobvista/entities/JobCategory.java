@@ -17,20 +17,15 @@ import java.util.Set;
 @Entity
 @Table(name = "job_category")
 public class JobCategory {
-    @Id
+    
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "jc_id", nullable = false)
     private Integer id;
 
     @Size(max = 255)
-    @NotNull
     @Column(name = "jc_name", nullable = false)
     private String jcName;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "jc_parent_id")
-    private JobCategory jcParent;
 
     @Column(name = "jc_creation_timestamp")
     private Instant jcCreationTimestamp;
@@ -39,6 +34,6 @@ public class JobCategory {
     private Set<JobCategory> jobCategories = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "jobJc")
-    private Set<JobDtl> jobDtls = new LinkedHashSet<>();
+    private Set<Job> jobDtls = new LinkedHashSet<>();
 
 }

@@ -1,0 +1,52 @@
+package com.jobvista.entities;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "js_address_dtls")
+public class Address {
+    
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "js_id")
+    @MapsId
+    private JobSeeker js;
+
+    @Size(max = 255)
+    
+    @Column(name = "addr_lane1", nullable = false)
+    private String addrLane1;
+
+    @Size(max = 255)
+    @Column(name = "addr_lane2")
+    private String addrLane2;
+
+    @Size(max = 100)
+    
+    @Column(name = "addr_city", nullable = false, length = 100)
+    private String addrCity;
+
+    @Size(max = 6)
+    
+    @Column(name = "addr_pincode", nullable = false, length = 6)
+    private String addrPincode;
+
+    @Size(max = 100)
+    
+    @Column(name = "addr_state", nullable = false, length = 100)
+    private String addrState;
+
+    @Size(max = 100)
+    
+    @Column(name = "addr_country", nullable = false, length = 100)
+    private String addrCountry;
+
+}
