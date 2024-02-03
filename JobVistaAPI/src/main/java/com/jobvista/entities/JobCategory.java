@@ -39,6 +39,6 @@ public class JobCategory {
     private Set<JobCategory> jobCategories = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "jobJc")
-    private Set<JobDtl> jobDtls = new LinkedHashSet<>();
+    private Set<Job> jobDtls = new LinkedHashSet<>();
 
 }
