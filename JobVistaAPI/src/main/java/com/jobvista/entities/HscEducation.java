@@ -1,0 +1,49 @@
+package com.jobvista.entities;
+
+import java.time.Instant;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "hsc_edu_dtls")
+public class HscEducation {
+
+	@OneToOne(cascade = CascadeType.ALL,optional = true)
+	@JoinColumn(name = "js_id")
+	@MapsId
+    private JobSeeker jobSeeker;
+
+    @Size(max = 100)    
+    @Column(name = "hsc_school_name", nullable = false, length = 100)
+    private String schoolName;
+
+    @Size(max = 100)
+    @Column(name = "hsc_board_name", nullable = false, length = 100)
+    private String boardName;
+
+    @Size(max = 100)    
+    @Column(name = "hsc_stream", nullable = false, length = 100)
+    private String stream;
+
+    @Column(name = "hsc_passing_year", nullable = false)
+    private Integer passingYear;
+    
+    @Column(name = "hsc_percentage", nullable = false)
+    private Double percentage;
+    
+    @Column(name = "hsc_creation_date", nullable = false)
+    private Instant creationDate;
+
+}
