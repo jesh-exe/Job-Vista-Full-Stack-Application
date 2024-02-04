@@ -4,10 +4,10 @@
 }
 
 .sticky-nav {
-  background-color: #414141;
   position: sticky;
   top: 0;
   width: 100%;
+  z-index: 10;
 }
 
 

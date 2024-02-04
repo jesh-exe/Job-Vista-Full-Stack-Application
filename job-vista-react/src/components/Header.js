@@ -1,38 +1,59 @@
-import React,{ Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import '../css/Header.css';
+import logo from '../assets/jobvista_logo.png'
+import { NavbarBrand } from 'react-bootstrap';
+import ScrollReveal from 'scrollreveal';
+
+export default function Header() {
+
+  useEffect(() => {
+    ScrollReveal().reveal(".logoo", {
+      origin: "left",
+      duration: 1500,
+      distance: "200px",
+      scale: 1,
+    });
+    ScrollReveal().reveal(".middle", {
+      origin: "top",
+      duration: 1500,
+      distance: "100px",
+      scale: 1,
+    });
+    ScrollReveal().reveal(".last", {
+      origin: "right",
+      duration: 1500,
+      distance: "200px",
+      scale: 1,
+    });
+  }, [])
 
 
-export default class Header extends Component {
+  return (
+    <div className='sticky-nav shadow logo'>
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+        <Container>
+          <NavbarBrand href='#home' className='logoo'>
+            <img className='image-fluid ' src={logo} height={45} width={200}></img>
+          </NavbarBrand>
 
-  render() {
-    return (
-      <div className='sticky-nav'>
-        <Navbar collapseOnSelect expand="lg" bg="dark"variant="dark">
-          <Container>
-            <Navbar.Brand href="#home"><span className='display-6'>
-              JobVista
-
-            </span>
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#features">Find a job</Nav.Link>
-                <Nav.Link href="#pricing">About</Nav.Link>
-                <Nav.Link href="#contact">Contact</Nav.Link>
-              </Nav>
-              <div>
-                <button className="btn btn-primary">Register</button>
-                <button className="ms-4 btn btn-outline-primary">Login</button>
-              </div>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </div>
-    )
-  }
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto middle">
+              <Nav.Link href="#home" className='ps-4 pe-4' >Home</Nav.Link>
+              <Nav.Link href="#features" className='ps-4 pe-4' >Find a job</Nav.Link>
+              <Nav.Link href="#pricing" className='ps-4 pe-4' >About</Nav.Link>
+              <Nav.Link href="#contact" className='ps-4 pe-4' >Contact</Nav.Link>
+            </Nav>
+            <div className='text-center last'>
+              <button className="btn btn-success">Register</button>
+              <button className="ms-4 btn btn-primary">Login</button>
+            </div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
+  )
 }

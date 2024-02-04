@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../css/Footer.css'
+import ScrollReveal from 'scrollreveal';
 
 export default function Footer() {
+
+    useEffect(() => {
+        ScrollReveal().reveal(".footer", {
+            origin: "bottom",
+            duration: 1500,
+            distance: "200px",
+            scale: 1,
+        });
+    }, [])
+
     return (
         <div>
             <footer className="footer">
@@ -21,15 +32,15 @@ export default function Footer() {
                 <div className="footer-center col-md-4 col-sm-6">
                     <div>
                         <i className="fa fa-map-marker"></i>
-                        <p><span> Street name and number</span> City, Country</p>
+                        <p>Pune, India</p>
                     </div>
                     <div>
                         <i className="fa fa-phone"></i>
-                        <p> (+00) 0000 000 000</p>
+                        <p> (+91) 9211 420 420</p>
                     </div>
                     <div>
                         <i className="fa fa-envelope"></i>
-                        <p><a href="#"> office@company.com</a></p>
+                        <p><a href="#"> jobvista@gmail.com</a></p>
                     </div>
                 </div>
                 <div className="footer-right col-md-4 col-sm-6">
