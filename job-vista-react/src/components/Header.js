@@ -10,7 +10,7 @@ import ScrollReveal from 'scrollreveal';
 export default function Header() {
 
   useEffect(() => {
-    ScrollReveal().reveal(".logo", {
+    ScrollReveal().reveal(".navbar-container", {
       origin: "top",
       duration: 1500,
       distance: "100px",
@@ -20,7 +20,7 @@ export default function Header() {
 
 
   return (
-    <div className='sticky-nav shadow logo'>
+    <div className='sticky-nav shadow navbar-container'>
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
           <NavbarBrand href='#home' className='logoo'>
