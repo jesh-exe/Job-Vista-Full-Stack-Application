@@ -1,22 +1,33 @@
 package com.jobvista.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "job_dtls")
 public class Job {
     
@@ -25,11 +36,11 @@ public class Job {
     @Column(name = "job_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "job_rec_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "job_rec_id",nullable = false)
     private Recruiter recruiter;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_jc_id", nullable = false)
     private JobCategory category;
 
@@ -46,7 +57,7 @@ public class Job {
     private String minimumEducation;
 
     @Lob
-    @Column(name = "job_desc", nullable = false)
+    @Column(name = "job_desc", nullable = false,length = 8000,columnDefinition = "TEXT")
     private String description;
 
     @Size(max = 100)
@@ -54,7 +65,7 @@ public class Job {
     private String role;
 
     @Lob
-    @Column(name = "job_respo")
+    @Column(name = "job_respo",length = 5000,columnDefinition = "TEXT")
     private String responsiblity;
 
     @Size(max = 100)
@@ -73,12 +84,10 @@ public class Job {
     @Column(name = "job_bond", length = 50)
     private String bond;
 
-    
     @Column(name = "job_vacancy", nullable = false)
     private Integer vacancies;
 
     @Size(max = 100)
-    
     @Column(name = "job_type", nullable = false, length = 100)
     private String jobType;
 
@@ -97,7 +106,7 @@ public class Job {
     @Column(name = "job_creation_timestamp", nullable = false)
     private LocalDateTime creationTimestamp;
 
-    @OneToMany(mappedBy = "jaJ")
+    @OneToMany(mappedBy = "job")
     private Set<JobApplication> jobApplication = new LinkedHashSet<>();
 
 }

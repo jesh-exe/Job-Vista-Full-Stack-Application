@@ -1,19 +1,32 @@
 package com.jobvista.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "job_seeker_dtls")
 public class JobSeeker {
     @Id
@@ -23,71 +36,74 @@ public class JobSeeker {
 
     @Size(max = 45)
     @Column(name = "js_first_name", nullable = false, length = 45)
-    private String jsFirstName;
+    private String firstName;
 
     @Size(max = 45)
     @Column(name = "js_middle_name", length = 45)
-    private String jsMiddleName;
+    private String middleName;
 
     @Size(max = 45)
     @Column(name = "js_last_name", nullable = false, length = 45)
-    private String jsLastName;
+    private String lastName;
 
     @Size(max = 45)
-    @Column(name = "js_username", nullable = false, length = 45)
-    private String jsUsername;
+    @Column(name = "js_username", nullable = false, length = 45,unique = true)
+    private String username;
 
     @Size(max = 45)
     @Column(name = "js_password", nullable = false, length = 45)
-    private String jsPassword;
+    private String password;
 
     @Size(max = 45)
-    @Column(name = "js_email", nullable = false, length = 45)
-    private String jsEmail;
+    @Column(name = "js_email", nullable = false, length = 45,unique = true)
+    private String email;
 
     @Size(max = 10)
-    
     @Column(name = "js_contact_number", nullable = false, length = 10)
-    private String jsContactNumber;
+    private String contactNumber;
 
-    @Column(name = "js_profile_photo")
-    private byte[] jsProfilePhoto;
+    @Lob
+    @Column(name = "js_profile_photo",length = 500000,columnDefinition = "MEDIUMBLOB")
+    private byte[] profilePhoto;
 
     @Size(max = 30)
-    
     @Column(name = "js_gender", nullable = false, length = 30)
-    private String jsGender;
+    private String gender;
 
-    @Column(name = "js_resume")
-    private byte[] jsResume;
+    @Lob @Basic(fetch = FetchType.LAZY)
+    @Column(name = "js_resume",length = 1000000,columnDefinition = "MEDIUMBLOB")
+    private byte[] resume;
 
     @Size(max = 255)
     @Column(name = "js_portfolio_link")
-    private String jsPortfolioLink;
+    private String portfolioLink;
 
     @Size(max = 255)
     @Column(name = "js_proj_repo_link")
-    private String jsProjRepoLink;
+    private String projectRepositoryLink;
 
     @Size(max = 60)
     @Column(name = "js_ks1", nullable = false, length = 60)
-    private String jsKeySkill1;
+    private String keySkill1;
 
     @Size(max = 60)
     @Column(name = "js_ks2", length = 60)
-    private String jsKeySkill2;
+    private String keySkill2;
 
     @Size(max = 60)
     @Column(name = "js_ks3", length = 60)
-    private String jsKeySkill3;
+    private String keySkill3;
 
     @Column(name = "js_login_timestamp")
-    private LocalDateTime jsLoginTimestamp;
+    private LocalDateTime loginTimestamp;
     
     @Column(name = "js_creation_date", nullable = false)
-    private LocalDateTime jsCreationDate;
+    private LocalDateTime creationDate;
     
-    @OneToMany(mappedBy = "jobSeeker",cascade = CascadeType.ALL,orphanRemoval = true,)
+    @OneToMany(mappedBy = "jobSeeker",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Experience> experiences = new LinkedHashSet<>();
+    
+    @OneToMany(mappedBy = "jobSeeker",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<JobApplication> jobApplications = new LinkedHashSet<>();
 
 }

@@ -9,37 +9,41 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "ssc_edu_dtls")
 public class SscEducation {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	@OneToOne(cascade = CascadeType.ALL,optional = true)
 	@JoinColumn(name = "js_id")
 	@MapsId
     private JobSeeker js;
 
     @Size(max = 100)
-    
     @Column(name = "ssc_school_name", nullable = false, length = 100)
-    private String sscSchoolName;
+    private String schoolName;
 
     @Size(max = 255)
-    
     @Column(name = "ssc_board_name", nullable = false)
-    private String sscBoardName;
+    private String boardName;
 
     
     @Column(name = "ssc_passing_year", nullable = false)
-    private Integer sscPassingYear;
+    private Integer passingYear;
 
     
     @Column(name = "ssc_percentage", nullable = false)
-    private Double sscPercentage;
+    private Double percentage;
 
     
     @Column(name = "ssc_creation_date", nullable = false)
-    private Instant sscCreationDate;
+    private LocalDateTime creationDate;
 
 }
