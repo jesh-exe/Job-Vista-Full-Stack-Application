@@ -32,8 +32,10 @@ public class JobCategory {
     @Column(name = "jc_id", nullable = false)
     private Integer id;
 
+	//Making name unique, to have no repetition
+	//Recruiter would be given the list of roles or option to add new Role
     @Size(max = 255)
-    @Column(name = "jc_name", nullable = false)
+    @Column(name = "jc_name", nullable = false,unique = true)
     private String name;
 
     @Column(name = "jc_creation_timestamp")

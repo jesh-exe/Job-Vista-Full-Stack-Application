@@ -47,8 +47,8 @@ public class Experience {
     @Size(max = 100)    
     @Column(name = "exp_location", nullable = false, length = 100)
     private String location;
-    
-    @Column(name = "exp_start_date", nullable = false)
+
+	@Column(name = "exp_start_date", nullable = false)
     private LocalDate startDate;
 
     @Column(name = "exp_end_date")
@@ -70,5 +70,30 @@ public class Experience {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "exp_js_id", nullable = false)
     private JobSeeker jobSeeker;
+    
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((companyName == null) ? 0 : companyName.hashCode());
+		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
+		return result;
+	}
+    
+    //Checking if duplicate experience exists or not
+    //On basis of - CompanyName, StartDate, EndDate, Role
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Experience))
+			return false;
+		Experience other = (Experience) obj;
+		if(companyName.equals(other.companyName) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && role.equals(other.role))
+			return true;
+		return false;
+	}
 
 }

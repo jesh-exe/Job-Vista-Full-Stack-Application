@@ -24,7 +24,7 @@ public class SscEducation {
 	@OneToOne(cascade = CascadeType.ALL,optional = true)
 	@JoinColumn(name = "js_id")
 	@MapsId
-    private JobSeeker js;
+    private JobSeeker jobSeeker;
 
     @Size(max = 100)
     @Column(name = "ssc_school_name", nullable = false, length = 100)

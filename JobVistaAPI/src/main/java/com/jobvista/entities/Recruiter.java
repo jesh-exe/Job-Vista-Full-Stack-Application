@@ -1,7 +1,9 @@
 package com.jobvista.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -88,5 +90,15 @@ public class Recruiter {
 
     @OneToMany(mappedBy = "recruiter")
     private Set<Job> jobs = new LinkedHashSet<>();
+    
+    public void setJob(Job job)
+    {
+    	job.setRecruiter(this);
+    	if(!jobs.add(job))
+    		throw new RuntimeException("Job Already Exists");
+    }
+    public List<Job> getJobs(){
+    	return new ArrayList<Job>(jobs);
+    }
 
 }

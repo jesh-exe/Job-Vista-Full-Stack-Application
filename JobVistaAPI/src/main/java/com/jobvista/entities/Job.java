@@ -2,7 +2,9 @@ package com.jobvista.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -90,11 +92,9 @@ public class Job {
     @Size(max = 100)
     @Column(name = "job_type", nullable = false, length = 100)
     private String jobType;
-
     
     @Column(name = "job_post_date", nullable = false)
     private LocalDate postingDate;
-
     
     @Column(name = "job_views", nullable = false)
     private Integer views;
@@ -105,8 +105,48 @@ public class Job {
     
     @Column(name = "job_creation_timestamp", nullable = false)
     private LocalDateTime creationTimestamp;
+    
+    @OneToMany(mappedBy = "job",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<JobApplication> jobApplications = new LinkedHashSet<>();
+    
+    //Setter and Getter for Job Applications
+    public void setJobApplication(JobApplication jobApplication)
+    {
+    	jobApplication.setJob(this);
+    	if(!jobApplications.add(jobApplication))
+    		throw new RuntimeException("Job Already exists!");
+    }
+    public List<JobApplication> getJobApplications(){
+    	return new ArrayList<>(jobApplications);
+    }
+    
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((experience == null) ? 0 : experience.hashCode());
+		result = prime * result + ((jobCity == null) ? 0 : jobCity.hashCode());
+		return result;
+	}
 
-    @OneToMany(mappedBy = "job")
-    private Set<JobApplication> jobApplication = new LinkedHashSet<>();
+	//Checking if the Job Description, Type and City are same
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Job))
+			return false;
+		Job other = (Job) obj;
+		if(jobCity.equals(other.jobCity))
+			if(jobType.equals(other.jobType))
+				if(description.equals(other.description))
+					return true;
+		
+		return false;
+	}
+    
+    
+
 
 }

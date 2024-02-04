@@ -40,4 +40,33 @@ public class JobApplication {
     @Column(name = "ja_status", nullable = false, length = 45)
     private String status;
 
+    /*
+     * Checking the Job for Job Applications if user applies double for the same job.
+     * Contraint -> Job -> jobID
+     */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((job == null) ? 0 : job.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof JobApplication))
+			return false;
+		JobApplication other = (JobApplication) obj;
+		if (job == null) {
+			if (other.job != null)
+				return false;
+		} else if (!job.equals(other.job))
+			return false;
+		return true;
+	}
+    
+    
+
 }

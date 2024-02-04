@@ -1,7 +1,9 @@
 package com.jobvista.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Basic;
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -100,10 +103,43 @@ public class JobSeeker {
     @Column(name = "js_creation_date", nullable = false)
     private LocalDateTime creationDate;
     
+    @OneToOne(mappedBy = "jobSeeker",cascade = CascadeType.ALL)
+    private Address address;
+    
+    @OneToOne(mappedBy = "jobSeeker",cascade = CascadeType.ALL)
+    private SscEducation sscEducation;
+    
+    @OneToOne(mappedBy = "jobSeeker",cascade = CascadeType.ALL)
+    private HscEducation hscEducation;
+    
+    @OneToOne(mappedBy = "jobSeeker",cascade = CascadeType.ALL)
+    private GraduationEducation graduationEducation;
+    
     @OneToMany(mappedBy = "jobSeeker",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Experience> experiences = new LinkedHashSet<>();
     
     @OneToMany(mappedBy = "jobSeeker",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<JobApplication> jobApplications = new LinkedHashSet<>();
+    
+    //Setter & Getter for Experiences
+    public void setExperience(Experience experience) {
+    	experience.setJobSeeker(this);
+    	if(!experiences.add(experience))
+    		throw new RuntimeException("Experience Already Added!");
+    }
+    public List<Experience> getExperiences() {
+    	return new ArrayList<Experience>(experiences);
+    }
+    
+    //Setter & Getter for JobApplications
+    public void setJobApplication(JobApplication jobApplication) {
+    	jobApplication.setJobSeeker(this);
+    	if(!jobApplications.add(jobApplication))
+    		throw new RuntimeException("Job Application Already Exists");
+    }
+    public List<JobApplication> getJobApplications()
+    {
+    	return new ArrayList<JobApplication>(jobApplications);
+    }
 
 }
