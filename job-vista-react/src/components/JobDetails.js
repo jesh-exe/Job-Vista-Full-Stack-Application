@@ -7,7 +7,7 @@ export default function JobDetails() {
     useEffect(() => {
         ScrollReveal().reveal(".role", {
             duration: 1500,
-            scale: 0.5,
+            scale: 0.38,
         });
         ScrollReveal().reveal(".left-side", {
             origin: "left",
@@ -26,13 +26,13 @@ export default function JobDetails() {
     return (
         <div>
             <div className='img-holder d-flex justify-content-center' >
-                <div className='role-main display-5 text-white d-flex role'>
+                <div className='role-main display-4 text-white d-flex role'>
                     Full Stack Developer
                 </div>
             </div>
             <div className='container bg-light p-5 mb-5'>
                 <div className='row mt-3 mb-5'>
-                    <div className='col-sm-12 col-md-8'>
+                    <div className='col-sm-12 col-md-8 mb-2'>
 
                         {/* Heading Container */}
                         <div className='d-flex flex-column justify-content-end shadow-sm bg-white h-100 rounded pt-5 ps-4 pb-4 pe-2 left-side'>
@@ -113,10 +113,10 @@ export default function JobDetails() {
                     </div>
 
                     {/* Left Side of the Page */}
-                    <div className='col-sm-12 col-md-8 left-side'>
+                    <div className='col-sm-12 col-md-8'>
 
                         {/* Job Description Container */}
-                        <div className='mt-3 p-2 bg-white rounded pt-3 ps-4 pb-4'>
+                        <div className='mt-3 p-2 bg-white rounded pt-3 ps-4 pb-4 left-side'>
                             <div className='fs-5 fw-bolder  mb-2'>
                                 Job Description
                             </div>
@@ -126,7 +126,7 @@ export default function JobDetails() {
                         </div>
 
                         {/* Job Data (Education, Responsiblity etc container) */}
-                        <div className='mt-2 p-2 bg-white rounded pt-3 ps-4 pb-2'>
+                        <div className='mt-2 p-2 bg-white rounded pt-3 ps-4 pb-2 left-side'>
                             <div className='fs-5 fw-bolder  mb-2'>
                                 Responsiblities
                             </div>
@@ -139,7 +139,7 @@ export default function JobDetails() {
                         </div>
 
                         {/* Skills Required */}
-                        <div className='mt-1 p-2 bg-white rounded pt-3 ps-4 pb-4'>
+                        <div className='mt-1 p-2 bg-white rounded pt-3 ps-4 pb-4 left-side'>
                             <div className='fs-5 fw-bolder  mb-2'>
                                 Skills
                             </div>

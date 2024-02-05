@@ -3,12 +3,12 @@
     /* background-size: cover; */
     /* background-position: 100%; */
     background-repeat: no-repeat;
-    height: 55vh;
+    height: 50vh;
     box-shadow: inset 0 0 0 1000px rgba(0, 0, 157, 0.629);
     background-attachment: fixed;
 }
 
 .role-main {
     margin-top: 150px;
-    text-shadow: 1px 1px 5px rgb(255, 255, 255);
+    text-shadow: 2px 2px 5px rgb(0, 0, 0);
 }

@@ -30,10 +30,10 @@ export default function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home" className='ps-4 pe-4' >Home</Nav.Link>
-              <Nav.Link href="#features" className='ps-4 pe-4' >Find a job</Nav.Link>
-              <Nav.Link href="#pricing" className='ps-4 pe-4' >About</Nav.Link>
-              <Nav.Link href="#contact" className='ps-4 pe-4' >Contact</Nav.Link>
+              <Nav.Link href="#home" className='ps-4 pe-4 navlinks-middle' >Home</Nav.Link>
+              <Nav.Link href="#features" className='ps-4 pe-4 navlinks-middle' >Find a job</Nav.Link>
+              <Nav.Link href="#pricing" className='ps-4 pe-4 navlinks-middle' >About</Nav.Link>
+              <Nav.Link href="#contact" className='ps-4 pe-4 navlinks-middle' >Contact</Nav.Link>
             </Nav>
             <div className='text-center'>
               <button className="btn btn-success">Register</button>

@@ -16,7 +16,13 @@
   margin: auto;
 }
 
+.navlinks-middle{
+  transition: all 0.2s ease-in;
+}
 
+.navlinks-middle:hover{
+  color: blue;
+}
 
 /* Adjusting styles for smaller screens */
 @media (max-width: 1000px) {
