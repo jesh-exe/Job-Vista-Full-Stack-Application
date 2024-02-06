@@ -1,0 +1,51 @@
+
+.container-fluid 
+{
+  
+  margin-top: 20vh;
+  height: 60vh;
+  
+}
+
+.container-fluid .row  .left{
+ height: 60vh;
+}
+
+.container-fluid .row .left img
+{
+  height: 60vh;
+  width: 30vw;
+  
+}
+
+
+
+
+.container-fluid .row  .right
+{
+  height: 60vh;
+ 
+}
+
+.container-fluid .row .right .firstheading
+{
+  color: palevioletred;
+  font-size: 200px;
+  text-shadow: 2px solid pink;
+  padding-top: 6vh;
+
+}
+
+.container-fluid .row .right .firstheading .p1
+{
+  text-align:start;
+  
+}
+
+
+.container-fluid .row .right button{
+  background-color: tomato;
+  color: white;
+  padding: 2.5vh 2.5vw;
+  border-radius: 5px solid black;
+}

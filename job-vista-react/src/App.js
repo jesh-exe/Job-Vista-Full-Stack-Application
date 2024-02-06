@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router';
 import Footer from './components/Footer';
 import JobDetails from './components/JobDetails';
 import Header from './components/Header';
+import MainPage from './components/MainPage';
 
 
 function App() {
@@ -14,7 +15,9 @@ function App() {
     <div className="App bg-light">
       <Header></Header>
 
-      <JobDetails ></JobDetails>
+      {/* <JobDetails ></JobDetails> */}
+      <MainPage></MainPage>
+
       <Routes>
 
         <Route></Route>
@@ -23,7 +26,7 @@ function App() {
 
       </Routes>
 
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   );
 }
