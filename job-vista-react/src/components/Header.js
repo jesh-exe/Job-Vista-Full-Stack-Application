@@ -5,7 +5,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import '../css/Header.css';
 import logo from '../assets/jobvista_logo.png'
 import { NavbarBrand } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import ScrollReveal from 'scrollreveal';
+
 
 export default function Header() {
 
@@ -24,16 +26,26 @@ export default function Header() {
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
           <NavbarBrand href='#home' className='logoo'>
-            <img className='image-fluid ' src={logo} height={45} width={200}></img>
+            <NavLink to="/">
+              <img className='image-fluid ' src={logo} height={45} width={200}></img>
+            </NavLink>
           </NavbarBrand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home" className='ps-4 pe-4 navlinks-middle' >Home</Nav.Link>
-              <Nav.Link href="#features" className='ps-4 pe-4 navlinks-middle' >Find a job</Nav.Link>
-              <Nav.Link href="#pricing" className='ps-4 pe-4 navlinks-middle' >About</Nav.Link>
-              <Nav.Link href="#contact" className='ps-4 pe-4 navlinks-middle' >Contact</Nav.Link>
+              {/* Home Button */}
+              <NavLink to="/" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >Home</NavLink>
+
+              {/* Find Jobs Button */}
+              <NavLink to="/jobs" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >Find a job</NavLink>
+
+              {/* About us Button */}
+              <NavLink href="#pricing" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >About</NavLink>
+
+              {/* Contact us Button */}
+              <NavLink to="/contactus" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item'>Contact</NavLink>
+
             </Nav>
             <div className='text-center'>
               <button className="btn btn-success">Register</button>

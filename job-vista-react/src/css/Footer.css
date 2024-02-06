@@ -1,5 +1,5 @@
 .footer {
-    background-color: #414141;
+    background-color: #414141d3;
     width: 100%;
     /* position: fixed; */
     /* bottom: 0;a */
@@ -8,7 +8,8 @@
     font-weight: bold;
     font-size: 16px;
     padding: 50px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
+
   }
   
   .footer .footer-left,
