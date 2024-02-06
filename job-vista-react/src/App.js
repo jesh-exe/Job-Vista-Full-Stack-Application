@@ -1,20 +1,19 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.css'
 
-import { Routes, Route } from 'react-router';
+import { Route, Routes } from 'react-router';
 
+import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
-import JobDetails from './components/JobDetails';
 import Header from './components/Header';
-
 
 function App() {
   return (
     <div className="App bg-light">
       <Header></Header>
 
-      <JobDetails ></JobDetails>
+      {/* <JobDetails ></JobDetails> */}
+      <ContactPage></ContactPage>
       <Routes>
 
         <Route></Route>
