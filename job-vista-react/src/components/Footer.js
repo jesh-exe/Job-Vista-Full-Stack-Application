@@ -4,14 +4,14 @@ import ScrollReveal from 'scrollreveal';
 
 export default function Footer() {
 
-    useEffect(() => {
-        ScrollReveal().reveal(".footer", {
-            origin: "bottom",
-            duration: 1500,
-            distance: "200px",
-            scale: 1,
-        });
-    }, [])
+    // useEffect(() => {
+    //     ScrollReveal().reveal(".footer", {
+    //         origin: "bottom",
+    //         duration: 1500,
+    //         distance: "200px",
+    //         scale: 1,
+    //     });
+    // }, [])
 
     return (
         <div>

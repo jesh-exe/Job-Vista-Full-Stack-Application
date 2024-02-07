@@ -23,6 +23,7 @@ const Header = () => {
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
           <NavbarBrand href='#home' className='logoo'>
+            {/* Main Logo */}
             <NavLink to="/">
               <img className='image-fluid ' src={logo} height={45} width={200} alt="JobVista Logo" />
             </NavLink>
@@ -45,13 +46,17 @@ const Header = () => {
 
             </Nav>
             <div className='text-center'>
+              {/* Register Button */}
               <button className="btn btn-success">Register</button>
-              <button className="ms-4 btn btn-primary">Login</button>
+              {/* Login Button */}
+              <NavLink to="/login" className="text-decoration-none">
+                <button className="ms-4 btn btn-primary">Login</button>
+              </NavLink>
             </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      
+
     </div>
   );
 }
