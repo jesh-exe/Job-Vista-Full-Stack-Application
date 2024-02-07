@@ -1,16 +1,14 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import '../css/Header.css';
-import logo from '../assets/jobvista_logo.png'
+import logo from '../assets/jobvista_logo.png';
 import { NavbarBrand } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import ScrollReveal from 'scrollreveal';
 
-
-export default function Header() {
-
+const Header = () => {
   useEffect(() => {
     ScrollReveal().reveal(".navbar-container", {
       origin: "top",
@@ -18,8 +16,7 @@ export default function Header() {
       distance: "100px",
       scale: 1,
     });
-  }, [])
-
+  }, []);
 
   return (
     <div className='sticky-nav shadow navbar-container'>
@@ -27,7 +24,7 @@ export default function Header() {
         <Container>
           <NavbarBrand href='#home' className='logoo'>
             <NavLink to="/">
-              <img className='image-fluid ' src={logo} height={45} width={200}></img>
+              <img className='image-fluid ' src={logo} height={45} width={200} alt="JobVista Logo" />
             </NavLink>
           </NavbarBrand>
 
@@ -54,6 +51,9 @@ export default function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      
     </div>
-  )
+  );
 }
+
+export default Header;
