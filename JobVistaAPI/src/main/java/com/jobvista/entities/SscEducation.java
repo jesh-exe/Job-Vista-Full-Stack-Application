@@ -44,6 +44,6 @@ public class SscEducation {
 
     
     @Column(name = "ssc_creation_date", nullable = false)
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now();
 
 }

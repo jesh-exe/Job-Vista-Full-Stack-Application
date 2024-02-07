@@ -101,7 +101,7 @@ public class JobSeeker {
     private LocalDateTime loginTimestamp;
     
     @Column(name = "js_creation_date", nullable = false)
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now();
     
     @OneToOne(mappedBy = "jobSeeker",cascade = CascadeType.ALL)
     private Address address;
