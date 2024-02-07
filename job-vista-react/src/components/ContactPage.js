@@ -1,7 +1,6 @@
 export default function Contact() {
     return (
-        <>
-            
+        <> 
             <section className="ftco-section">
                 <div className="container">
                     <div className="row justify-content-center">
