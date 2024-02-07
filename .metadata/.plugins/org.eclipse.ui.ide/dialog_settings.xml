@@ -102,18 +102,19 @@
 		<item value="org.springsource.sts.package:3.9.18.202109140905-RELEASE-e421"/>
 		<item value="org.springsource.sts:3.9.18.202109140905-RELEASE"/>
 	</list>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="585"/>
+		<item key="DIALOG_Y_ORIGIN" value="146"/>
+	</section>
 	<section name="ExternalProjectImportWizard">
-		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
-		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
-		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
-		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
-		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
-		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-			<item value="D:\2.CDAC ACTS\JobVista - CDAC Project\Source Code\spring_boot_backend_template"/>
-			<item value="D:\2.CDAC ACTS\Advance JAVA - Madhura Anturkar\template projects\spring_boot_backend_template"/>
-		</list>
-		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
-			<item value=""/>
+	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\2.CDAC ACTS\JobVista - CDAC Project\Source Code\JobVistaAPI"/>
 		</list>
 	</section>
 </section>

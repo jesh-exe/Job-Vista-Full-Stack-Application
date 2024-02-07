@@ -1,0 +1,6 @@
+.welcome{
+    background-image: url("../../assets/carousel-1.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    height: 90vh;
+}
