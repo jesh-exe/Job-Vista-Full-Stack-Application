@@ -14,7 +14,6 @@ export default function WhatWeDo() {
         ScrollReveal().reveal(".right",{
             origin:"right",
             distance:"300px",
-            delay:150,
             duration: 1500
         });
     },[])

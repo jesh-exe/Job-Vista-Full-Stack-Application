@@ -7,7 +7,6 @@ export default function Working() {
     useEffect(()=>{
         ScrollReveal().reveal(".emerge",{
             scale: 0.7,
-            delay:150,
             duration: 1500
         });
     },[])
