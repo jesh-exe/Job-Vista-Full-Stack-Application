@@ -75,12 +75,14 @@ const Header = () => {
                           {/* Recruiter Section */}
                           <div className='col-sm-12 col-md-6 col-lg-6 p-4'>
                             <img className='img-fluid' height={300} width={300} src={recruiter}></img>
-                            <button className='btn btn-outline-primary mt-5'>Recruiter</button>
+                            <NavLink to="/register-recruiter">
+                              <button className='btn btn-outline-primary mt-5' onClick={handleClose}>Recruiter</button>
+                            </NavLink>
                           </div>
                           {/* Job Seeker Section */}
                           <div className='col-sm-12 col-md-6 col-lg-6 p-4'>
                             <img className='img-fluid' height={300} width={300} src={jobseeker}></img>
-                            <button className='btn btn-outline-primary mt-5'>Job Seeker</button>
+                            <button className='btn btn-outline-primary mt-5' onClick={handleClose}>Job Seeker</button>
                           </div>
                         </div>
                       </div>

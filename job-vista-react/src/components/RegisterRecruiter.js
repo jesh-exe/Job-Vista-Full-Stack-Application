@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 const RegisterRecruiter = () => {
   const [recruiter, setRecruiter] = useState({
@@ -11,7 +10,7 @@ const RegisterRecruiter = () => {
     password: '',
     companyName: '',
     companyContact: '',
-    companyAddress: '',
+    companyAddr: '',
     companyUrl: '',
     companyFax: '',
     companyLogo: null,
@@ -20,171 +19,239 @@ const RegisterRecruiter = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRecruiter({ ...recruiter, [name]: value });
+    setRecruiter(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleLogoChange = (e) => {
+    const file = e.target.files[0];
+    setRecruiter(prevState => ({
+      ...prevState,
+      companyLogo: file
+    }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('your-api-url', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(recruiter),
-      });
-      if (!response.ok) {
-        throw new Error('Failed to submit data');
-      }
-      const data = await response.json();
-      console.log('Recruiter data submitted successfully:', data);
-    } catch (error) {
-      console.error('Error submitting data:', error);
-    }
+    console.log(recruiter);
   };
-
 
   return (
-    <Container className="p-4 mb-4 rounded w-75 bg-white  ">
-      <Row>
-        <Col>
+    <div className="container bg-white mt-5 p-sm-1 p-md-4 p-lg-5 mb-5">
+      <div className="row text-center ">
+        <h2 className="text-primary p-2 mb-4 display-6"> Register as Recruiter </h2>
+      </div>
 
-          <Row className="justify-content-center p-3">
-            <Col md="auto">
-              <h2 className="p-2 text-primary justify-content-center">Register </h2>
-            </Col>
-          </Row>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="firstName">
-              <Form.Label className="p-1 " >First Name</Form.Label>
-              <Form.Control
+      <form onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="col">
+            <div className="form-group">
+              <label htmlFor="firstName">First Name</label>
+              <input
                 type="text"
+                className="form-control"
+                id="firstName"
                 name="firstName"
-                value={recruiter.firstName}
+                defaultValue={recruiter.firstName}
                 onChange={handleChange}
                 required
               />
-            </Form.Group>
-            <Form.Group controlId="middleName">
-              <Form.Label className="p-1 ">Middle Name</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+          <div className="col">
+
+            <div className="form-group">
+              <label htmlFor="middleName">Middle Name</label>
+              <input
                 type="text"
+                className="form-control"
+                id="middleName"
                 name="middleName"
-                value={recruiter.middleName}
+                defaultValue={recruiter.middleName}
                 onChange={handleChange}
               />
-            </Form.Group>
-            <Form.Group controlId="lastName">
-              <Form.Label className="p-1">Last Name</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+
+            <div className="form-group">
+              <label htmlFor="lastName">Last Name</label>
+              <input
                 type="text"
+                className="form-control"
+                id="lastName"
                 name="lastName"
-                value={recruiter.lastName}
+                defaultValue={recruiter.lastName}
                 onChange={handleChange}
               />
-            </Form.Group>
-            <Form.Group controlId="username">
-              <Form.Label className="p-1 ">Username</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+          <div className="col">
+
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input
                 type="text"
+                className="form-control"
+                id="username"
                 name="username"
-                value={recruiter.username}
+                defaultValue={recruiter.username}
                 onChange={handleChange}
                 required
               />
-            </Form.Group>
-            <Form.Group controlId="email">
-              <Form.Label className="p-1  ">Email</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
                 type="email"
+                className="form-control"
+                id="email"
                 name="email"
-                value={recruiter.email}
+                defaultValue={recruiter.email}
                 onChange={handleChange}
                 required
               />
-            </Form.Group>
-            <Form.Group controlId="password">
-              <Form.Label className="p-1 ">Password</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+          <div className="col">
+
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
                 type="password"
+                className="form-control"
+                id="password"
                 name="password"
-                value={recruiter.password}
+                defaultValue={recruiter.password}
                 onChange={handleChange}
                 required
               />
-            </Form.Group>
-            <Form.Group controlId="companyName">
-              <Form.Label className="p-1 ">Company Name</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+
+            <div className="form-group">
+              <label htmlFor="companyName">Company Name</label>
+              <input
                 type="text"
+                className="form-control"
+                id="companyName"
                 name="companyName"
-                value={recruiter.companyName}
+                defaultValue={recruiter.companyName}
                 onChange={handleChange}
                 required
               />
-            </Form.Group>
-            <Form.Group controlId="companyContact">
-              <Form.Label className="p-1  ">Company Contact</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+          <div className="col">
+
+            <div className="form-group">
+              <label htmlFor="companyContact">Company Contact</label>
+              <input
                 type="text"
+                className="form-control"
+                id="companyContact"
                 name="companyContact"
-                value={recruiter.companyContact}
+                defaultValue={recruiter.companyContact}
                 onChange={handleChange}
                 required
               />
-            </Form.Group>
-            <Form.Group controlId="companyAddress">
-              <Form.Label className="p-1 ">Company Address</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                name="companyAddress"
-                value={recruiter.companyAddress}
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="form-group">
+              <label htmlFor="companyAddr">Company Address</label>
+              <textarea
+                className="form-control"
+                id="companyAddr"
+                name="companyAddr"
+                defaultValue={recruiter.companyAddr}
                 onChange={handleChange}
                 required
-              />
-            </Form.Group>
-            <Form.Group controlId="companyUrl">
-              <Form.Label className="p-1 ">Company URL</Form.Label>
-              <Form.Control
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <div className="form-group">
+              <label htmlFor="companyUrl">Company URL</label>
+              <input
                 type="text"
+                className="form-control"
+                id="companyUrl"
                 name="companyUrl"
-                value={recruiter.companyUrl}
+                defaultValue={recruiter.companyUrl}
                 onChange={handleChange}
                 required
               />
-            </Form.Group>
-            <Form.Group controlId="companyFax">
-              <Form.Label className="p-1 ">Company Fax</Form.Label>
-              <Form.Control
+            </div>
+          </div>
+
+
+          <div className="col">
+            <div className="form-group">
+              <label htmlFor="companyFax">Company Fax</label>
+              <input
                 type="text"
+                className="form-control"
+                id="companyFax"
                 name="companyFax"
-                value={recruiter.companyFax}
+                defaultValue={recruiter.companyFax}
                 onChange={handleChange}
               />
-            </Form.Group>
-            <Form.Group controlId="companyDesc">
-              <Form.Label className="p-1 ">Company Description</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                name="companyDesc"
-                value={recruiter.companyDesc}
-                onChange={handleChange}
+            </div>
+          </div>
+          <div className="col">
+            <div className="form-group ">
+              <label htmlFor="companyLogo">Company Logo</label>
+              <input
+                type="file"
+                className="form-control-file p-2"
+                id="companyLogo"
+                name="companyLogo"
+                onChange={handleLogoChange}
+                accept="image/*"
                 required
               />
-            </Form.Group>
-            <Row className="justify-content-center p-3">
-              <Col md="auto">
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+            </div>
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="companyDesc">Company Description</label>
+          <textarea
+            className="form-control"
+            id="companyDesc"
+            name="companyDesc"
+            defaultValue={recruiter.companyDesc}
+            onChange={handleChange}
+            required
+          ></textarea>
+        </div>
+
+        <div className="form-group text-center p-4">
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
   );
 };
 
