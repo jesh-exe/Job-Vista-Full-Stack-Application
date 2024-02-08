@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
-const RegisterRecruiter= () => {
+const RegisterRecruiter = () => {
   const [recruiter, setRecruiter] = useState({
     firstName: '',
     middleName: '',
@@ -48,16 +48,16 @@ const RegisterRecruiter= () => {
     <Container className="p-4 mb-4 rounded w-75 bg-white  ">
       <Row>
         <Col>
-       
+
           <Row className="justify-content-center p-3">
-              <Col md="auto">
+            <Col md="auto">
               <h2 className="p-2 text-primary justify-content-center">Register </h2>
-              </Col>
-            </Row>  
+            </Col>
+          </Row>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="firstName">
               <Form.Label className="p-1 " >First Name</Form.Label>
-              <Form.Control 
+              <Form.Control
                 type="text"
                 name="firstName"
                 value={recruiter.firstName}
@@ -66,7 +66,7 @@ const RegisterRecruiter= () => {
               />
             </Form.Group>
             <Form.Group controlId="middleName">
-              <Form.Label  className="p-1 ">Middle Name</Form.Label>
+              <Form.Label className="p-1 ">Middle Name</Form.Label>
               <Form.Control
                 type="text"
                 name="middleName"

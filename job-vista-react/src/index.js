@@ -10,6 +10,7 @@ import { store } from './redux/Store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  {/* Wrapping the App by Provider so that store is accessible globally */}
     <Provider store={store}>
       <BrowserRouter>
         <App />
