@@ -1,12 +1,13 @@
+import React, { useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import '../css/Header.css';
 import logo from '../assets/jobvista_logo.png';
-import recruiter from '../assets/recruiter.png'
-import jobseeker from '../assets/jobseeker.png'
-
-import React, { useEffect, useState } from 'react';
-import { NavbarBrand, Nav, Button, Modal, Navbar, Container } from 'react-bootstrap';
+import { NavbarBrand } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import ScrollReveal from 'scrollreveal';
+<<<<<<< HEAD
 import { useSelector } from 'react-redux';
 import { getLoggedInUser } from '../redux/slices/LoginSlice';
 
@@ -21,6 +22,10 @@ const Header = () => {
   const loggedInUser = useSelector(getLoggedInUser);
   console.log(loggedInUser)
 
+=======
+
+const Header = () => {
+>>>>>>> 3b89e7775bef830517d53b314c75ee431d12c30b
   useEffect(() => {
     ScrollReveal().reveal(".navbar-container", {
       origin: "top",
@@ -58,6 +63,7 @@ const Header = () => {
 
             </Nav>
             <div className='text-center'>
+<<<<<<< HEAD
               {loggedInUser.email=="" ?
                 <div>
                   {/* Register Button */}
@@ -96,6 +102,14 @@ const Header = () => {
                   Welcome {loggedInUser.email}
                 </div>
               }
+=======
+              {/* Register Button */}
+              <button className="btn btn-success">Register</button>
+              {/* Login Button */}
+              <NavLink to="/login" className="text-decoration-none">
+                <button className="ms-4 btn btn-primary">Login</button>
+              </NavLink>
+>>>>>>> 3b89e7775bef830517d53b314c75ee431d12c30b
             </div>
           </Navbar.Collapse>
         </Container>
