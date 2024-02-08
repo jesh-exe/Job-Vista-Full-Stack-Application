@@ -1,14 +1,22 @@
-import React, { useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import '../css/Header.css';
 import logo from '../assets/jobvista_logo.png';
-import { NavbarBrand } from 'react-bootstrap';
+import recruiter from '../assets/recruiter.png'
+import jobseeker from '../assets/jobseeker.png'
+
+import React, { useEffect, useState } from 'react';
+import { NavbarBrand, Nav, Button, Modal, Navbar, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import ScrollReveal from 'scrollreveal';
 
+
+
 const Header = () => {
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     ScrollReveal().reveal(".navbar-container", {
       origin: "top",
@@ -47,7 +55,33 @@ const Header = () => {
             </Nav>
             <div className='text-center'>
               {/* Register Button */}
-              <button className="btn btn-success">Register</button>
+              <Button variant="success" onClick={handleShow}>
+                Register
+              </Button>
+              {/* Modal for Register Button to choose from as a recruiter or seeker */}
+              <Modal show={show} onHide={handleClose} centered>
+                <Modal.Header closeButton>
+                  <Modal.Title >Register</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <div className='container text-center px-4'>
+                    <div className='row gx-3'>
+                      {/* Recruiter Section */}
+                      <div className='col-sm-12 col-md-6 col-lg-6 p-4'>
+                        <img className='img-fluid' height={300} width={300} src={recruiter}></img>
+                        <button className='btn btn-outline-primary mt-5'>Recruiter</button>
+                      </div>
+                      {/* Job Seeker Section */}
+                      <div className='col-sm-12 col-md-6 col-lg-6 p-4'>
+                        <img className='img-fluid' height={300} width={300} src={jobseeker}></img>
+                        <button className='btn btn-outline-primary mt-5'>Job Seeker</button>
+                      </div>
+                    </div>
+                  </div>
+                </Modal.Body>
+              </Modal>
+
+
               {/* Login Button */}
               <NavLink to="/login" className="text-decoration-none">
                 <button className="ms-4 btn btn-primary">Login</button>

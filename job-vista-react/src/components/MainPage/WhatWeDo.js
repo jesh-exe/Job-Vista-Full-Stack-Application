@@ -12,8 +12,7 @@ export default function WhatWeDo() {
             duration: 1500
         });
         ScrollReveal().reveal(".right",{
-            origin:"right",
-            distance:"300px",
+            scale: 0.5,
             duration: 1500
         });
     },[])
