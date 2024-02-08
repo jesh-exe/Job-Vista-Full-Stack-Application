@@ -9,6 +9,7 @@ import Header from './components/Header';
 import JobDetails from './components/JobDetails';
 import LoginPage from './components/LoginPage';
 import MainPage from './components/MainPage/MainPage';
+import Dashboard from './components/Dashboard/Dashboard';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/jobs' element={<JobDetails></JobDetails>}></Route>
         <Route path='/contactus' element={<ContactPage></ContactPage>}></Route>
         <Route path='/login' element={<LoginPage></LoginPage>}></Route>
+        <Route path='dashboard' element={<Dashboard></Dashboard>}></Route>
       </Routes>
       <Footer></Footer>
     </div>
