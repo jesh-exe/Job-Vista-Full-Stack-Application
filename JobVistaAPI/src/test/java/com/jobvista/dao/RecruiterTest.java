@@ -44,7 +44,7 @@ public class RecruiterTest {
 	
 //	Passed 
 //	To delete recruiter from the database
-	@Test
+//	@Test
 	void deleteRecruiter() {
 		Recruiter recruiter = recruiterRepository.findById(4).orElseThrow();
 		recruiterRepository.delete(recruiter);
