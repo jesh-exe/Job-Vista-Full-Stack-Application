@@ -7,13 +7,15 @@ import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import JobDetails from './components/JobDetails';
-import MainPage from './components/MainPage/MainPage';
 import LoginPage from './components/LoginPage';
+import MainPage from './components/MainPage/MainPage';
+import RegisterRecruiter from './components/RegisterRecruiter';
 
 function App() {
   return (
     <div className="App bg-light">
       <Header></Header>
+      <RegisterRecruiter></RegisterRecruiter>
       <Routes>
         <Route path='/' element={<MainPage></MainPage>}></Route>
         <Route path='/jobs' element={<JobDetails></JobDetails>}></Route>
