@@ -6,11 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(callSuper = false)
 public class RecruiterRequestDTO {
 	private String firstName;
 	private String middleName;
@@ -23,6 +25,5 @@ public class RecruiterRequestDTO {
 	private String companyAddr;
 	private String companyUrl;
 	private String companyFax;
-	private MultipartFile companyLogo;
 	private String companyDesc;
 }
