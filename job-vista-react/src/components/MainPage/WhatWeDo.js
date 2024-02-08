@@ -5,18 +5,17 @@ import "../../css/MainPage/WhatWeDo.css"
 
 export default function WhatWeDo() {
 
-    useEffect(()=>{
-        ScrollReveal().reveal(".left",{
-            origin:"left",
-            distance:"300px",
+    useEffect(() => {
+        ScrollReveal().reveal(".left", {
+            origin: "left",
+            distance: "300px",
             duration: 1500
         });
-        ScrollReveal().reveal(".right",{
-            origin:"right",
-            distance:"300px",
+        ScrollReveal().reveal(".right", {
+            scale: 0.5,
             duration: 1500
         });
-    },[])
+    }, [])
 
     return (
         <div>
