@@ -9,10 +9,10 @@ import { setLoggedInUser } from '../redux/slices/LoginSlice';
 const LoginPage = () => {
 
   useEffect(() => {
-    ScrollReveal().reveal(".left",{
-      origin : "left",
-      duration : 1500,
-      distance : "200px"
+    ScrollReveal().reveal(".left", {
+      origin: "left",
+      duration: 1500,
+      distance: "200px"
     })
     ScrollReveal().reveal(".emerge", {
       scale: 0.7,
