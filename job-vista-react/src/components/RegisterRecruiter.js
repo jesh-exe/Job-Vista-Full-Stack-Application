@@ -1,6 +1,11 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const RegisterRecruiter = () => {
+
+  const navigate = useNavigate();
+
   const [recruiter, setRecruiter] = useState({
     firstName: '',
     middleName: '',
@@ -13,10 +18,14 @@ const RegisterRecruiter = () => {
     companyAddr: '',
     companyUrl: '',
     companyFax: '',
-    companyLogo: null,
     companyDesc: ''
   });
 
+  const [logo, setLogo] = useState({
+    companyLogo: null
+  })
+
+  //Setting the parameters automatically from form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecruiter(prevState => ({
@@ -27,16 +36,40 @@ const RegisterRecruiter = () => {
 
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
-    setRecruiter(prevState => ({
-      ...prevState,
+    // Validating the Size
+    // console.log(file.size)
+    setLogo({
       companyLogo: file
-    }));
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //Creating the Formdata of image to send to the Backend
+    const formdata = new FormData();
+    formdata.append("companyLogo", logo.companyLogo);
+
+    //Posting the Data to backend, returns the ID of created Recruiter and using that ID to send another call to API to save image for that Recruiter
+    axios.post("http://localhost:8080/recruiter", recruiter)
+      .then((response) => {
+        var registeredRecruiterID = response.data;
+
+        //  Sending the data with Image to backend
+        axios.post(`http://localhost:8080/recruiter/image/${registeredRecruiterID}`, formdata).then((response) => {
+          console.log(response)
+          alert("Signed Up Successfully!");
+          navigate("/");
+        }).catch((error) => {
+          console.log(error)
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     console.log(recruiter);
   };
+
 
   return (
     <div className="container bg-white mt-5 p-sm-1 p-md-4 p-lg-5 mb-5">
@@ -178,14 +211,15 @@ const RegisterRecruiter = () => {
           <div className="col">
             <div className="form-group">
               <label htmlFor="companyAddr">Company Address</label>
-              <textarea
+              <input
+                type='text'
                 className="form-control"
                 id="companyAddr"
                 name="companyAddr"
                 defaultValue={recruiter.companyAddr}
                 onChange={handleChange}
                 required
-              ></textarea>
+              ></input>
             </div>
           </div>
         </div>
@@ -230,6 +264,7 @@ const RegisterRecruiter = () => {
                 onChange={handleLogoChange}
                 accept="image/*"
                 required
+                size=""
               />
             </div>
           </div>
