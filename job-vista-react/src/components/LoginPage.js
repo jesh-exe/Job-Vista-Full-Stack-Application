@@ -39,7 +39,6 @@ const LoginPage = () => {
   }
 
 
-
   return (
     <div className='container mt-5 mb-5 p-4'>
       <div className='row'>
@@ -55,7 +54,7 @@ const LoginPage = () => {
               {/* Email */}
               <div className="form-group">
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" onChange={handleChange} />
+                <input type="email" id="email" name="email" autoFocus onChange={handleChange} />
               </div>
               {/* Password */}
               <div className="form-group mt-4">
