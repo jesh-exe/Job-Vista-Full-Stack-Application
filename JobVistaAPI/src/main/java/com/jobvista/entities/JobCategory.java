@@ -39,7 +39,7 @@ public class JobCategory {
     private String name;
 
     @Column(name = "jc_creation_timestamp")
-    private LocalDateTime creationTimestamp;
+    private LocalDateTime creationTimestamp = LocalDateTime.now();
 
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Job> jobs = new LinkedHashSet<>();

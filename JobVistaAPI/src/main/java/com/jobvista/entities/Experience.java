@@ -65,7 +65,7 @@ public class Experience {
     private String status;
 
     @Column(name = "exp_creation_date", nullable = false)
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now();
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "exp_js_id", nullable = false)

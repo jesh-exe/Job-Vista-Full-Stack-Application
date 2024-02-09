@@ -1,5 +1,7 @@
 package com.jobvista.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,6 +42,9 @@ public class JobApplication {
     @Column(name = "ja_status", nullable = false, length = 45)
     private String status;
 
+    @Column(name = "ja_apply_date", nullable = false)
+    private LocalDate applyDate = LocalDate.now();
+    
     /*
      * Checking the Job for Job Applications if user applies double for the same job.
      * Contraint -> Job -> jobID

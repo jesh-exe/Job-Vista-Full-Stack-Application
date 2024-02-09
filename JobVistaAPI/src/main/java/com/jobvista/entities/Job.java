@@ -94,7 +94,7 @@ public class Job {
     private String jobType;
     
     @Column(name = "job_post_date", nullable = false)
-    private LocalDate postingDate;
+    private LocalDate postingDate = LocalDate.now();
     
     @Column(name = "job_views", nullable = false)
     private Integer views;
@@ -104,7 +104,7 @@ public class Job {
     private String status;
     
     @Column(name = "job_creation_timestamp", nullable = false)
-    private LocalDateTime creationTimestamp;
+    private LocalDateTime creationTimestamp = LocalDateTime.now();
     
     @OneToMany(mappedBy = "job",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<JobApplication> jobApplications = new LinkedHashSet<>();
