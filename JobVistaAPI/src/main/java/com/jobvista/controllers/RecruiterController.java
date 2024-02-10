@@ -24,6 +24,11 @@ public class RecruiterController {
 
 	@Autowired
 	private RecruiterService recruiterService;
+	
+	public RecruiterController() {
+		System.out.println("Recruiter Controller Up and Running!");
+	}
+	
 
 	@PostMapping
 	public ResponseEntity<?> registerRecruiter(@RequestBody RecruiterRequestDTO recruiterRequestDTO) {
