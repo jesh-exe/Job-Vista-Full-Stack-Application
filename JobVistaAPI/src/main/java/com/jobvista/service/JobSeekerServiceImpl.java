@@ -77,8 +77,10 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 			jobSeeker.setExperience(experience);
 		}
 		jobSeekerRepository.save(jobSeeker);
-//		System.out.println("DATA IN RECIEVED \n"+jobSeeker.getEmail()+"\n"+address.getCountry()+"\n"+sscEducation.getPassingYear()+"\n"+hscEducation.getPercentage()+"\n"+graduationEducation.getSpecialization()+"\n"+experiences.get(0).getCompanyName());
 		return "Recieved";
 	}
+	
+	
+	
 
 }

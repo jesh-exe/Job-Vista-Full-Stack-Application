@@ -5,12 +5,13 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = false)
 public class RecruiterRequestDTO {

@@ -43,5 +43,9 @@ public class JobSeekerController {
 	private ResponseEntity<?> registerJobSeeker(@RequestBody JobSeekerRequestDTO jobSeekerRequestDTO) {
 		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.registerJobSeeker(jobSeekerRequestDTO));
 	}
+	
+	//Vaishnavi
+//	@PostMapping("/validate")
+	
 
 }

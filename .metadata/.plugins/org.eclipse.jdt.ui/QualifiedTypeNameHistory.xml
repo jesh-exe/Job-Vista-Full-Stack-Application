@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="io.swagger.v3.oas.annotations.parameters.RequestBody"/>
-    <fullyQualifiedTypeName name="io.swagger.v3.oas.annotations.servers.Server"/>
-    <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
-    <fullyQualifiedTypeName name="com.jobvista.requestDTO.RecruiterRequestDTO"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
-    <fullyQualifiedTypeName name="com.jobvista.entities.Recruiter"/>
-    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="org.apache.logging.log4j.util.StringBuilderFormattable"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
@@ -47,7 +41,6 @@
     <fullyQualifiedTypeName name="com.jobvista.repositories.HscEducationRepository"/>
     <fullyQualifiedTypeName name="com.jobvista.repositories.GraduationEducationRepository"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="com.jobvista.requestDTO.jobSeekerDTO.JobSeekerRequestDTO"/>
     <fullyQualifiedTypeName name="com.jobvista.entities.JobSeeker"/>
     <fullyQualifiedTypeName name="com.jobvista.entities.Address"/>
@@ -60,4 +53,11 @@
     <fullyQualifiedTypeName name="com.jobvista.requestDTO.jobSeekerDTO.ExperienceRequestDTO"/>
     <fullyQualifiedTypeName name="com.jobvista.entities.Experience"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.jobvista.requestDTO.RecruiterRequestDTO"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="com.jobvista.entities.Recruiter"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 </qualifiedTypeNameHistroy>
