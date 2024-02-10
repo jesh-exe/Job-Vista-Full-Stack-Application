@@ -10,6 +10,7 @@ import JobDetails from './components/JobDetails';
 import LoginPage from './components/LoginPage';
 import MainPage from './components/MainPage/MainPage';
 import RegisterRecruiter from './components/RegisterRecruiter';
+import Dashboard from './components/Dashboard/Dashboard';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/contactus' element={<ContactPage></ContactPage>}></Route>
         <Route path='/login' element={<LoginPage></LoginPage>}></Route>
         <Route path='/register-recruiter' element={<RegisterRecruiter></RegisterRecruiter>}></Route>
+        <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
       </Routes>
       <Footer></Footer>
     </div>
