@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jobvista.entities.Recruiter;
+import com.jobvista.exception.ApiException;
 import com.jobvista.requestDTO.RecruiterRequestDTO;
 import com.jobvista.service.RecruiterService;
 
@@ -48,8 +50,19 @@ public class RecruiterController {
 	}
 	
 	
-	//Trupti
+   
 	//Validate Recruiter -> validateRecruiter() -> Post Mapping
-	
+
+	@PostMapping("/validate")
+	public ResponseEntity<?> validateRecruiter(@RequestBody RecruiterRequestDTO recruiterRequestDTO) {
+	    try {
+	        Recruiter validatedRecruiter = recruiterService.validateRecruiter(recruiterRequestDTO);
+	        return ResponseEntity.status(HttpStatus.OK).body(validatedRecruiter);
+	    } catch (RuntimeException e) {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Failed to validate recruiter. Please check your credentials.");
+	    }
+	}
+
+
 
 }

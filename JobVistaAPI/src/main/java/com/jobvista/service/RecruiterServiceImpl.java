@@ -1,6 +1,7 @@
 package com.jobvista.service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jobvista.entities.Recruiter;
+import com.jobvista.exception.ApiException;
 import com.jobvista.repositories.RecruiterRepository;
 import com.jobvista.requestDTO.RecruiterRequestDTO;
 
@@ -40,6 +42,18 @@ public class RecruiterServiceImpl implements RecruiterService {
 		recruiter.setCompanyLogo(companyLogo.getBytes());
 		return "Uploaded Image";
 	}
+
+	
+	@Override
+	public Recruiter validateRecruiter(RecruiterRequestDTO recruiterRequestDTO) {
+	    String email = recruiterRequestDTO.getEmail();
+	    String password = recruiterRequestDTO.getPassword();
+	    Recruiter optionalRecruiter = recruiterRepository.findByEmailAndPassword(email, password)
+	    		.orElseThrow(() -> new RuntimeException("Recruiter not found"));
+	    
+	    return optionalRecruiter;
+	}
+
 
 	
 }
