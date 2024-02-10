@@ -1,0 +1,14 @@
+.holdd{
+    background-image: "../../assets/man-image.png";
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.img-hold{
+    scale: 1;
+    transition: all 0.4s ease-in-out;
+}
+
+.img-hold:hover{
+    scale: 1.05;
+}

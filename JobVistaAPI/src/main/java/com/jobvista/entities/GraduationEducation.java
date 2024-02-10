@@ -70,6 +70,6 @@ public class GraduationEducation {
     private String status;
     
     @Column(name = "grad_creation_date", nullable = false)
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now();
 
 }

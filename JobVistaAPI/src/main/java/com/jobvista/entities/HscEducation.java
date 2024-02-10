@@ -1,6 +1,6 @@
 package com.jobvista.entities;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -55,6 +55,6 @@ public class HscEducation {
     private Double percentage;
     
     @Column(name = "hsc_creation_date", nullable = false)
-    private Instant creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now();
 
 }
