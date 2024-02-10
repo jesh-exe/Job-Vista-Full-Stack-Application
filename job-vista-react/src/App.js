@@ -12,11 +12,10 @@ import MainPage from './components/MainPage/MainPage';
 import RegisterRecruiter from './components/Registration/RegisterRecruiter';
 import RegisterJobseeker from './components/Registration/RegisterJobSeeker/RegisterJobSeeker'
 
-function App() {  
+function App() {
   return (
     <div className="App bg-light">
       <Header></Header>
-
       <Routes>
         <Route path='/' element={<MainPage></MainPage>}></Route>
         <Route path='/jobs' element={<JobDetails></JobDetails>}></Route>

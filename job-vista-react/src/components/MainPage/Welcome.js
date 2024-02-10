@@ -5,8 +5,8 @@ import ScrollReveal from 'scrollreveal'
 export default function Welcome() {
 
     useEffect(()=>{
-        ScrollReveal().reveal(".uprise",{
-            scale:0.7,
+        ScrollReveal().reveal(".headingMain",{
+            scale: 0.7,
             duration: 1500
         })
     },[])
@@ -15,7 +15,7 @@ export default function Welcome() {
         <div className='welcome'>
             <div class="container text-center mt-5">
                 <div className='row'>
-                    <div class='col-sm-10 col-md-10 col-lg-5 text-start emerge'>
+                    <div class='col-sm-10 col-md-10 col-lg-5 text-start headingMain'>
                         <div className='text-start mt-5 mb-4'>
                             <div className='display-4 pt-md-5 pt-lg-5 fw-bold text-primary '>Find  Apply  Get.</div>
                         </div>

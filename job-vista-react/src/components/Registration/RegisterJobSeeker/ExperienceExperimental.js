@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Tab, Tabs, Accordion } from 'react-bootstrap';
 import $ from "jquery";
 
 

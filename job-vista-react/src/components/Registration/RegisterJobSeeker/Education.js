@@ -1,8 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setGraduationEducationDetails, setHscEducationDetails, setSscEducationDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
 
 export default function Education() {
 
+    const dispatch = useDispatch();
 
     const [sscEducation, setSscEducation] = useState({
         schoolName: '',
@@ -29,7 +32,7 @@ export default function Education() {
 
     const hscEducationChange = (e) => {
         const { name, value } = e.target;
-        setSscEducation((prevState) => ({
+        setHscEducation((prevState) => ({
             ...prevState,
             [name]: value,
         }));
@@ -45,6 +48,7 @@ export default function Education() {
         percentage: '',
         backlogs: '',
         attempts: '',
+        status : ''
     });
 
     const graduationEducationChange = (e) => {
@@ -56,13 +60,20 @@ export default function Education() {
     }
 
 
+    const saveEducation = (e) => {
+        e.preventDefault();
+        dispatch(setSscEducationDetails(sscEducation));
+        dispatch(setHscEducationDetails(hscEducation));
+        dispatch(setGraduationEducationDetails(graduationEducation));
+    }
+
 
     return (
         <div className="container col-md-10">
             <div className="row text-center ">
                 <h2 className="text-center lead fs-2 py-5 p-md-4"> SSC </h2>
             </div>
-            <form>
+            <form onSubmit={saveEducation}>
                 <div className='mb-5'>
                     <div className="row">
                         <div className="col-sm-12 col-md-6">
@@ -306,6 +317,20 @@ export default function Education() {
                                 />
                             </div>
                         </div>
+                        <div className="col">
+                            <div className="form-group">
+                                <label htmlFor="status">Status</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="status"
+                                    name="status"
+                                    defaultValue={graduationEducation.status}
+                                    onChange={graduationEducationChange}
+                                    required
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col-sm-4 col-4 col-md-4 ">
@@ -354,8 +379,8 @@ export default function Education() {
                 </div>
 
                 <div className="form-group text-center p-4">
-                    <button type="submit" className="btn btn-primary">
-                        Submit
+                    <button type="submit" className="btn px-4 btn-success">
+                        Save
                     </button>
                 </div>
             </form>
