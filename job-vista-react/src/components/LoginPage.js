@@ -9,10 +9,10 @@ import { setLoggedInUser } from '../redux/slices/LoginSlice';
 const LoginPage = () => {
 
   useEffect(() => {
-    ScrollReveal().reveal(".left",{
-      origin : "left",
-      duration : 1500,
-      distance : "200px"
+    ScrollReveal().reveal(".left", {
+      origin: "left",
+      duration: 1500,
+      distance: "200px"
     })
     ScrollReveal().reveal(".emerge", {
       scale: 0.7,
@@ -39,7 +39,6 @@ const LoginPage = () => {
   }
 
 
-
   return (
     <div className='container mt-5 mb-5 p-4'>
       <div className='row'>
@@ -55,7 +54,7 @@ const LoginPage = () => {
               {/* Email */}
               <div className="form-group">
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" onChange={handleChange} />
+                <input type="email" id="email" name="email" autoFocus onChange={handleChange} />
               </div>
               {/* Password */}
               <div className="form-group mt-4">
