@@ -2,7 +2,6 @@ import '../css/LoginPage.css'
 import sideImage from "../assets/loginSide.svg"
 import React, { useEffect, useState } from 'react';
 import ScrollReveal from 'scrollreveal';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setLoggedInUser } from '../redux/slices/LoginSlice';
 
@@ -44,7 +43,7 @@ const LoginPage = () => {
       <div className='row'>
         {/* Left Side Image */}
         <div className='col-sm-12 col-md-6 col-lg-6 mb-5 left'>
-          <img src={sideImage} className='img-fluid'></img>
+          <img src={sideImage} alt='' className='img-fluid login-side-image'></img>
         </div>
         {/* Right Side Form */}
         <div className='col-sm-12 col-md-6 col-lg-6 text-center ps-sm-1 pe-sm-1 ps-md-1 pe-md-1 ps-lg-5 pe-lg-5 emerge'>

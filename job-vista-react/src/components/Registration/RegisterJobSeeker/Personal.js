@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getPersonal, setPersonalDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { useDispatch } from 'react-redux';
+import { setPersonalDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
 
 
 export default function Personal() {
@@ -31,8 +31,7 @@ export default function Personal() {
     };
 
     const handleConfirmPassword = (e) => {
-        const { name, value } = e.target;
-        setConfirmPassword(value);
+        setConfirmPassword(e.target.value);
     }
 
     const savePersonalDetails = (e) => {
@@ -203,9 +202,11 @@ export default function Personal() {
                         </div>
                     </div>
                 </div>
-                <button type='submit' className="btn btn-primary">
-                    Save
-                </button>
+                <div className='text-center'>
+                    <button type='submit' className="btn px-4 mt-3 btn-success">
+                        Save
+                    </button>
+                </div>
             </form>
         </div>
     )

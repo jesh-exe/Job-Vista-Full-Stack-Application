@@ -1,7 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setAddressDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
 
 export default function Address() {
+
+    const dispatch = useDispatch();
 
     const [address, setAddress] = useState({
         lane1: "",
@@ -20,8 +24,10 @@ export default function Address() {
         }))
     }
 
-    const saveAddress = () => {
+    const saveAddress = (e) => {
+        e.preventDefault();
         console.log(address);
+        dispatch(setAddressDetails(address));
     }
 
     return (
@@ -121,7 +127,7 @@ export default function Address() {
                         </div>
                     </div>
                     <div className='text-center'>
-                        <button className='btn btn-success my-3' type='submit'>Save</button>
+                        <button className='btn btn-success my-3 px-4' type='submit'>Save</button>
                     </div>
                 </form>
             </div>

@@ -1,7 +1,4 @@
 import { useState } from 'react';
-import { Tab, Tabs, Accordion } from 'react-bootstrap';
-import $ from "jquery";
-import { CDBListGroup } from 'cdbreact';
 
 
 export default function Experience() {

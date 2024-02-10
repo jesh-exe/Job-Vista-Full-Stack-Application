@@ -15,11 +15,10 @@ import RegisterRecruiter from './components/RegisterRecruiter';
 import Dashboard from './components/Dashboard/Dashboard';
 
 
-function App() {  
+function App() {
   return (
     <div className="App bg-light">
       <Header></Header>
-
       <Routes>
         <Route path='/' element={<MainPage></MainPage>}></Route>
         <Route path='/jobs' element={<JobDetails></JobDetails>}></Route>

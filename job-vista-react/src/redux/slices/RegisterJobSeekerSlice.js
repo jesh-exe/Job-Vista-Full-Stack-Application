@@ -46,6 +46,7 @@ const initState = {
             percentage: '',
             backlogs: '',
             attempts: '',
+            status:""
         }
     },
 
@@ -82,7 +83,7 @@ export const getPersonal = createSelector(
     (state) => state
 )
 export const getAddress = createSelector(
-    (state) => state.jobSeeker.education.address,
+    (state) => state.jobSeeker.address,
     (state) => state
 )
 export const getSscEducation = createSelector(
@@ -94,7 +95,7 @@ export const getHscEducation = createSelector(
     (state) => state
 )
 export const getGraduationEducation = createSelector(
-    (state) => state.jobSeeker.graduation,
+    (state) => state.jobSeeker.education.graduation,
     (state) => state
 )
 export const getExperience = createSelector(
