@@ -56,3 +56,11 @@
     background-color: #0056b3;
   }
   
+
+  .login-side-image{
+    transition: all 0.4s ease-in-out;
+  }
+
+  .login-side-image:hover{
+    scale: 1.05;
+  }

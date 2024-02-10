@@ -41,4 +41,5 @@ public class RecruiterServiceImpl implements RecruiterService {
 		return "Uploaded Image";
 	}
 
+	
 }
