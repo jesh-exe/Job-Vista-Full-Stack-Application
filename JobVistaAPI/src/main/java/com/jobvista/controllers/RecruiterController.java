@@ -2,6 +2,8 @@ package com.jobvista.controllers;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jobvista.entities.Recruiter;
 import com.jobvista.requestDTO.RecruiterRequestDTO;
 import com.jobvista.service.RecruiterService;
 
@@ -34,22 +37,22 @@ public class RecruiterController {
 	@PostMapping
 	public ResponseEntity<?> registerRecruiter(@RequestBody RecruiterRequestDTO recruiterRequestDTO) {
 		System.out.println("\n\n" + recruiterRequestDTO);
-		return ResponseEntity.status(HttpStatus.OK).body(recruiterService.addRecruiter(recruiterRequestDTO));
+		return ResponseEntity.status(HttpStatus.CREATED).body(recruiterService.addRecruiter(recruiterRequestDTO));
 	}
 
 	@PostMapping(value = "/image/{id}")
-	public ResponseEntity<?> saveCompanyLogo(@PathVariable int id, @RequestParam("companyLogo") MultipartFile companyLogo) {
-		System.out.println(companyLogo+"\n"+id);
-		try {
-			return ResponseEntity.status(HttpStatus.OK).body(recruiterService.uploadImage(id,companyLogo));			
-		} catch (IOException e) {
-			return ResponseEntity.status(HttpStatus.OK).body("Failed to Upload Image");
-		}
+	public ResponseEntity<?> saveCompanyLogo(@PathVariable int id, @RequestParam("companyLogo") MultipartFile companyLogo) throws IOException {
+			return ResponseEntity.status(HttpStatus.CREATED).body(recruiterService.uploadImage(id,companyLogo));			
 	}
 	
 	
-	//Trupti
-	//Validate Recruiter -> validateRecruiter() -> Post Mapping
+	@PostMapping("/validate")
+	public ResponseEntity<?> validateRecruiter(@RequestBody RecruiterRequestDTO recruiterRequestDTO, HttpSession session)
+	{
+		Recruiter recruiter = recruiterService.validateRecruiter(recruiterRequestDTO);
+		session.setAttribute("loggedInRecruiter", recruiter);
+		return ResponseEntity.status(HttpStatus.OK).body("Valid User");
+	}
 	
 
 }
