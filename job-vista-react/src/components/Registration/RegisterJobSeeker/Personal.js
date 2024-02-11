@@ -144,6 +144,8 @@ export default function Personal() {
                                 id="password"
                                 name="password"
                                 onChange={personalDetailChange}
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\s])(?=.*[\S])[^\s]{8,}$"
+                                title="Password must contain at least one uppercase letter, one lowercase letter, one digit, and no spaces"
                                 required
                             />
                         </div>
@@ -156,6 +158,8 @@ export default function Personal() {
                                 className="form-control"
                                 id="confirmPassword"
                                 name="password"
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\s])(?=.*[\S])[^\s]{8,}$"
+                                title="Password must contain at least one uppercase letter, one lowercase letter, one digit, and no spaces"
                                 required
                                 onChange={handleConfirmPassword}
                                 readOnly={personal.password === "" ? true : false}

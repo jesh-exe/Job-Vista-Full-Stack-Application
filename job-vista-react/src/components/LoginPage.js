@@ -3,20 +3,7 @@ import sideImage from "../assets/loginSide.svg"
 import React, { useEffect, useState } from 'react';
 import ScrollReveal from 'scrollreveal';
 import { useDispatch } from 'react-redux';
-import { setLoggedInUser } from '../redux/slices/LoginSlice';
 import axios from 'axios';
-import '../css/LoginPage.css'
-import sideImage from "../assets/loginSide.svg"
-import React, { useEffect, useState } from 'react';
-import ScrollReveal from 'scrollreveal';
-import { useDispatch } from 'react-redux';
-import { setLoggedInUser } from '../redux/slices/LoginSlice';
-import "../css/LoginPage.css";
-import sideImage from "../assets/loginSide.svg";
-import React, { useEffect, useState } from "react";
-import ScrollReveal from "scrollreveal";
-import { useDispatch } from "react-redux";
-import { setLoggedInUser } from "../redux/slices/LoginSlice";
 
 const LoginPage = () => {
   useEffect(() => {
