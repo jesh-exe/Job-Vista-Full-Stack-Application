@@ -26,7 +26,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 @Table(name = "recruiter_dtls")
+
 public class Recruiter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,31 +60,31 @@ public class Recruiter {
 	private String password;
 
 	@Size(max = 100)
-	@Column(name = "rc_Company_name", nullable = false, length = 100)
+	@Column(name = "rc_company_name", nullable = false, length = 100)
 	private String companyName;
 
 	@Size(max = 20)
-	@Column(name = "rc_Company_contact", nullable = false, length = 20)
+	@Column(name = "rc_company_contact", nullable = false, length = 20)
 	private String companyContact;
 
 	@Lob
-	@Column(name = "rc_Company_addr", nullable = false, length = 750, columnDefinition = "TEXT")
+	@Column(name = "rc_company_addr", nullable = false, length = 750, columnDefinition = "TEXT")
 	private String companyAddr;
 
 	@Size(max = 100)
-	@Column(name = "rc_Company_url", nullable = false, length = 100, unique = true)
+	@Column(name = "rc_company_url", nullable = false, length = 100, unique = true)
 	private String companyUrl;
 
 	@Size(max = 50)
-	@Column(name = "rc_Company_fax", length = 50)
+	@Column(name = "rc_company_fax", length = 50)
 	private String companyFax;
 
 	@Lob
-	@Column(name = "rc_Company_logo", length = 1000000, columnDefinition = "MEDIUMBLOB")
+	@Column(name = "rc_company_logo", length = 1000000, columnDefinition = "MEDIUMBLOB")
 	private byte[] companyLogo;
 
 	@Lob
-	@Column(name = "rc_Company_desc", nullable = false, length = 3500, columnDefinition = "TEXT")
+	@Column(name = "rc_company_desc", nullable = false, length = 3500, columnDefinition = "TEXT")
 	private String companyDesc;
 
 	@Column(name = "rc_creation_timestamp")

@@ -9,5 +9,6 @@ import com.jobvista.entities.Recruiter;
 public interface RecruiterRepository extends JpaRepository<Recruiter, Integer> {
 
 	Optional<Recruiter> findByEmailAndPassword(String email, String password);
-	
+	boolean existsRecruiterByEmail(String email);
+	boolean existsRecruiterByCompanyUrl(String url);
 }
