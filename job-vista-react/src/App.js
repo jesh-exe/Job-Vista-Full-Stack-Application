@@ -11,7 +11,6 @@ import LoginPage from './components/LoginPage';
 import MainPage from './components/MainPage/MainPage';
 import RegisterRecruiter from './components/Registration/RegisterRecruiter';
 import RegisterJobseeker from './components/Registration/RegisterJobSeeker/RegisterJobSeeker'
-import RegisterRecruiter from './components/RegisterRecruiter';
 import Dashboard from './components/Dashboard/Dashboard';
 
 
