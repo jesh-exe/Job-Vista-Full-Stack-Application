@@ -1,5 +1,7 @@
 package com.jobvista.controllers;
 
+import java.lang.Thread.State;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerCredsRequestDTO;
 import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerRequestDTO;
 import com.jobvista.service.JobSeekerService;
 
@@ -44,8 +47,10 @@ public class JobSeekerController {
 		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.registerJobSeeker(jobSeekerRequestDTO));
 	}
 	
-	//Vaishnavi
-//	@PostMapping("/validate")
+	@PostMapping("/validate")
+    public ResponseEntity<?> validateJobSeeker(@RequestBody JobSeekerCredsRequestDTO credsRequestDTO) {
+       return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.validateJobseeker(credsRequestDTO));
+    }
 	
 
 }

@@ -20,8 +20,6 @@ public class PersonalDetailsDTO {
 	private String contactNumber;
 	private String gender;
 	private String portfolioLink;
-	private String keySkill1;
-	private String keySkill2;
-	private String keySkill3;
-	private String projectRepositoryLink;
+	private String skills;
+	private String gitRepositoryLink;
 }

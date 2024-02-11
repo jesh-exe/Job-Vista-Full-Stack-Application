@@ -22,6 +22,7 @@ import com.jobvista.repositories.HscEducationRepository;
 import com.jobvista.repositories.JobSeekerRepository;
 import com.jobvista.repositories.SscEducationRepository;
 import com.jobvista.requestDTO.jobSeekerDTO.ExperienceRequestDTO;
+import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerCredsRequestDTO;
 import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerRequestDTO;
 
 @Service
@@ -63,16 +64,16 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		}
 		address.setJobSeeker(jobSeeker);
 		jobSeeker.setAddress(address);
-		
+
 		sscEducation.setJobSeeker(jobSeeker);
 		jobSeeker.setSscEducation(sscEducation);
-		
+
 		hscEducation.setJobSeeker(jobSeeker);
 		jobSeeker.setHscEducation(hscEducation);
-		
+
 		graduationEducation.setJobSeeker(jobSeeker);
 		jobSeeker.setGraduationEducation(graduationEducation);
-		
+
 		for (Experience experience : experiences) {
 			jobSeeker.setExperience(experience);
 		}
@@ -81,6 +82,11 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 	
 	
-	
+	public JobSeeker validateJobseeker(JobSeekerCredsRequestDTO jobSeekerCredsRequestDTO)
+	{
+		String email = jobSeekerCredsRequestDTO.getEmail();
+		String password = jobSeekerCredsRequestDTO.getPassword();
+		return jobSeekerRepository.findByEmailAndPassword(email,password).orElseThrow(()->new RuntimeException("Invalid Credentialls!") );
+	}
 
 }
