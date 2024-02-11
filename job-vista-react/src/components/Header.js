@@ -48,7 +48,7 @@ const Header = () => {
               <NavLink to="/" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >Home</NavLink>
 
               {/* Find Jobs Button */}
-              <NavLink to="/jobs" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >Find a Job</NavLink>
+              <NavLink to="/jobs" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item'  >Find a Job</NavLink>
 
               {/* About us Button */}
               <NavLink href="#pricing" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >About</NavLink>
@@ -58,7 +58,7 @@ const Header = () => {
 
             </Nav>
             <div className='text-center'>
-              {loggedInUser.email=="" ?
+              {loggedInUser.email == "" ?
                 <div>
                   {/* Register Button */}
                   <Button variant="success" onClick={handleShow}>
@@ -75,12 +75,16 @@ const Header = () => {
                           {/* Recruiter Section */}
                           <div className='col-sm-12 col-md-6 col-lg-6 p-4'>
                             <img className='img-fluid' height={300} width={300} src={recruiter}></img>
-                            <button className='btn btn-outline-primary mt-5'>Recruiter</button>
+                            <NavLink to="/register/recruiter">
+                              <button className='btn btn-outline-primary mt-5' onClick={handleClose}>Recruiter</button>
+                            </NavLink>
                           </div>
                           {/* Job Seeker Section */}
                           <div className='col-sm-12 col-md-6 col-lg-6 p-4'>
                             <img className='img-fluid' height={300} width={300} src={jobseeker}></img>
-                            <button className='btn btn-outline-primary mt-5'>Job Seeker</button>
+                            <NavLink to="/register/jobseeker">
+                              <button className='btn btn-outline-primary mt-5' onClick={handleClose}>Job Seeker</button>
+                            </NavLink>
                           </div>
                         </div>
                       </div>
