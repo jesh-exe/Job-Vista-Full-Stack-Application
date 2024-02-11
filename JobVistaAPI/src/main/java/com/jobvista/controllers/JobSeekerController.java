@@ -1,5 +1,9 @@
 package com.jobvista.controllers;
 
+import java.lang.Thread.State;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jobvista.entities.JobSeeker;
+import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerCredsRequestDTO;
 import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerRequestDTO;
 import com.jobvista.service.JobSeekerService;
 
@@ -41,11 +47,15 @@ public class JobSeekerController {
 
 	@PostMapping
 	private ResponseEntity<?> registerJobSeeker(@RequestBody JobSeekerRequestDTO jobSeekerRequestDTO) {
-		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.registerJobSeeker(jobSeekerRequestDTO));
+		return ResponseEntity.status(HttpStatus.CREATED).body(jobSeekerService.registerJobSeeker(jobSeekerRequestDTO));
 	}
-	
-	//Vaishnavi
-//	@PostMapping("/validate")
-	
+
+	@PostMapping("/validate")
+	public ResponseEntity<?> validateJobSeeker(@RequestBody JobSeekerCredsRequestDTO credsRequestDTO,
+			HttpSession session) {
+		JobSeeker jobSeeker = jobSeekerService.validateJobseeker(credsRequestDTO);
+		session.setAttribute("loggedInJobSeeker", jobSeeker);
+		return ResponseEntity.status(HttpStatus.OK).body("Valid User");
+	}
 
 }
