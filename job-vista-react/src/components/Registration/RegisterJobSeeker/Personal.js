@@ -18,6 +18,8 @@ export default function Personal() {
         contactNumber: "",
         gender: "",
         portfolioLink: "",
+        skills: "",
+        gitRepositoryLink: ""
     });
 
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -56,7 +58,7 @@ export default function Personal() {
                 <div className="row">
                     <div className="col-sm-12 col-md-4">
                         <div className="form-group">
-                            <label htmlFor="firstName">First Name</label>
+                            <label htmlFor="firstName">First Name <span className='text-danger'>*</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -64,6 +66,7 @@ export default function Personal() {
                                 name="firstName"
                                 pattern='[a-zA-Z]{2,50}'
                                 defaultValue={personal.firstName}
+                                title="Please Enter Valid First Name"
                                 onChange={personalDetailChange}
                                 required
                                 autoFocus
@@ -86,7 +89,7 @@ export default function Personal() {
                     </div>
                     <div className="col-sm-12 col-md-4">
                         <div className="form-group">
-                            <label htmlFor="lastName">Last Name</label>
+                            <label htmlFor="lastName">Last Name<span className='text-danger'> *</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -103,7 +106,7 @@ export default function Personal() {
                 <div className="row">
                     <div className="col-sm-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="username">Username<span className='text-danger'> *</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -118,7 +121,7 @@ export default function Personal() {
                     </div>
                     <div className="col-sm-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Email<span className='text-danger'> *</span></label>
                             <input
                                 type="email"
                                 className="form-control"
@@ -134,7 +137,7 @@ export default function Personal() {
                 <div className="row">
                     <div className="col-sm-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Password<span className='text-danger'> *</span></label>
                             <input
                                 type="password"
                                 className="form-control"
@@ -147,11 +150,11 @@ export default function Personal() {
                     </div>
                     <div className="col-sm-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="password">Confirm Password</label>
+                            <label htmlFor="password">Confirm Password<span className='text-danger'> *</span></label>
                             <input
                                 type="password"
                                 className="form-control"
-                                id="password"
+                                id="confirmPassword"
                                 name="password"
                                 required
                                 onChange={handleConfirmPassword}
@@ -163,7 +166,7 @@ export default function Personal() {
                 <div className="row">
                     <div className="col-sm-12 col-md-4">
                         <div className="form-group">
-                            <label htmlFor='gender'>Gender</label>
+                            <label htmlFor='gender'>Gender<span className='text-danger'> *</span></label>
                             <select className='form-select' name='gender' onChange={personalDetailChange}>
                                 <option value="none">Select Gender</option>
                                 <option value="male">Male</option>
@@ -174,7 +177,7 @@ export default function Personal() {
                     </div>
                     <div className="col-sm-12 col-md-4">
                         <div className="form-group">
-                            <label htmlFor="contactNumber">Contact Number </label>
+                            <label htmlFor="contactNumber">Contact Number<span className='text-danger'> *</span></label>
                             <input
                                 type="number"
                                 className="form-control"
@@ -197,6 +200,37 @@ export default function Personal() {
                                 id="portfolioLink"
                                 name="portfolioLink"
                                 defaultValue={personal.portfolioLink}
+                                onChange={personalDetailChange}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-sm-12 col-md-6'>
+                        <div className='form-group'>
+                            <label htmlFor="skills">Skills<span className='text-danger'> *</span></label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="skills"
+                                name="skills"
+                                pattern='[a-zA-Z,]{1,}'
+                                defaultValue={personal.skills}
+                                onChange={personalDetailChange}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className='col-sm-12 col-md-6'>
+                        <div className='form-group'>
+                            <label htmlFor="gitRepositoryLink">Portfolio Link</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="gitRepositoryLink"
+                                name="gitRepositoryLink"
+                                pattern='[a-zA-Z]{1,}'
+                                defaultValue={personal.gitRepositoryLink}
                                 onChange={personalDetailChange}
                             />
                         </div>

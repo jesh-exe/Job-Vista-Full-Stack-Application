@@ -11,6 +11,8 @@ const initState = {
         contactNumber: "",
         gender: "",
         portfolioLink: "",
+        skills: "",
+        gitRepositoryLink: ""
     },
 
     address: {
@@ -46,7 +48,7 @@ const initState = {
             percentage: '',
             backlogs: '',
             attempts: '',
-            status:""
+            status: ""
         }
     },
 
@@ -73,7 +75,7 @@ const jobSeeker = createSlice({
             state.education.graduation = action.payload
         },
         setExperiencesDetails: (state, action) => {
-            state.experiences.push([...action.payload]);
+            state.experiences.push(action.payload);
         }
     }
 })

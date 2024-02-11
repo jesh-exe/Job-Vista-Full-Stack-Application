@@ -94,7 +94,6 @@ const RegisterRecruiter = () => {
             </div>
           </div>
           <div className="col">
-
             <div className="form-group">
               <label htmlFor="middleName">Middle Name</label>
               <input
@@ -111,7 +110,6 @@ const RegisterRecruiter = () => {
 
         <div className="row">
           <div className="col">
-
             <div className="form-group">
               <label htmlFor="lastName">Last Name</label>
               <input
@@ -125,7 +123,6 @@ const RegisterRecruiter = () => {
             </div>
           </div>
           <div className="col">
-
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <input
@@ -258,7 +255,7 @@ const RegisterRecruiter = () => {
               <label htmlFor="companyLogo">Company Logo</label>
               <input
                 type="file"
-                className="form-control-file p-2"
+                className="form-control p-2"
                 id="companyLogo"
                 name="companyLogo"
                 onChange={handleLogoChange}

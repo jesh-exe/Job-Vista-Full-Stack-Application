@@ -26,7 +26,7 @@ export default function Contact() {
 
     return (
         <>
-            <section className="ftco-section mt-5">
+            <section className="ftco-section my-5">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-6 text-center mb-5 top-side">

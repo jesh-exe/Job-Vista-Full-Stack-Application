@@ -38,7 +38,7 @@ export default function Address() {
                     <div className='row'>
                         <div className='col-sm-12 col-md-12'>
                             <div className='form-group'>
-                                <label htmlFor='lane1'>Lane 1:</label>
+                                <label htmlFor='lane1'>Lane 1<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='lane1'
@@ -67,7 +67,7 @@ export default function Address() {
                         </div>
                         <div className='col-sm-12 col-md-6'>
                             <div className='form-group'>
-                                <label htmlFor='country'>Country:</label>
+                                <label htmlFor='country'>Country<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='country'
@@ -76,6 +76,7 @@ export default function Address() {
                                     pattern='[a-zA-Z]{3,40}'
                                     value={address.country}
                                     onChange={handleChange}
+                                    required
                                 ></input>
                             </div>
                         </div>
@@ -83,7 +84,7 @@ export default function Address() {
                     <div className='row'>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='city'>City:</label>
+                                <label htmlFor='city'>City<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='city'
@@ -98,7 +99,7 @@ export default function Address() {
                         </div>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='state'>State:</label>
+                                <label htmlFor='state'>State<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='state'
@@ -113,7 +114,7 @@ export default function Address() {
                         </div>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='pincode'>Pincode:</label>
+                                <label htmlFor='pincode'>Pincode<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='pincode'
@@ -122,6 +123,7 @@ export default function Address() {
                                     className=' form-control'
                                     value={address.pincode}
                                     onChange={handleChange}
+                                    required
                                 ></input>
                             </div>
                         </div>

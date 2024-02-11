@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ScrollReveal from 'scrollreveal';
 import { useDispatch } from 'react-redux';
 import { setLoggedInUser } from '../redux/slices/LoginSlice';
+import axios from 'axios';
 
 const LoginPage = () => {
 

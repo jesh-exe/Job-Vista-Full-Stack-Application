@@ -63,24 +63,21 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		}
 		address.setJobSeeker(jobSeeker);
 		jobSeeker.setAddress(address);
-		
+
 		sscEducation.setJobSeeker(jobSeeker);
 		jobSeeker.setSscEducation(sscEducation);
-		
+
 		hscEducation.setJobSeeker(jobSeeker);
 		jobSeeker.setHscEducation(hscEducation);
-		
+
 		graduationEducation.setJobSeeker(jobSeeker);
 		jobSeeker.setGraduationEducation(graduationEducation);
-		
+
 		for (Experience experience : experiences) {
 			jobSeeker.setExperience(experience);
 		}
 		jobSeekerRepository.save(jobSeeker);
 		return "Recieved";
 	}
-	
-	
-	
 
 }

@@ -6,6 +6,8 @@ import Education from './Education';
 import Personal from './Personal';
 import { useSelector } from 'react-redux';
 import { getAddress, getExperience, getGraduationEducation, getHscEducation, getPersonal, getSscEducation } from '../../../redux/slices/RegisterJobSeekerSlice';
+import Other from './Other';
+import axios from 'axios';
 
 function RegisterJobSeeker() {
 
@@ -15,7 +17,35 @@ function RegisterJobSeeker() {
     const hsc = useSelector(getHscEducation);
     const graduation = useSelector(getGraduationEducation);
     const experiences = useSelector(getExperience);
+    const [profilePicture, setProfilePicture] = useState(null);
+    const [resume, setResume] = useState(null);
     const [currentTab, setCurrentTab] = useState("personal");
+
+    const handleFiles = (files) => {
+        setProfilePicture(files.profilePicture)
+        setResume(files.resume);
+    }
+
+    const sendDataToAPI = () => {
+        
+        var apiRequestData = {
+            "personal": personal,
+            "address": address,
+            "education": {
+                "ssc": ssc,
+                "hsc": hsc,
+                "graduation": graduation
+            },
+            "experiences": experiences
+        }
+
+        axios.post("http://localhost:8080/jobseeker", apiRequestData)
+            .then((response) => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error)
+            })
+    }
 
     return (
         <div className='p-2 p-sm-5 p-md-5'>
@@ -43,8 +73,21 @@ function RegisterJobSeeker() {
                     <Experience></Experience>
                 </Tab>
 
-                <Tab eventKey="other" title="Other">
+                <Tab eventKey="other" title="Other" disabled={experiences.length === 0 ? true : false}
+                >
+                    <Other handleFiles={handleFiles} ></Other>
+                </Tab>
 
+                <Tab eventKey="final" title="Confirm" disabled={resume === null ? true : false}>
+                    <div>
+                        <div className='container col-md-10'>
+                            <div className='text-center lead fs-2 py-5 p-md-5'>Confirmation</div>
+                            <div className='text-center my-3'>
+                                <div className='lead my-3'>Sure you want to proceed?</div>
+                                <button className='btn btn-primary' onClick={sendDataToAPI}>SUBMIT</button>
+                            </div>
+                        </div>
+                    </div>
                 </Tab>
 
             </Tabs >
