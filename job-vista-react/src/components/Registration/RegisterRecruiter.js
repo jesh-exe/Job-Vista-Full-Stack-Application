@@ -6,6 +6,7 @@ const RegisterRecruiter = () => {
 
   const navigate = useNavigate();
 
+  //To Hold State of the whole form information
   const [recruiter, setRecruiter] = useState({
     firstName: '',
     middleName: '',
@@ -21,11 +22,12 @@ const RegisterRecruiter = () => {
     companyDesc: ''
   });
 
+  //To set Image uploaded by the User
   const [logo, setLogo] = useState({
     companyLogo: null
   })
 
-  //Setting the parameters automatically from form
+  //Setting the parameters automatically from the form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecruiter(prevState => ({
@@ -34,12 +36,24 @@ const RegisterRecruiter = () => {
     }));
   };
 
+  //Setting the state whenever the file is selected by user
   const handleLogoChange = (e) => {
+    //Fetching the First File
     const file = e.target.files[0];
-    // Validating the Size
+
     if (file) {
-      console.log("In File Upload")
+      var fileType = new String(file.type);
+      //To Check if File Type is of Image else Show error message
+      if (!fileType.startsWith("image")) {
+        alert("Select Image File Only")
+        setLogo({
+          companyLogo: null
+        });
+        return;
+      }
+
       var fileSize = file.size / 1024;
+      //Checking the File Size to be of Atmost of 1 MB
       if (fileSize > 1024) {
         alert('File size must be below 1MB!')
         setLogo({
@@ -47,6 +61,7 @@ const RegisterRecruiter = () => {
         });
         return;
       }
+      // After all checks, setting the image
       setLogo({
         companyLogo: file
       });
@@ -61,10 +76,12 @@ const RegisterRecruiter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    //To Check if the Number contians 0 at the front
     if (recruiter.companyContact.length != 10) {
       alert("Contact Number must have 10 digits only")
       return;
     }
+    //To Check whether the file was uploaded properly
     if (!logo.companyLogo) {
       alert("Select Image below Size 1MB")
       return;
@@ -74,32 +91,34 @@ const RegisterRecruiter = () => {
     const formdata = new FormData();
     formdata.append("companyLogo", logo.companyLogo);
 
-
     //Posting the Data to backend, returns the ID of created Recruiter and using that ID to send another call to API to save image for that Recruiter
     axios.post("http://localhost:8080/recruiter", recruiter)
       .then((response) => {
         //Storing the Recruiter ID created in a var, to send it to backend for persisting the Logo
         var registeredRecruiterID = response.data;
+
         //  Sending the data with Image to backend
         axios.post(`http://localhost:8080/recruiter/image/${registeredRecruiterID}`, formdata)
           .then((response) => {
-            console.log(response)
+            // If Success, then Show the message and Navigate User to the Homepage for Login
             alert("Signed Up Successfully!");
             navigate("/");
           }).catch((error) => {
+            //Else Show that Image was not uploaded on the server
             alert("Failed To Upload the Image");
           })
       })
       .catch((error) => {
-        if(error.message === "Network Error")
-        {
+        //If Error in First Axios Call, then check the error message whether Backend is listening or not.
+        if (error.message === "Network Error") {
           alert("Server Not Started/Failed")
           return;
         }
+        //Second Case to check if the Status code is 400 (BAD_REQUEST) comming from Backend which shows Constraint Violation in this case.
         if (error.response.status === 400)
+          //Fetching the Message from the Response Body and Showing to the User via Alert
           alert(error.response.data.message);
       })
-    console.log(recruiter);
   };
 
 
