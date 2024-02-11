@@ -1,11 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
-import defaultImage from "../../../assets/defaultImage.jpg"
+import React, { useState } from 'react';
+import defaultImage from "../../../assets/defaultImage.jpg";
 
 export default function Other(props) {
 
     const [imagePreview, setImagePreview] = useState(null);
-    const [profilePictue, setProfilePicture] = useState(null);
+    const [profilePicture, setProfilePicture] = useState(null);
     const [pdf, setPdf] = useState(null);
     const [status, setStatus] = useState("x Not Uploaded")
 
@@ -36,7 +35,7 @@ export default function Other(props) {
     const handleSave = (e) => {
         e.preventDefault();
         props.handleFiles({
-            profilePicture: profilePictue,
+            profilePicture: profilePicture,
             resume: pdf
         });
     }
@@ -51,7 +50,7 @@ export default function Other(props) {
                             <img src={imagePreview === null ? defaultImage : imagePreview} className='img-fluid rounded-4' height={200} width={200}></img>
                         </div>
                         <div className='col-sm-12 col-md-8 align-middle text-center mt-4'>
-                            <label htmlFor='imageInput' className='lead mb-4 '>Upload Profile Photo</label>
+                            <label htmlFor='imageInput' className='lead mb-4 '>Upload Profile Photo<span className='text-danger'> *</span></label>
                             <input type='file' className='form-control' name='imageInput' id='imageInput' onChange={handleImageChange} accept="image/*" required></input>
                         </div>
                     </div>
@@ -59,9 +58,9 @@ export default function Other(props) {
                         <div className='col-sm-12 col-md-4 align-middle'>
                         </div>
                         <div className='col-sm-12 col-md-8 align-middle text-center mt-4'>
-                            <label htmlFor='resumeInput' className='lead mb-4'>Upload Resume</label>
+                            <label htmlFor='resumeInput' className='lead mb-4'>Upload Resume<span className='text-danger'> *</span></label>
                             <div>
-                                <input type='file' className='form-control' name='resumeInput' id='resumeInput' required onChange={handlePDFChange}></input>
+                                <input type='file' className='form-control' name='resumeInput' id='resumeInput' required onChange={handlePDFChange} accept=".pdf,.doc,.docx"></input>
                                 <div className={status === "x Not Uploaded" ? "text-danger  mt-2" : "text-success mt-2"}>{status}</div>
                             </div>
                         </div>

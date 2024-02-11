@@ -1,13 +1,13 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
-import Experience from './Experience';
-import Address from './Address';
-import Education from './Education';
-import Personal from './Personal';
 import { useSelector } from 'react-redux';
 import { getAddress, getExperience, getGraduationEducation, getHscEducation, getPersonal, getSscEducation } from '../../../redux/slices/RegisterJobSeekerSlice';
+import Address from './Address';
+import Education from './Education';
+import Experience from './Experience';
 import Other from './Other';
-import axios from 'axios';
+import Personal from './Personal';
 
 function RegisterJobSeeker() {
 
@@ -73,8 +73,7 @@ function RegisterJobSeeker() {
                     <Experience></Experience>
                 </Tab>
 
-                <Tab eventKey="other" title="Other" disabled={experiences.length === 0 ? true : false}
-                >
+                <Tab eventKey="other" title="Other" disabled={experiences.length === 0 ? true : false}>
                     <Other handleFiles={handleFiles} ></Other>
                 </Tab>
 

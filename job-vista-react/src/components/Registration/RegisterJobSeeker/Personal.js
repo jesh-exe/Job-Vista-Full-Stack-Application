@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPersonalDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
 
@@ -83,6 +82,7 @@ export default function Personal() {
                                 name="middleName"
                                 pattern='[a-zA-Z]{2,50}'
                                 defaultValue={personal.middleName}
+                                title="Please Enter Valid Middle Name"
                                 onChange={personalDetailChange}
                             />
                         </div>
@@ -97,6 +97,7 @@ export default function Personal() {
                                 name="lastName"
                                 pattern='[a-zA-Z]{2,50}'
                                 defaultValue={personal.lastName}
+                                title="Please Enter Valid Last Name"
                                 onChange={personalDetailChange}
                                 required
                             />
@@ -112,8 +113,9 @@ export default function Personal() {
                                 className="form-control"
                                 id="username"
                                 name="username"
-                                pattern='[a-zA-Z0-9]{2,50}'
+                                pattern='[a-zA-Z0-9_]{2,50}'
                                 defaultValue={personal.username}
+                                title="Username must contain albhabet ,numbers or underscore"
                                 onChange={personalDetailChange}
                                 required
                             />
@@ -188,6 +190,7 @@ export default function Personal() {
                                 id="contactNumber"
                                 name="contactNumber"
                                 defaultValue={personal.contactNumber}
+                                title="Please Enter Valid Number"
                                 onChange={personalDetailChange}
                                 required
                                 min={1000000000}
@@ -203,7 +206,9 @@ export default function Personal() {
                                 className="form-control"
                                 id="portfolioLink"
                                 name="portfolioLink"
+                                pattern='[a-zA-Z]{1,}'
                                 defaultValue={personal.portfolioLink}
+                                title="Please Enter Valid Link"
                                 onChange={personalDetailChange}
                             />
                         </div>
@@ -227,7 +232,7 @@ export default function Personal() {
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <div className='form-group'>
-                            <label htmlFor="gitRepositoryLink">Portfolio Link</label>
+                            <label htmlFor="gitRepositoryLink">GitHub Link</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -235,6 +240,7 @@ export default function Personal() {
                                 name="gitRepositoryLink"
                                 pattern='[a-zA-Z]{1,}'
                                 defaultValue={personal.gitRepositoryLink}
+                                title="Please Enter Valid Link"
                                 onChange={personalDetailChange}
                             />
                         </div>

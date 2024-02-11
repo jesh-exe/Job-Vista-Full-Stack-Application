@@ -60,7 +60,7 @@ export default function Experience() {
                     <div className='row'>
                         <div className='col-sm-12 col-md-6'>
                             <div className='form-group'>
-                                <label htmlFor='role'>Role:</label>
+                                <label htmlFor='role'>Role:<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='role'
@@ -76,7 +76,7 @@ export default function Experience() {
                         </div>
                         <div className='col-sm-12 col-md-6'>
                             <div className='form-group'>
-                                <label htmlFor='companyName'>Company Name:</label>
+                                <label htmlFor='companyName'>Company Name:<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='companyName'
@@ -94,7 +94,7 @@ export default function Experience() {
                     <div className='row'>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='industry'>Industry:</label>
+                                <label htmlFor='industry'>Industry:<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='industry'
@@ -109,7 +109,7 @@ export default function Experience() {
                         </div>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='location'>Location:</label>
+                                <label htmlFor='location'>Location:<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='location'
@@ -124,7 +124,7 @@ export default function Experience() {
                         </div>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='salary'>Salary:</label>
+                                <label htmlFor='salary'>Salary:<span className='text-danger'> *</span></label>
                                 <input
                                     type='number'
                                     id='salary'
@@ -140,7 +140,7 @@ export default function Experience() {
                     <div className='row'>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='startDate'>Start Date:</label>
+                                <label htmlFor='startDate'>Start Date:<span className='text-danger'> *</span></label>
                                 <input
                                     type='date'
                                     id='startDate'
@@ -154,7 +154,7 @@ export default function Experience() {
                         </div>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='endDate'>End Date:</label>
+                                <label htmlFor='endDate'>End Date:<span className='text-danger'> *</span></label>
                                 <input
                                     type='date'
                                     id='endDate'
@@ -167,7 +167,7 @@ export default function Experience() {
                         </div>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='status'>Status:</label>
+                                <label htmlFor='status'>Status:<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='status'
