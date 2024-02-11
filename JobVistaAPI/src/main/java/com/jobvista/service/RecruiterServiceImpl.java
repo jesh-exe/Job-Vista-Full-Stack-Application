@@ -31,9 +31,9 @@ public class RecruiterServiceImpl implements RecruiterService {
 	@Override
 	public String addRecruiter(RecruiterRequestDTO recruiterRequestDTO) {
 		Recruiter recruiter = mapper.map(recruiterRequestDTO, Recruiter.class);
-		if(recruiterRepository.existsRecruiterByEmail(recruiterRequestDTO.getEmail()))
+		if (recruiterRepository.existsRecruiterByEmail(recruiterRequestDTO.getEmail()))
 			throw new ApiCustomException("Email ID Already Exists");
-		if(recruiterRepository.existsRecruiterByCompanyUrl(recruiterRequestDTO.getCompanyUrl()))
+		if (recruiterRepository.existsRecruiterByCompanyUrl(recruiterRequestDTO.getCompanyUrl()))
 			throw new ApiCustomException("Company URL Already Exists");
 		recruiter = recruiterRepository.save(recruiter);
 		return recruiter.getId().toString();
@@ -41,18 +41,26 @@ public class RecruiterServiceImpl implements RecruiterService {
 
 	@Override
 	public String uploadImage(int id, MultipartFile companyLogo) throws IOException {
-		Recruiter recruiter = recruiterRepository.findById(id).orElseThrow(() -> new ApiCustomException("Failed to Upload Image"));
+		Recruiter recruiter = recruiterRepository.findById(id)
+				.orElseThrow(() -> new ApiCustomException("Failed to Upload Image"));
 		recruiter.setCompanyLogo(companyLogo.getBytes());
 		return "Uploaded Image";
 	}
 
 	@Override
 	public Recruiter validateRecruiter(RecruiterRequestDTO recruiterRequestDTO) {
-		Recruiter recruiter = recruiterRepository.findByEmailAndPassword(recruiterRequestDTO.getEmail(), recruiterRequestDTO.getPassword()).orElseThrow(()-> new ApiCustomException("Wrong Credentials!"));
+		Recruiter recruiter = recruiterRepository
+				.findByEmailAndPassword(recruiterRequestDTO.getEmail(), recruiterRequestDTO.getPassword())
+				.orElseThrow(() -> new ApiCustomException("Wrong Credentials!"));
 		return recruiter;
 	}
-	
-	
 
-	
+	@Override
+	public String deleteRecruiter(Integer id) {
+		if (!recruiterRepository.existsById(id))
+			throw new ApiCustomException("Recruiter Does Not Exists");
+		recruiterRepository.deleteById(id);
+		return "Deleted";
+	}
+
 }
