@@ -1,3 +1,18 @@
-.main-sidebar {
+.sidebar-main {
+    display: flex;
+    height: 120vh;
+    overflow: scroll initial;
+    position: sticky;
     z-index: 1;
+    margin-top: 0;
+    padding: 0;
+}
+
+.sidebar-footer {
+    text-align: center;
+    padding: 20px 5px;
+}
+
+.sidebar-footer-inner{
+    padding: 20px 5px;
 }

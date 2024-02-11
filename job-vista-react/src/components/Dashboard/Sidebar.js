@@ -12,24 +12,23 @@ import '../../css/Dashboard/Sidebar.css';
 
 export default function Sidebar() {
   return (
-    <div className='main-sidebar' style={{ display: 'flex', height: '100vh', overflow: 'scroll initial'}}>
+    <div className='sidebar-main container'>
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
-            Sidebar
-          </a>
+            Menu
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/dashboard" activeClassName="activeClicked">
+            
+            <NavLink exact to="/dashboard/main" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/new_job" activeClassName="activeClicked">
+            <NavLink exact to="/dashboard/new_job" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">New Job</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/profile" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Profile page</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="table">Job List</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/analytics" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
@@ -41,12 +40,8 @@ export default function Sidebar() {
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
-        <CDBSidebarFooter style={{ textAlign: 'center' }}>
-          <div
-            style={{
-              padding: '20px 5px',
-            }}
-          >
+        <CDBSidebarFooter className='sidebar-footer'>
+          <div className='sidebar-footer-inner'>
             Sidebar Footer
           </div>
         </CDBSidebarFooter>
