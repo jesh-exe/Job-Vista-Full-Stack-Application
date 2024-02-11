@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +19,10 @@ import com.jobvista.entities.Job;
 import com.jobvista.requestDTO.JobRequestDTO;
 import com.jobvista.service.JobService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/job")
+@RequestMapping("/jobs")
 public class JobController {
 	
 	@Autowired
@@ -45,21 +45,14 @@ public class JobController {
 //		return job.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 //	}
 	
-	@PostMapping
-	public ResponseEntity<Job> createJob(@RequestBody JobRequestDTO jobRequestDTO) {
-		Job createdJob = jobService.createJob(jobRequestDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).body(createdJob);
+	@PostMapping("/job")
+	public ResponseEntity<?> createJob(@RequestBody JobRequestDTO jobRequestDTO) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(jobService.createJob(jobRequestDTO));
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/job/{id}")
 	public ResponseEntity<?> deleteJob(@PathVariable Integer id) {
-		if(jobService.getJobById(id).isPresent()) {
-			jobService.deleteJob(id);
-			return ResponseEntity.noContent().build();
-		}
-		else {
-			return ResponseEntity.notFound().build();
-		}
+		return ResponseEntity.status(HttpStatus.OK).body(jobService.deleteJob(id));
 	}
 	
 }

@@ -10,7 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jobvista.entities.Job;
+import com.jobvista.entities.JobCategory;
+import com.jobvista.entities.Recruiter;
+import com.jobvista.exception.ApiCustomException;
+import com.jobvista.exception.ApiExceptionHandler;
+import com.jobvista.repositories.JobCategoryRepository;
 import com.jobvista.repositories.JobRepository;
+import com.jobvista.repositories.RecruiterRepository;
 import com.jobvista.requestDTO.JobRequestDTO;
 
 @Transactional
@@ -19,30 +25,46 @@ public class JobServiceImpl implements JobService {
 
 	@Autowired
 	private JobRepository jobRepository;
-	
+	@Autowired
+	private RecruiterRepository recruiterRepository;
+	@Autowired
+	private JobCategoryRepository jobCategoryRepository;
 	@Autowired
 	private ModelMapper mapper;
-	
+
 	@Override
 	public List<Job> getAllJobs() {
 		return jobRepository.findAll();
 	}
 
 	@Override
-	public Optional<Job> getJobById(Integer id) {
-		return jobRepository.findById(id);
-	}
-
-	@Override
-	public Job createJob(JobRequestDTO jobRequestDTO) {
+	public String createJob(JobRequestDTO jobRequestDTO) {
 //		set job fields with the jobRequestDTO fields
+		Recruiter recruiter = recruiterRepository.findByEmail(jobRequestDTO.getRecruiterEmail())
+				.orElseThrow(() -> new ApiCustomException("Email Not Found!"));
+		JobCategory jobCategory = jobCategoryRepository.findByName(jobRequestDTO.getJobCategory())
+				.orElseThrow(() -> new ApiCustomException("Job Category Not Found!"));
 		Job job = mapper.map(jobRequestDTO, Job.class);
-		return jobRepository.save(job);
+
+		recruiter.setJob(job);
+		jobCategory.setJob(job);
+
+		job.setCategory(jobCategory);
+		job.setRecruiter(recruiter);
+
+		jobRepository.save(job);
+
+		return "Job Created";
+
 	}
 
 	@Override
-	public void deleteJob(Integer id) {
-		jobRepository.deleteById(id);
+	public String deleteJob(Integer id) {
+		Job job = jobRepository.findById(id).orElseThrow(() -> new ApiCustomException("Job Does Not Exists!"));
+		job.getRecruiter().deleteJob(job);
+		job.getCategory().deleteJob(job);
+		jobRepository.delete(job);
+		return "Deleted";
 	}
 
 }

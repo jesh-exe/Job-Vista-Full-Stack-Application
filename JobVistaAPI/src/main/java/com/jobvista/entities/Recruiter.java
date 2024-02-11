@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,8 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.jobvista.exception.ApiCustomException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -90,13 +93,20 @@ public class Recruiter {
 	@Column(name = "rc_creation_timestamp")
 	private LocalDateTime creationTimestamp = LocalDateTime.now();
 
-	@OneToMany(mappedBy = "recruiter")
+	@OneToMany(mappedBy = "recruiter",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<Job> jobs = new LinkedHashSet<>();
 
 	public void setJob(Job job) {
 		job.setRecruiter(this);
 		if (!jobs.add(job))
-			throw new RuntimeException("Job Already Exists");
+			throw new ApiCustomException("Job Already Exists");
+	}
+	
+	public void deleteJob(Job job)
+	{
+		if(!jobs.remove(job))
+			throw new ApiCustomException("Job Does Not Exist");
+		job.setRecruiter(null);
 	}
 
 	public List<Job> getJobs() {
@@ -123,7 +133,5 @@ public class Recruiter {
 		this.companyLogo = companyLogo;
 		this.companyDesc = companyDesc;
 	}
-
-	
 
 }
