@@ -42,6 +42,8 @@ export default function Personal() {
             alert("Password Do Not Match!");
         else if (personal.gender === "none" || personal.gender === "")
             alert("Select Valid Gender");
+        else if(personal.contactNumber.length != 10)
+            alert("Contact Number must have 10 digits only")
         else {
             console.log(personal)
             dispatch(setPersonalDetails(personal));
@@ -112,7 +114,8 @@ export default function Personal() {
                                 className="form-control"
                                 id="username"
                                 name="username"
-                                pattern='[a-zA-Z0-9]{2,50}'
+                                pattern='[a-zA-Z0-9_]{2,50}'
+                                title='Enter Username containing Alphabets, Numbers or Underscore'
                                 defaultValue={personal.username}
                                 onChange={personalDetailChange}
                                 required
@@ -205,6 +208,7 @@ export default function Personal() {
                                 name="portfolioLink"
                                 defaultValue={personal.portfolioLink}
                                 onChange={personalDetailChange}
+                                maxLength={10}
                             />
                         </div>
                     </div>
@@ -227,7 +231,7 @@ export default function Personal() {
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <div className='form-group'>
-                            <label htmlFor="gitRepositoryLink">Portfolio Link</label>
+                            <label htmlFor="gitRepositoryLink">GitHub Link</label>
                             <input
                                 type="text"
                                 className="form-control"

@@ -8,9 +8,10 @@
   top: 0;
   width: 100%;
   z-index: 10;
+  background-color: white;
 }
 
-.menu-item{
+.menu-item {
   color: black;
 }
 
@@ -19,11 +20,11 @@
   margin: auto;
 }
 
-.navlinks-middle{
+.navlinks-middle {
   transition: all 0.2s ease-in;
 }
 
-.navlinks-middle:hover{
+.navlinks-middle:hover {
   color: blue;
 }
 

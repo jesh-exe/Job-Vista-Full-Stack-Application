@@ -39,11 +39,13 @@ function RegisterJobSeeker() {
             "experiences": experiences
         }
 
+        console.log(apiRequestData)
+
         axios.post("http://localhost:8080/jobseeker", apiRequestData)
             .then((response) => {
                 console.log(response);
             }).catch((error) => {
-                console.log(error)
+                console.log(error.data) 
             })
     }
 

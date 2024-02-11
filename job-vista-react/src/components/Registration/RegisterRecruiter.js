@@ -37,18 +37,43 @@ const RegisterRecruiter = () => {
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
     // Validating the Size
-    // console.log(file.size)
-    setLogo({
-      companyLogo: file
-    });
+    if (file) {
+      console.log("In File Upload")
+      var fileSize = file.size / 1024;
+      if (fileSize > 1024) {
+        alert('File size must be below 1MB!')
+        setLogo({
+          companyLogo: null
+        });
+        return;
+      }
+      setLogo({
+        companyLogo: file
+      });
+    }
+    else {
+      setLogo({
+        companyLogo: null
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (recruiter.companyContact.length != 10) {
+      alert("Contact Number must have 10 digits only")
+      return;
+    }
+    if (!logo.companyLogo) {
+      alert("Select Image below Size 1MB")
+      return;
+    }
+
     //Creating the Formdata of image to send to the Backend
     const formdata = new FormData();
     formdata.append("companyLogo", logo.companyLogo);
+
 
     //Posting the Data to backend, returns the ID of created Recruiter and using that ID to send another call to API to save image for that Recruiter
     axios.post("http://localhost:8080/recruiter", recruiter)
@@ -56,20 +81,27 @@ const RegisterRecruiter = () => {
         //Storing the Recruiter ID created in a var, to send it to backend for persisting the Logo
         var registeredRecruiterID = response.data;
         //  Sending the data with Image to backend
-        axios.post(`http://localhost:8080/recruiter/image/${registeredRecruiterID}`, formdata).then((response) => {
-          console.log(response)
-          alert("Signed Up Successfully!");
-          navigate("/");
-        }).catch((error) => {
-          console.log(error)
-        })
+        axios.post(`http://localhost:8080/recruiter/image/${registeredRecruiterID}`, formdata)
+          .then((response) => {
+            console.log(response)
+            alert("Signed Up Successfully!");
+            navigate("/");
+          }).catch((error) => {
+            alert("Failed To Upload the Image");
+          })
       })
       .catch((error) => {
-        console.log(error);
+        if(error.message === "Network Error")
+        {
+          alert("Server Not Started/Failed")
+          return;
+        }
+        if (error.response.status === 400)
+          alert(error.response.data.message);
       })
     console.log(recruiter);
   };
-  
+
 
   return (
     <div className="container bg-white mt-5 p-sm-1 p-md-4 p-lg-5 mb-5">
@@ -80,12 +112,13 @@ const RegisterRecruiter = () => {
         <div className="row">
           <div className="col">
             <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
+              <label htmlFor="firstName">First Name<span className='text-danger'> *</span></label>
               <input
                 type="text"
                 className="form-control"
                 id="firstName"
                 name="firstName"
+                pattern='[a-zA-Z]{2,40}'
                 defaultValue={recruiter.firstName}
                 onChange={handleChange}
                 required
@@ -101,6 +134,7 @@ const RegisterRecruiter = () => {
                 className="form-control"
                 id="middleName"
                 name="middleName"
+                pattern='[a-zA-Z]{2,40}'
                 defaultValue={recruiter.middleName}
                 onChange={handleChange}
               />
@@ -117,6 +151,7 @@ const RegisterRecruiter = () => {
                 className="form-control"
                 id="lastName"
                 name="lastName"
+                pattern='[a-zA-Z]{2,40}'
                 defaultValue={recruiter.lastName}
                 onChange={handleChange}
               />
@@ -124,12 +159,13 @@ const RegisterRecruiter = () => {
           </div>
           <div className="col">
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Username<span className='text-danger'> *</span></label>
               <input
                 type="text"
                 className="form-control"
                 id="username"
                 name="username"
+                pattern='[a-zA-Z0-9_]{2,40}'
                 defaultValue={recruiter.username}
                 onChange={handleChange}
                 required
@@ -140,9 +176,8 @@ const RegisterRecruiter = () => {
 
         <div className="row">
           <div className="col">
-
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email<span className='text-danger'> *</span></label>
               <input
                 type="email"
                 className="form-control"
@@ -155,14 +190,15 @@ const RegisterRecruiter = () => {
             </div>
           </div>
           <div className="col">
-
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Password<span className='text-danger'> *</span></label>
               <input
                 type="password"
                 className="form-control"
                 id="password"
                 name="password"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\s])(?=.*[\S])[^\s]{8,}$"
+                title="Password must contain at least one uppercase letter, one lowercase letter, one digit, and no spaces"
                 defaultValue={recruiter.password}
                 onChange={handleChange}
                 required
@@ -170,17 +206,16 @@ const RegisterRecruiter = () => {
             </div>
           </div>
         </div>
-
         <div className="row">
           <div className="col">
-
             <div className="form-group">
-              <label htmlFor="companyName">Company Name</label>
+              <label htmlFor="companyName">Company Name<span className='text-danger'> *</span></label>
               <input
                 type="text"
                 className="form-control"
                 id="companyName"
                 name="companyName"
+                pattern='[a-zA-Z0-9 ]{2,40}'
                 defaultValue={recruiter.companyName}
                 onChange={handleChange}
                 required
@@ -188,16 +223,17 @@ const RegisterRecruiter = () => {
             </div>
           </div>
           <div className="col">
-
             <div className="form-group">
-              <label htmlFor="companyContact">Company Contact</label>
+              <label htmlFor="companyContact">Company Contact<span className='text-danger'> *</span></label>
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 id="companyContact"
                 name="companyContact"
                 defaultValue={recruiter.companyContact}
                 onChange={handleChange}
+                min={1000000000}
+                max={9999999999}
                 required
               />
             </div>
@@ -207,7 +243,7 @@ const RegisterRecruiter = () => {
         <div className="row">
           <div className="col">
             <div className="form-group">
-              <label htmlFor="companyAddr">Company Address</label>
+              <label htmlFor="companyAddr">Company Address<span className='text-danger'> *</span></label>
               <input
                 type='text'
                 className="form-control"
@@ -223,7 +259,7 @@ const RegisterRecruiter = () => {
         <div className="row">
           <div className="col">
             <div className="form-group">
-              <label htmlFor="companyUrl">Company URL</label>
+              <label htmlFor="companyUrl">Company URL<span className='text-danger'> *</span></label>
               <input
                 type="text"
                 className="form-control"
@@ -241,7 +277,7 @@ const RegisterRecruiter = () => {
             <div className="form-group">
               <label htmlFor="companyFax">Company Fax</label>
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 id="companyFax"
                 name="companyFax"
@@ -252,7 +288,7 @@ const RegisterRecruiter = () => {
           </div>
           <div className="col">
             <div className="form-group ">
-              <label htmlFor="companyLogo">Company Logo</label>
+              <label htmlFor="companyLogo">Company Logo<span className='text-danger'> *</span></label>
               <input
                 type="file"
                 className="form-control p-2"
@@ -261,14 +297,13 @@ const RegisterRecruiter = () => {
                 onChange={handleLogoChange}
                 accept="image/*"
                 required
-                size=""
               />
             </div>
           </div>
         </div>
 
         <div className="form-group">
-          <label htmlFor="companyDesc">Company Description</label>
+          <label htmlFor="companyDesc">Company Description<span className='text-danger'> *</span></label>
           <textarea
             className="form-control"
             id="companyDesc"

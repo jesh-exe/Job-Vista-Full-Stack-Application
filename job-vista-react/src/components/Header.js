@@ -32,7 +32,7 @@ const Header = () => {
 
   return (
     <div className='sticky-nav shadow navbar-container'>
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+      <Navbar collapseOnSelect expand="lg" variant="light">
         <Container>
           <NavbarBrand href='#home' className='logoo'>
             {/* Main Logo */}

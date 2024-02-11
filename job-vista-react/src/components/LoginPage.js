@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ScrollReveal from 'scrollreveal';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import { error } from 'jquery';
 
 const LoginPage = () => {
   useEffect(() => {
@@ -21,7 +22,7 @@ const LoginPage = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    roleType: "",
+    roleType: "JobSeeker",
   });
 
   const dispatch = useDispatch();
@@ -33,11 +34,31 @@ const LoginPage = () => {
     });
   };
 
+
   // To handle Login Event
   const handleLogin = (e) => {
     e.preventDefault();
     // Sent to the Reducer where state is changed
     console.log(user)
+    if (user.roleType === "JobSeeker") {
+      axios.post("http://localhost:8080/jobseeker/validate", user)
+        .then((response) => {
+          console.log(response.status, response.data);
+        }).catch((error) => {
+          console.log(error)
+        })
+    }
+    else if (user.roleType === "Recruiter") {
+      axios.post("http://localhost:8080/recruiter/validate", user)
+        .then((response) => {
+          console.log(response.status, response.data);
+        }).catch((error) => {
+          console.log("Error")
+        })
+    }
+    else if (user.roleType === "Admin") {
+
+    }
     //dispatch(setLoggedInUser(user));
   };
 
@@ -71,7 +92,7 @@ const LoginPage = () => {
               </div>
               {/* Password */}
               <div className="form-group mt-4">
-               <label htmlFor="password">Password<span className='text-danger'> *</span></label>
+                <label htmlFor="password">Password<span className='text-danger'> *</span></label>
                 <input
                   type="password"
                   id="password"
@@ -80,7 +101,7 @@ const LoginPage = () => {
                   title="Password must contain at least one uppercase letter, one lowercase letter, one digit, and no spaces"
                   onChange={handleChange}
                   required
-                /> 
+                />
               </div>
               {/* Keep me Signed in */}
               <div className="form-group checkbox">

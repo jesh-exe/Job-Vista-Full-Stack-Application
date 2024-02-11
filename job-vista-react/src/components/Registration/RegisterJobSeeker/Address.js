@@ -28,6 +28,7 @@ export default function Address() {
         e.preventDefault();
         console.log(address);
         dispatch(setAddressDetails(address));
+        alert("Success")
     }
 
     return (
@@ -44,10 +45,11 @@ export default function Address() {
                                     id='lane1'
                                     name='lane1'
                                     className='form-control'
-                                    pattern='[a-zA-Z0-9,]{5,40}'
+                                    pattern='^(?=.*[a-z])(?=.*[^\s])(?=.*[\S])[^\s]{5,}$'
                                     value={address.lane1}
                                     required
                                     onChange={handleChange}
+                                    title='Lane must have atleast 5 alphabets or numbers or ,'
                                 ></input>
                             </div>
                         </div>
@@ -59,7 +61,8 @@ export default function Address() {
                                     id='lane2'
                                     name='lane2'
                                     className=' form-control'
-                                    pattern='[a-zA-Z0-9,]{5,40}'
+                                    pattern='^(?=.*[a-z])(?=.*[^\s])(?=.*[\S])[^\s]{5,}$'
+                                    title='Lane must have atleast 5 alphabets or numbers or ,'
                                     value={address.lane2}
                                     onChange={handleChange}
                                 ></input>
@@ -74,6 +77,7 @@ export default function Address() {
                                     name='country'
                                     className=' form-control'
                                     pattern='[a-zA-Z]{3,40}'
+                                    title='Country should be between 3 and 40 characters of Alphabets'
                                     value={address.country}
                                     onChange={handleChange}
                                     required
@@ -91,6 +95,7 @@ export default function Address() {
                                     name='city'
                                     className=' form-control'
                                     pattern='[a-zA-Z]{3,40}'
+                                    title='City should be between 3 and 40 characters of Alphabets'
                                     value={address.city}
                                     required
                                     onChange={handleChange}
@@ -105,6 +110,7 @@ export default function Address() {
                                     id='state'
                                     name='state'
                                     pattern='[a-zA-Z]{3,40}'
+                                    title='State should be between 3 and 40 characters of Alphabets'
                                     className=' form-control'
                                     value={address.state}
                                     required
@@ -120,6 +126,7 @@ export default function Address() {
                                     id='pincode'
                                     name='pincode'
                                     pattern='[0-9]{6,6}'
+                                    title="Pin code should contain only numbers and it should be 6 digits"
                                     className=' form-control'
                                     value={address.pincode}
                                     onChange={handleChange}

@@ -3,6 +3,5 @@
     background-size: cover;
     background-attachment: fixed;
     height: 35vh;
-    filter: blur(4px);
+    filter: blur(8px);
 }
-

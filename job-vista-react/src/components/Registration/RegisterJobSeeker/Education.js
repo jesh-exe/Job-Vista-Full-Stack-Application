@@ -65,6 +65,7 @@ export default function Education() {
         dispatch(setSscEducationDetails(sscEducation));
         dispatch(setHscEducationDetails(hscEducation));
         dispatch(setGraduationEducationDetails(graduationEducation));
+        alert("Success")
     }
 
 
@@ -117,6 +118,7 @@ export default function Education() {
                                     name="percentage"
                                     defaultValue={sscEducation.percentage}
                                     onChange={sscEducationChange}
+                                    title='Enter Percentage between 0 to 100'
                                     max={100}
                                     min={0}
                                     required
@@ -303,7 +305,7 @@ export default function Education() {
                             <div className="form-group">
                                 <label htmlFor="addmissionYear">Addmission Year<span className='text-danger'> *</span></label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
                                     id="addmissionYearGrad"
                                     name="addmissionYear"
