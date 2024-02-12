@@ -38,12 +38,11 @@ public class JobController {
 		return ResponseEntity.ok(jobs);
 	}
 	
-//	get job by id
-//	@GetMapping("/{id}")
-//	public ResponseEntity<Job> getJobById(@PathVariable Integer id) {
-//		Optional<Job> job = jobService.getJobById(id);
-//		return job.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-//	}
+	@GetMapping("/job/{id}")
+	public ResponseEntity<?> getJobDetails(@PathVariable Integer id)
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(jobService.getJobDetails(id));
+	}
 	
 	@PostMapping("/job")
 	public ResponseEntity<?> createJob(@RequestBody JobRequestDTO jobRequestDTO) {

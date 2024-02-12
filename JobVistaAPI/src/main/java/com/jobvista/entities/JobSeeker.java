@@ -130,6 +130,7 @@ public class JobSeeker {
 	// Setter & Getter for JobApplications
 	public void setJobApplication(JobApplication jobApplication) {
 		jobApplication.setJobSeeker(this);
+		System.out.println("In Job Seeker");
 		if (!jobApplications.add(jobApplication))
 			throw new ApiCustomException("Job Application Already Exists");
 	}

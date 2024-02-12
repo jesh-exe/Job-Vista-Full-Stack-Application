@@ -12,4 +12,5 @@ public interface RecruiterRepository extends JpaRepository<Recruiter, Integer> {
 	Optional<Recruiter> findByEmail(String email);
 	boolean existsRecruiterByEmail(String email);
 	boolean existsRecruiterByCompanyUrl(String url);
+	boolean existsRecruiterByUsername(String username);
 }

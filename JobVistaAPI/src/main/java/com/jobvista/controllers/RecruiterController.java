@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jobvista.entities.Recruiter;
 import com.jobvista.requestDTO.RecruiterRequestDTO;
+import com.jobvista.responseDTO.RecruiterResponseDTO;
 import com.jobvista.service.RecruiterService;
 
 @CrossOrigin(origins = "*")
@@ -50,9 +51,9 @@ public class RecruiterController {
 	@PostMapping("/validate")
 	public ResponseEntity<?> validateRecruiter(@RequestBody RecruiterRequestDTO recruiterRequestDTO, HttpSession session)
 	{
-		Recruiter recruiter = recruiterService.validateRecruiter(recruiterRequestDTO);
-		session.setAttribute("loggedInRecruiter", recruiter);
-		return ResponseEntity.status(HttpStatus.OK).body("Valid User");
+		RecruiterResponseDTO recruiterResponseDTO = recruiterService.validateRecruiter(recruiterRequestDTO);
+		session.setAttribute("loggedInRecruiter", recruiterResponseDTO);
+		return ResponseEntity.status(HttpStatus.OK).body(recruiterResponseDTO);
 	}
 	
 	@DeleteMapping("/{id}")

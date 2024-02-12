@@ -18,6 +18,7 @@ import com.jobvista.repositories.JobCategoryRepository;
 import com.jobvista.repositories.JobRepository;
 import com.jobvista.repositories.RecruiterRepository;
 import com.jobvista.requestDTO.JobRequestDTO;
+import com.jobvista.responseDTO.JobResponseDTO;
 
 @Transactional
 @Service
@@ -65,6 +66,21 @@ public class JobServiceImpl implements JobService {
 		job.getCategory().deleteJob(job);
 		jobRepository.delete(job);
 		return "Deleted";
+	}
+
+	@Override
+	public JobResponseDTO getJobDetails(Integer id) {
+		Job job = jobRepository.findById(id).orElseThrow(()->new ApiCustomException("Job Does Not Exists"));
+		JobResponseDTO jobResponseDTO = mapper.map(job, JobResponseDTO.class);
+		
+		String recruiterFullName = job.getRecruiter().getFirstName();
+		if(job.getRecruiter().getLastName()!="" || job.getRecruiter().getLastName()!=null)
+			recruiterFullName = recruiterFullName + " " + job.getRecruiter().getLastName();
+		
+		jobResponseDTO.setRecruiterName(recruiterFullName);
+		jobResponseDTO.setJobCategory(job.getCategory().getName());
+		
+		return jobResponseDTO;
 	}
 
 }
