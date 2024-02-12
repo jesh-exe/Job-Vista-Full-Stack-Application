@@ -1,19 +1,13 @@
-import React from 'react'
-import Main from './Main'
+import React, { useEffect } from 'react'
 import Sidebar from './Sidebar'
-import NewJob from './NewJob'
 import '../../css/Dashboard/Dashboard.css'
-import { Outlet } from 'react-router'
 function Dashboard() {
+
   return (
-    <div>
-        {/* <div className="container dashboard"> */}
-
-                    <Sidebar/>
-
-        {/* </div> */}
-        
+    <div className="dashboard">
+      <Sidebar />
     </div>
+
   )
 }
 

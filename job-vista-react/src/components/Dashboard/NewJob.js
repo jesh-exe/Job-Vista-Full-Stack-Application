@@ -44,7 +44,7 @@ function NewJob() {
   }
 
   return (
-    <div className="container bg-white mt-5 p-sm-1 p-md-4 p-lg-5 mb-5">
+    <div className="container bg-white mt-5 p-5 mb-5">
       <div className="row text-center ">
         <h2 className="text-primary p-2 mb-4 display-6"> Add New Job </h2>
       </div>
@@ -66,7 +66,6 @@ function NewJob() {
             </div>
           </div>
           <div className="col">
-
             <div className="form-group">
               <label htmlFor="experience">Experience</label>
               <input

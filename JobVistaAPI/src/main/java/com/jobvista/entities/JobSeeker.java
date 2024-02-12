@@ -120,7 +120,7 @@ public class JobSeeker {
 	public void setExperience(Experience experience) {
 		experience.setJobSeeker(this);
 		if (!experiences.add(experience))
-			throw new RuntimeException("Experience Already Added!");
+			throw new ApiCustomException("Experience Already Added!");
 	}
 
 	public List<Experience> getExperiences() {
