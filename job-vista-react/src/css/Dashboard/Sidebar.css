@@ -1,11 +1,7 @@
 .sidebar-main {
-    display: flex;
-    height: 120vh;
-    overflow: scroll initial;
-    position: sticky;
-    z-index: 1;
-    margin-top: 0;
-    padding: 0;
+
+    /* z-index: -10; */
+    
 }
 
 .sidebar-footer {

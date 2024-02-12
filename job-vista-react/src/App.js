@@ -12,6 +12,10 @@ import MainPage from './components/MainPage/MainPage';
 import RegisterRecruiter from './components/Registration/RegisterRecruiter';
 import RegisterJobseeker from './components/Registration/RegisterJobSeeker/RegisterJobSeeker'
 import Dashboard from './components/Dashboard/Dashboard';
+import NewJob from './components/Dashboard/NewJob';
+import Main from './components/Dashboard/Main';
+import JobList from './components/Dashboard/JobList';
+import JobCard from './components/Dashboard/JobCard';
 
 
 function App() {
@@ -26,6 +30,13 @@ function App() {
         <Route path='/register'>
           <Route path='recruiter' element={<RegisterRecruiter></RegisterRecruiter>}></Route>
           <Route path='jobseeker' element={<RegisterJobseeker></RegisterJobseeker>}></Route>
+        </Route>
+        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+          <Route path='' element={<Main></Main>}></Route>
+          <Route path='new_job' element={<NewJob></NewJob>}></Route>
+          <Route path='jobs' element={<JobList></JobList>}>
+            <Route path='job' element={<JobCard></JobCard>}></Route>
+          </Route>
         </Route>
       </Routes>
       <Footer></Footer>
