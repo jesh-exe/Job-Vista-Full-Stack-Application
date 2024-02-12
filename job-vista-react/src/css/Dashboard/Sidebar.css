@@ -1,4 +1,9 @@
-.main-sidebar {
+.sidebar-main {
+    z-index: 1 !important;
     
-    z-index: 1;
 }
+
+.holder{
+    min-height: 100vh
+}
+

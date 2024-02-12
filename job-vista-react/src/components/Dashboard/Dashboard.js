@@ -1,23 +1,13 @@
-import React from 'react'
-import Main from './Main'
+import React, { useEffect } from 'react'
 import Sidebar from './Sidebar'
-
+import '../../css/Dashboard/Dashboard.css'
 function Dashboard() {
+
   return (
-    <div>
-        <div className="container">
-            <div className="row">
-                <div className="col-sm-2 col-md-2">
-                    <Sidebar/>
-                </div>
-                <div className="col-sm-10 col-md-10">
-                    <Main/>
-                </div>
-            </div>
-        </div>
-        
-        
+    <div className="dashboard">
+      <Sidebar />
     </div>
+
   )
 }
 
