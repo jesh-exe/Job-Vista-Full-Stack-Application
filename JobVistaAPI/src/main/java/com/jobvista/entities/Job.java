@@ -20,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import com.jobvista.exception.ApiCustomException;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -68,7 +70,7 @@ public class Job {
 
     @Lob
     @Column(name = "job_respo",length = 5000,columnDefinition = "TEXT")
-    private String responsiblity;
+    private String responsibility;
 
     @Size(max = 100)
     
@@ -114,7 +116,7 @@ public class Job {
     {
     	jobApplication.setJob(this);
     	if(!jobApplications.add(jobApplication))
-    		throw new RuntimeException("Job Already exists!");
+    		throw new ApiCustomException("Job Already exists!");
     }
     public List<JobApplication> getJobApplications(){
     	return new ArrayList<>(jobApplications);

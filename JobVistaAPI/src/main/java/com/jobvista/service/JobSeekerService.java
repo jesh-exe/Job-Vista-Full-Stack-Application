@@ -8,5 +8,6 @@ public interface JobSeekerService {
 
 	String registerJobSeeker(JobSeekerRequestDTO jobSeekerRequestDTO);
 	JobSeeker validateJobseeker(JobSeekerCredsRequestDTO jobSeekerCredsRequestDTO);
+	String deleteJobSeeker(Integer id);
 
 }

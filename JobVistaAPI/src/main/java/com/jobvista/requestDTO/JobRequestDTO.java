@@ -19,7 +19,7 @@ public class JobRequestDTO {
 	private String minimumEducation;
 	private String description;
 	private String role;
-	private String responsiblity;
+	private String responsibility;
 	private String jobCity;
 	private Integer workHours;
 	private String expectedSalary;

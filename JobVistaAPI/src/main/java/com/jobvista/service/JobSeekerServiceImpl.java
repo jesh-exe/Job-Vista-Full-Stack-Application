@@ -1,18 +1,13 @@
 package com.jobvista.service;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.UnexpectedRollbackException;
 
 import com.jobvista.entities.Address;
 import com.jobvista.entities.Experience;
@@ -57,22 +52,22 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Override
 	public String registerJobSeeker(JobSeekerRequestDTO jobSeekerRequestDTO) {
-		//Mapping all the Request Data to Valid Entities
+		// Mapping all the Request Data to Valid Entities
 		JobSeeker jobSeeker = mapper.map(jobSeekerRequestDTO.getPersonal(), JobSeeker.class);
 		Address address = mapper.map(jobSeekerRequestDTO.getAddress(), Address.class);
 		SscEducation sscEducation = mapper.map(jobSeekerRequestDTO.getEducation().getSsc(), SscEducation.class);
 		HscEducation hscEducation = mapper.map(jobSeekerRequestDTO.getEducation().getHsc(), HscEducation.class);
 		GraduationEducation graduationEducation = mapper.map(jobSeekerRequestDTO.getEducation().getGraduation(),
 				GraduationEducation.class);
-		//Fetching the List of ExperienceDTO
+		// Fetching the List of ExperienceDTO
 		List<ExperienceRequestDTO> experienceDTO = jobSeekerRequestDTO.getExperiences();
 		List<Experience> experiences = new ArrayList<>();
-		//Assigning each item of ExperienceDTO to valid Experience Entity
+		// Assigning each item of ExperienceDTO to valid Experience Entity
 		for (ExperienceRequestDTO exp : experienceDTO) {
 			experiences.add(mapper.map(exp, Experience.class));
 		}
-		
-		//Setting 2-way Data for automatic ID mapping
+
+		// Setting 2-way Data for automatic ID mapping
 		address.setJobSeeker(jobSeeker);
 		jobSeeker.setAddress(address);
 
@@ -85,23 +80,31 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		graduationEducation.setJobSeeker(jobSeeker);
 		jobSeeker.setGraduationEducation(graduationEducation);
 
-		//Setting Experience One by One
+		// Setting Experience One by One
 		for (Experience experience : experiences) {
 			jobSeeker.setExperience(experience);
-		}	
-		
-		//Persisting the JobSeeker Transient Entity, which will automatically Cascade the Insert of
-		//other Entities
+		}
+
+		// Persisting the JobSeeker Transient Entity, which will automatically Cascade
+		// the Insert of
+		// other Entities
 		jobSeekerRepository.save(jobSeeker);
 		return "Recieved";
 	}
-	
-	
-	public JobSeeker validateJobseeker(JobSeekerCredsRequestDTO jobSeekerCredsRequestDTO)
-	{
+
+	public JobSeeker validateJobseeker(JobSeekerCredsRequestDTO jobSeekerCredsRequestDTO) {
 		String email = jobSeekerCredsRequestDTO.getEmail();
 		String password = jobSeekerCredsRequestDTO.getPassword();
-		return jobSeekerRepository.findByEmailAndPassword(email,password).orElseThrow(()->new ApiCustomException("Wrong Credentialls!"));
+		return jobSeekerRepository.findByEmailAndPassword(email, password)
+				.orElseThrow(() -> new ApiCustomException("Wrong Credentialls!"));
+	}
+
+	@Override
+	public String deleteJobSeeker(Integer id) {
+		if (!jobSeekerRepository.existsById(id))
+			throw new ApiCustomException("Recruiter Does Not Exists!");
+		jobSeekerRepository.deleteById(id);
+		return "Deleted";
 	}
 
 }

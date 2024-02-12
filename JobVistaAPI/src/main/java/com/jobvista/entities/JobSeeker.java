@@ -20,6 +20,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import com.jobvista.exception.ApiCustomException;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -96,16 +98,16 @@ public class JobSeeker {
 	@Column(name = "js_creation_date", nullable = false)
 	private LocalDateTime creationDate = LocalDateTime.now();
 
-	@OneToOne(mappedBy = "jobSeeker", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "jobSeeker", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address address;
 
-	@OneToOne(mappedBy = "jobSeeker", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "jobSeeker", cascade = CascadeType.ALL, orphanRemoval = true)
 	private SscEducation sscEducation;
 
-	@OneToOne(mappedBy = "jobSeeker", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "jobSeeker", cascade = CascadeType.ALL, orphanRemoval = true)
 	private HscEducation hscEducation;
 
-	@OneToOne(mappedBy = "jobSeeker", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "jobSeeker", cascade = CascadeType.ALL, orphanRemoval = true)
 	private GraduationEducation graduationEducation;
 
 	@OneToMany(mappedBy = "jobSeeker", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -129,7 +131,7 @@ public class JobSeeker {
 	public void setJobApplication(JobApplication jobApplication) {
 		jobApplication.setJobSeeker(this);
 		if (!jobApplications.add(jobApplication))
-			throw new RuntimeException("Job Application Already Exists");
+			throw new ApiCustomException("Job Application Already Exists");
 	}
 
 	public List<JobApplication> getJobApplications() {
