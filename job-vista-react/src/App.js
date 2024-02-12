@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-import { Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
@@ -34,9 +34,8 @@ function App() {
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
           <Route path='' element={<Main></Main>}></Route>
           <Route path='new_job' element={<NewJob></NewJob>}></Route>
-          <Route path='jobs' element={<JobList></JobList>}>
-            <Route path='job' element={<JobCard></JobCard>}></Route>
-          </Route>
+          <Route path='jobs' element={<JobList></JobList>}></Route>
+          <Route path='job' element={<JobCard></JobCard>}></Route>
         </Route>
       </Routes>
       <Footer></Footer>

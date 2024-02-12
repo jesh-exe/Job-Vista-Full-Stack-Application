@@ -54,7 +54,7 @@ function Main() {
         </div>
         <div className="col-sm-9 col-md-6 col-lg-6 col-xl-3 mb-3">
           <Card className='py-4 card-holder bg-orange-dark rounded-3 border-0'>
-            <Card.Header className='border-white text-start'>Applied Jobs</Card.Header>
+            <Card.Header className='border-white text-start'>Active Jobs</Card.Header>
             <Card.Body>
               <div className='d-flex align-items-end justify-content-between'>
                 <div className='pb-3'>
