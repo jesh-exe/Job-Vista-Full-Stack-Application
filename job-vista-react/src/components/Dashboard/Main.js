@@ -4,8 +4,13 @@ import { BsPeopleFill } from 'react-icons/bs';
 import { FaBriefcase, FaCheckSquare, FaEnvelopeOpenText } from 'react-icons/fa';
 import '../../css/Dashboard/Main.css';
 import ScrollReveal from 'scrollreveal';
+import { useSelector } from 'react-redux';
+import { getLoggedRecruiter } from '../../redux/slices/Recruiter/RecruiterSlice';
 
 function Main() {
+
+  const recruiter = useSelector(getLoggedRecruiter);
+  console.log(recruiter)
 
   useEffect(() => {
     ScrollReveal().reveal(".card-holder", {

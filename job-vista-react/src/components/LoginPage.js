@@ -5,6 +5,8 @@ import ScrollReveal from 'scrollreveal';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { error } from 'jquery';
+import { useNavigate } from 'react-router';
+import { setRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
 
 const LoginPage = () => {
   useEffect(() => {
@@ -26,6 +28,7 @@ const LoginPage = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUser({
@@ -43,21 +46,24 @@ const LoginPage = () => {
     if (user.roleType === "JobSeeker") {
       axios.post("http://localhost:8080/jobseeker/validate", user)
         .then((response) => {
-          console.log(response.status, response.data);
+          console.log(response.data);
         }).catch((error) => {
-          console.log(error)
+          alert(error.response.data.message)
         })
     }
     else if (user.roleType === "Recruiter") {
       axios.post("http://localhost:8080/recruiter/validate", user)
         .then((response) => {
-          console.log(response.status, response.data);
+          console.log(response.data);
+          dispatch(setRecruiterDetails(response.data));
+          alert("Signed in successfully!");
+          navigate("/dashboard");
         }).catch((error) => {
-          console.log("Error")
+          alert(error.response.data.message)
         })
     }
     else if (user.roleType === "Admin") {
-
+      
     }
     //dispatch(setLoggedInUser(user));
   };
