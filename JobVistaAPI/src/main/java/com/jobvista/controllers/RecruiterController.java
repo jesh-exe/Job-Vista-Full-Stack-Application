@@ -3,8 +3,6 @@ package com.jobvista.controllers;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +27,12 @@ import com.jobvista.responseDTO.RecruiterResponseDTO;
 import com.jobvista.service.RecruiterService;
 import com.jobvista.utils.JwtUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/recruiter")
+@Slf4j
 public class RecruiterController {
 
 	@Autowired
@@ -41,23 +42,24 @@ public class RecruiterController {
 	@Autowired
 	private JwtUtils utils;
 	
-
 	public RecruiterController() {
-		System.out.println("Recruiter Controller Up and Running!");
+		log.info("Recruiter Controller Up and Running!");
 	}
 
+	//Register new Recruiter
 	@PostMapping
 	public ResponseEntity<?> registerRecruiter(@RequestBody RecruiterRequestDTO recruiterRequestDTO) {
-		System.out.println("\n\n" + recruiterRequestDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(recruiterService.addRecruiter(recruiterRequestDTO));
 	}
 
+	//Upload Company Logo
 	@PostMapping(value = "/image/{id}")
 	public ResponseEntity<?> saveCompanyLogo(@PathVariable int id,
 			@RequestParam("companyLogo") MultipartFile companyLogo) throws IOException {
 		return ResponseEntity.status(HttpStatus.CREATED).body(recruiterService.uploadImage(id, companyLogo));
 	}
 
+	//Login and create JWT Token if success
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> signInValidation(@RequestParam String email, @RequestParam String password)
 	{
@@ -67,6 +69,7 @@ public class RecruiterController {
 		return ResponseEntity.status(HttpStatus.OK).body(new JwtResponeDTO(jwtToken));
 	}
 	
+	//Get a Recruiter by Email extracted from JWT Token
 	@GetMapping
 	public ResponseEntity<?> getRecruiter() {
 		//Parsing the JWT Token to get Email of a Recruiter
@@ -76,7 +79,7 @@ public class RecruiterController {
 		return ResponseEntity.status(HttpStatus.OK).body(recruiterResponseDTO);
 	}
 
-
+	//Delete a Recruiter by Email extracted from JWT Token
 	@DeleteMapping
 	public ResponseEntity<?> deleteRecruiter() {
 		Authentication jwtParsedUser = SecurityContextHolder.getContext().getAuthentication();

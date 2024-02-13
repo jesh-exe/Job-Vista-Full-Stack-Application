@@ -15,10 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.transaction.aspectj.JtaAnnotationTransactionAspect;
-
-import com.jobvista.exception.ApiCustomException;
-import com.jobvista.exception.JwtCustomException;
 
 @EnableWebSecurity
 @Configuration
@@ -34,12 +30,15 @@ public class SecurityConfiguration {
 		http
 		.csrf().disable()
 		.authorizeRequests()
-	    .antMatchers("/*/authenticate",
+		.antMatchers(HttpMethod.GET,
 	    		"/swagger*/**",
 	    		"/v3/api-docs/**",
+	    		"/recruiter",
+	    		"/jobseeker",
 	    		"/jobs",
 	    		"/jobs/job/*").permitAll()
 	    .antMatchers(HttpMethod.POST,
+	    		"/*/authenticate",
 	    		"/recruiter",
 	    		"/jobseeker",
 	    		"/*/image/*").permitAll()
@@ -50,12 +49,18 @@ public class SecurityConfiguration {
 	    .antMatchers(HttpMethod.DELETE,
 	    		"/jobs/job/*",
 	    		"/recruiter").hasRole("RECRUITER")
+	    .antMatchers(HttpMethod.GET,
+	    		"/jobseeker",
+	    		"/job-application/*").hasRole("JOBSEEKER")
+	    .antMatchers(HttpMethod.DELETE,
+	    		"/jobseeker").hasRole("JOBSEEKER")
+	    
 	    .anyRequest().authenticated()
-	.and()
-	.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-	.and()
-	.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-	.exceptionHandling()
+		.and()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and()
+		.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+		.exceptionHandling()
 	    .accessDeniedHandler((request, response, accessDeniedException) -> {
 	    	response.sendError(HttpStatus.FORBIDDEN.value(),"Forbidden Access");
 	    })

@@ -92,11 +92,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return "Recieved";
 	}
 
-	public JobSeeker validateJobseeker(JobSeekerCredsRequestDTO jobSeekerCredsRequestDTO) {
-		String email = jobSeekerCredsRequestDTO.getEmail();
-		String password = jobSeekerCredsRequestDTO.getPassword();
-		return jobSeekerRepository.findByEmailAndPassword(email, password)
-				.orElseThrow(() -> new ApiCustomException("Wrong Credentialls!"));
+	public JobSeeker getJobseeker(String email) {
+		return jobSeekerRepository.findByEmail(email)
+				.orElseThrow(() -> new ApiCustomException("User Not Found!"));
 	}
 
 	@Override
