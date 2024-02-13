@@ -59,9 +59,9 @@ public class RecruiterServiceImpl implements RecruiterService {
 
 	//LOGIN VALIDATION & RETURNING RECRUITER INFO
 	@Override
-	public RecruiterResponseDTO validateRecruiter(RecruiterRequestDTO recruiterRequestDTO) {
+	public RecruiterResponseDTO getRecruiter(String recruiterEmail) {
 		Recruiter recruiter = recruiterRepository
-				.findByEmailAndPassword(recruiterRequestDTO.getEmail(), recruiterRequestDTO.getPassword())
+				.findByEmail(recruiterEmail)
 				.orElseThrow(() -> new ApiCustomException("Wrong Credentials!"));
 		RecruiterResponseDTO recruiterResponseDTO = mapper.map(recruiter, RecruiterResponseDTO.class);
 		
@@ -97,11 +97,9 @@ public class RecruiterServiceImpl implements RecruiterService {
 
 	//DELETE RECRUITER
 	@Override
-	public String deleteRecruiter(Integer id) {
-		if (!recruiterRepository.existsById(id))
-			throw new ApiCustomException("Recruiter Does Not Exists");
-		recruiterRepository.deleteById(id);
-		return "Deleted";
+	public void deleteRecruiter(String email) {
+		Recruiter recruiter = recruiterRepository.findByEmail(email).orElseThrow(()->new ApiCustomException("Recruiter Does Not Exists"));
+		recruiterRepository.delete(recruiter);
 	}
 
 }

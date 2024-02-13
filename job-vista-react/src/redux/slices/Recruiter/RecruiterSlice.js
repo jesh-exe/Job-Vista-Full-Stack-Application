@@ -1,4 +1,5 @@
 import { createSlice,createSelector } from "@reduxjs/toolkit";
+import RecruiterService from "../../../service/RecruiterService";
 
 // const job = {
 // 	"id": 0,
@@ -16,7 +17,6 @@ import { createSlice,createSelector } from "@reduxjs/toolkit";
 // 	"vacancies": 0,
 // 	"jobType": "",
 // }
-
 const initState = {
 	"recruiter": {
 		"firstName": "",
@@ -29,6 +29,7 @@ const initState = {
 		"activeJobs": 0
 	}
 }
+
 
 
 const loggedRecruiter = createSlice({

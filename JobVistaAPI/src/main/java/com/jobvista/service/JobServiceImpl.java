@@ -1,5 +1,6 @@
 package com.jobvista.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +35,15 @@ public class JobServiceImpl implements JobService {
 	private ModelMapper mapper;
 
 	@Override
-	public List<Job> getAllJobs() {
-		return jobRepository.findAll();
+	public List<JobResponseDTO> getAllJobs() {
+		List<Job> jobs = jobRepository.findAll();
+		List<JobResponseDTO> jobResponseDTOs = new ArrayList<>();
+		for(Job job : jobs)
+		{
+			JobResponseDTO jobResponseDTO = mapper.map(job, JobResponseDTO.class);
+			jobResponseDTOs.add(helperFillJobResponseDTO(job, jobResponseDTO));
+		}
+		return jobResponseDTOs;
 	}
 
 	@Override
@@ -73,14 +81,20 @@ public class JobServiceImpl implements JobService {
 		Job job = jobRepository.findById(id).orElseThrow(()->new ApiCustomException("Job Does Not Exists"));
 		JobResponseDTO jobResponseDTO = mapper.map(job, JobResponseDTO.class);
 		
+		return helperFillJobResponseDTO(job, jobResponseDTO);
+	}
+
+	
+	//Helper Method to Fill Recruiter Name and Job Categories
+	private JobResponseDTO helperFillJobResponseDTO(Job job, JobResponseDTO jobResponseDTO)
+	{
 		String recruiterFullName = job.getRecruiter().getFirstName();
 		if(job.getRecruiter().getLastName()!="" || job.getRecruiter().getLastName()!=null)
 			recruiterFullName = recruiterFullName + " " + job.getRecruiter().getLastName();
 		
 		jobResponseDTO.setRecruiterName(recruiterFullName);
 		jobResponseDTO.setJobCategory(job.getCategory().getName());
-		
 		return jobResponseDTO;
 	}
-
+	
 }

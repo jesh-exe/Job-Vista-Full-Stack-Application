@@ -33,14 +33,14 @@ public class JobController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Job>> getAllJobs() {
-		List<Job> jobs = jobService.getAllJobs();
-		return ResponseEntity.ok(jobs);
+	public ResponseEntity<?> getAllJobs() {
+		return ResponseEntity.ok(jobService.getAllJobs());
 	}
 	
 	@GetMapping("/job/{id}")
 	public ResponseEntity<?> getJobDetails(@PathVariable Integer id)
 	{
+		System.out.println("In get Job Details");
 		return ResponseEntity.status(HttpStatus.OK).body(jobService.getJobDetails(id));
 	}
 	

@@ -100,11 +100,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public String deleteJobSeeker(Integer id) {
-		if (!jobSeekerRepository.existsById(id))
-			throw new ApiCustomException("Recruiter Does Not Exists!");
-		jobSeekerRepository.deleteById(id);
-		return "Deleted";
+	public void deleteJobSeeker(String email) {
+		JobSeeker jobSeeker = jobSeekerRepository.findByEmail(email).orElseThrow(()->new ApiCustomException("Recruiter Does Not Exists!")); 
+		jobSeekerRepository.delete(jobSeeker);
 	}
 
 }

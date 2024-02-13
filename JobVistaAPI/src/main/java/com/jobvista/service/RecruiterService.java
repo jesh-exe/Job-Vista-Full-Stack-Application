@@ -11,6 +11,6 @@ import com.jobvista.responseDTO.RecruiterResponseDTO;
 public interface RecruiterService {
 	String addRecruiter(RecruiterRequestDTO recruiterRequestDTO);
 	String uploadImage(int id, MultipartFile companyLogo) throws IOException;
-	RecruiterResponseDTO validateRecruiter(RecruiterRequestDTO recruiterRequestDTO);
-	String deleteRecruiter(Integer id);
+	RecruiterResponseDTO getRecruiter(String recruiterEmail);
+	void deleteRecruiter(String email);
 }
