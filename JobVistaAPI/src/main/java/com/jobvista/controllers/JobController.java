@@ -16,7 +16,7 @@ import com.jobvista.requestDTO.JobRequestDTO;
 import com.jobvista.service.JobService;
 
 
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/jobs")
 public class JobController {

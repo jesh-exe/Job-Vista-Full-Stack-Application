@@ -25,7 +25,7 @@ import com.jobvista.utils.JwtUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/jobseeker")
 @Slf4j

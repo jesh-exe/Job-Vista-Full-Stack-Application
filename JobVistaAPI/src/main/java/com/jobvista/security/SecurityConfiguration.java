@@ -28,6 +28,8 @@ public class SecurityConfiguration {
 	public SecurityFilterChain authorizeRequests(HttpSecurity http) throws Exception
 	{
 		http
+		.cors()
+		.and()
 		.csrf().disable()
 		.authorizeRequests()
 		.antMatchers(HttpMethod.GET,

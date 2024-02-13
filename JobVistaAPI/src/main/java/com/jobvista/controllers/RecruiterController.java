@@ -29,10 +29,9 @@ import com.jobvista.utils.JwtUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/recruiter")
-@Slf4j
 public class RecruiterController {
 
 	@Autowired
@@ -43,7 +42,7 @@ public class RecruiterController {
 	private JwtUtils utils;
 	
 	public RecruiterController() {
-		log.info("Recruiter Controller Up and Running!");
+		
 	}
 
 	//Register new Recruiter
@@ -61,7 +60,7 @@ public class RecruiterController {
 
 	//Login and create JWT Token if success
 	@PostMapping("/authenticate")
-	public ResponseEntity<?> signInValidation(@RequestParam String email, @RequestParam String password)
+	public ResponseEntity<?> signInValidation(@RequestParam("email") String email, @RequestParam("password") String password)
 	{
 		Authentication principal = manager
 				.authenticate(new UsernamePasswordAuthenticationToken(email, password));
