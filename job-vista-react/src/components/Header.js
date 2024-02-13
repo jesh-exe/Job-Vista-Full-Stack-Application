@@ -1,14 +1,14 @@
 import '../css/Header.css';
 import logo from '../assets/jobvista_logo.png';
-import recruiter from '../assets/recruiter.png'
+import navbarDefault from '../assets/navbar-default.png'
+import recruiterImage from '../assets/recruiter.png'
 import jobseeker from '../assets/jobseeker.png'
-
 import React, { useEffect, useState } from 'react';
-import { NavbarBrand, Nav, Button, Modal, Navbar, Container } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavbarBrand, Nav, Button, Modal, Navbar, Container, Dropdown } from 'react-bootstrap';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ScrollReveal from 'scrollreveal';
-import { useSelector } from 'react-redux';
-import { getLoggedInUser } from '../redux/slices/LoginSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLoggedRecruiter, resetRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
 
 
 const Header = () => {
@@ -17,9 +17,12 @@ const Header = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   // Get the logged in user information from Redux store
-  const loggedInUser = useSelector(getLoggedInUser);
-  console.log(loggedInUser)
+  const recruiter = useSelector(getLoggedRecruiter);
+  console.log(recruiter)
 
   useEffect(() => {
     ScrollReveal().reveal(".navbar-container", {
@@ -29,6 +32,16 @@ const Header = () => {
       scale: 1,
     });
   }, []);
+
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to log out")) {
+      localStorage.removeItem("jwt-token");
+      dispatch(resetRecruiterDetails({}));
+      navigate("/")
+      
+    }
+
+  }
 
   return (
     <div className='sticky-nav shadow navbar-container'>
@@ -58,7 +71,7 @@ const Header = () => {
 
             </Nav>
             <div className='text-center'>
-              {loggedInUser.email == "" ?
+              {recruiter.email == "" ?
                 <div>
                   {/* Register Button */}
                   <Button variant="success" onClick={handleShow}>
@@ -74,7 +87,7 @@ const Header = () => {
                         <div className='row gx-3'>
                           {/* Recruiter Section */}
                           <div className='col-sm-12 col-md-6 col-lg-6 p-4'>
-                            <img className='img-fluid' height={300} width={300} src={recruiter}></img>
+                            <img className='img-fluid' height={300} width={300} src={recruiterImage}></img>
                             <NavLink to="/register/recruiter">
                               <button className='btn btn-outline-primary mt-5' onClick={handleClose}>Recruiter</button>
                             </NavLink>
@@ -96,8 +109,20 @@ const Header = () => {
                   </NavLink>
                 </div>
                 :
-                <div>
-                  Welcome {loggedInUser.email}
+                <div className='d-flex justify-content-center'>
+                  <div className="dropdown" style={{ width: "160px" }}>
+                    <img className=" dropdown-toggle border-dark border rounded-5 p-1" src={navbarDefault} height={40} width={40} data-bs-toggle="dropdown" aria-expanded="false">
+                    </img>
+                    <div className="dropdown-menu dropdown-menu-right">
+                      <NavLink className="navlinks-middle text-center text-decoration-none menu-item">
+                        <button className="dropdown-item" type="button">Dashboard</button>
+                      </NavLink>
+                      <NavLink className="navlinks-middle text-center text-decoration-none menu-item">
+                        <button className="dropdown-item" type="button">Profile</button>
+                      </NavLink>
+                      <button className="dropdown-item text-center" type="button" onClick={handleLogout}>Logout</button>
+                    </div>
+                  </div>
                 </div>
               }
             </div>

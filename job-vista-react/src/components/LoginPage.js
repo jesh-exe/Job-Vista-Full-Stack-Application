@@ -7,6 +7,7 @@ import axios from 'axios';
 import { error } from 'jquery';
 import { useNavigate } from 'react-router';
 import { setRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
+import RecruiterService from '../service/RecruiterService';
 
 const LoginPage = () => {
   useEffect(() => {
@@ -43,27 +44,39 @@ const LoginPage = () => {
     e.preventDefault();
     // Sent to the Reducer where state is changed
     console.log(user)
+    const formData = new FormData();
+    formData.append("email", user.email);
+    formData.append("password", user.password);
     if (user.roleType === "JobSeeker") {
-      axios.post("http://localhost:8080/jobseeker/validate", user)
+      axios.post("http://localhost:8080/jobseeker/authenticate", user)
         .then((response) => {
           console.log(response.data);
         }).catch((error) => {
-          alert(error.response.data.message)
+          alert("Invalid Credentials");
         })
     }
+    
     else if (user.roleType === "Recruiter") {
-      axios.post("http://localhost:8080/recruiter/validate", user)
+      //Fetching JWT Token
+      RecruiterService.authenticateRecruiter(formData)
         .then((response) => {
-          console.log(response.data);
-          dispatch(setRecruiterDetails(response.data));
-          alert("Signed in successfully!");
-          navigate("/dashboard");
+          var jwtToken = response.data.jwtToken
+          //Storing JWT as a object
+          var jwtTokenDetails = {
+            holder: "RECRUITER",
+            jwtToken: jwtToken
+          }
+          //Storing JWT in localstorage
+          localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
+          navigate("/dashboard")
         }).catch((error) => {
-          alert(error.response.data.message)
+          console.log(error)
+          alert("Invalid credentials")
         })
     }
+    
     else if (user.roleType === "Admin") {
-      
+
     }
     //dispatch(setLoggedInUser(user));
   };

@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
@@ -16,9 +16,32 @@ import NewJob from './components/Dashboard/NewJob';
 import Main from './components/Dashboard/Main';
 import JobList from './components/Dashboard/JobList';
 import JobCard from './components/Dashboard/JobCard';
+import { setRecruiterDetails } from './redux/slices/Recruiter/RecruiterSlice';
+import { useDispatch } from 'react-redux';
+import RecruiterService from './service/RecruiterService';
 
 
 function App() {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  //Checking if JWT Token exists in local storage
+  var jwtToken = JSON.parse(localStorage.getItem("jwt-token"));
+  if (jwtToken) {
+    //If Recruiter
+    if (jwtToken.holder === "RECRUITER") {
+      //Send the jwt as header to the Backend
+      RecruiterService.loadUserByJwtToken(jwtToken.jwtToken).then((response) => {
+        //Set recruiter Details
+        dispatch(setRecruiterDetails(response.data));
+      }).catch((error) => {
+        //Might be expired
+        localStorage.removeItem("jwt-token");
+      })
+    }
+  }
+
   return (
     <div className="App bg-light">
       <Header></Header>

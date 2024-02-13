@@ -6,6 +6,7 @@ import '../../css/Dashboard/Main.css';
 import ScrollReveal from 'scrollreveal';
 import { useSelector } from 'react-redux';
 import { getLoggedRecruiter } from '../../redux/slices/Recruiter/RecruiterSlice';
+import { useNavigate } from 'react-router';
 
 function Main() {
 
@@ -28,7 +29,7 @@ function Main() {
   return (
     <div className="container bg-grey p-5 mt-5 mb-5">
       <div className="row mt-3 mb-5 text-center">
-        <div className='display-6 heading-holder'><span className='text-primary fw-bold'>Dashboard</span></div>
+        <div className='display-6 heading-holder'><span className='text-primary fw-bold'>Dashboard {recruiter.firstName}</span></div>
       </div>
       <div className="row mt-3 mb-5 card-container lead text-center">
         <div className="col-sm-9 col-md-6 col-lg-6 col-xl-3 mb-3">

@@ -1,4 +1,4 @@
-import { createSlice,createSelector } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import RecruiterService from "../../../service/RecruiterService";
 
 // const job = {
@@ -17,6 +17,7 @@ import RecruiterService from "../../../service/RecruiterService";
 // 	"vacancies": 0,
 // 	"jobType": "",
 // }
+
 const initState = {
 	"recruiter": {
 		"firstName": "",
@@ -31,14 +32,17 @@ const initState = {
 }
 
 
-
 const loggedRecruiter = createSlice({
 	name: "LoggedRecruiter",
 	initialState: initState,
 	reducers: {
 		setRecruiterDetails: (state, action) => {
 			state.recruiter = action.payload;
+		},
+		resetRecruiterDetails: (state, action) => { 
+			state.recruiter = initState.recruiter;
 		}
+
 	}
 })
 
@@ -52,7 +56,7 @@ export const getLoggedRecruiterJobs = createSelector(
 	(state) => state
 )
 
-export const { setRecruiterDetails } = loggedRecruiter.actions;
+export const { setRecruiterDetails,resetRecruiterDetails } = loggedRecruiter.actions;
 
 export default loggedRecruiter.reducer;
 
