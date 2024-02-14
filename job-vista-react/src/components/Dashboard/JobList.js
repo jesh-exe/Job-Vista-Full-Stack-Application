@@ -4,7 +4,7 @@ import { getLoggedRecruiterJobs } from "../../redux/slices/Recruiter/RecruiterSl
 
 export default function JobList() {
 
-  const[jobs,setJobs] = useState(useSelector(getLoggedRecruiterJobs));
+  const jobs = useSelector(getLoggedRecruiterJobs);
 
   const handleDelete = (index) => {
     // const updatedDataArray = [...dummyDataArray];
@@ -13,62 +13,61 @@ export default function JobList() {
   };
 
   return (
-    <div className="container mt-5 ">
+    <div className="container mt-5 mb-5 pt-4 text-primary">
       <div className="row">
         <div className="col">
-          <div className="text-center display-6">
+          <div className="text-center display-6 mb-3">
             <div className="mx-auto">Jobs List</div>
           </div>
-
           <div className="container">
             <div className="row mx-auto">
               <div className="col mt-4">
-                <div className="table-responsive">
-                  <table className="table">
+                <div className="table-responsive rounded-4">
+                  <table className="table text-center table-striped ">
                     <thead className="thead-light">
-                      <tr>
-                        <th scope="col" className="text-center">
+                      <tr className="">
+                        <th scope="col" >
                           Id
                         </th>
-                        <th scope="col" className="text-center">
-                          Job Title
+                        <th scope="col" >
+                          Title
                         </th>
-                        <th scope="col" className="text-center">
-                          Job Category
+                        <th scope="col" >
+                          Category
                         </th>
-                        <th scope="col" className="text-center">
+                        <th scope="col" >
                           Vacancies
                         </th>
-                        <th scope="col" className="text-center">
-                          Total Applied
+                        <th scope="col" >
+                          Type
                         </th>
-                        <th scope="col" className="text-center">
+                        <th scope="col" >
                           Action
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                       {jobs.map((job, index) => (
-                        <tr key={index}>
-                          <td className="text-center">{job.id}</td>
-                          <td className="text-center">{job.role}</td>
-                          <td className="text-center">{job.jobCategory}</td>
-                          <td className="text-center">{job.vacancies}</td>
-                          <td className="text-center">{job.jobType}</td>
-                          <td className="text-center">
+                        <tr key={index} className="text-muted">
+                          <td >{index + 1}</td>
+                          <td >{job.role}</td>
+                          <td >{job.jobCategory}</td>
+                          <td >{job.vacancies}</td>
+                          <td >{job.jobType}</td>
+                          <td >
                             <a
                               href="your_link_here"
-                              className="btn btn-primary mx-1 mb-2"
+                              className="btn btn-primary btn-sm mx-1 mb-2"
                               target="_blank"
                             >
-                              Details
+                              Detail
                             </a>
 
                             &nbsp;
 
                             <button
                               type="button"
-                              className="btn btn-danger mb-2 mx-1"
+                              className="btn btn-danger btn-sm mb-2 mx-1"
                               onClick={() => handleDelete(index)}
                             >
                               Delete

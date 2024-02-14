@@ -4,7 +4,7 @@ import navbarDefault from '../assets/navbar-default.png'
 import recruiterImage from '../assets/recruiter.png'
 import jobseeker from '../assets/jobseeker.png'
 import React, { useEffect, useState } from 'react';
-import { NavbarBrand, Nav, Button, Modal, Navbar, Container, Dropdown } from 'react-bootstrap';
+import { NavbarBrand, Nav, Button, Modal, Navbar, Container, Dropdown, Collapse } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 import ScrollReveal from 'scrollreveal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -38,9 +38,7 @@ const Header = () => {
       localStorage.removeItem("jwt-token");
       dispatch(resetRecruiterDetails({}));
       navigate("/")
-      
     }
-
   }
 
   return (
@@ -114,7 +112,7 @@ const Header = () => {
                     <img className=" dropdown-toggle border-dark border rounded-5 p-1" src={navbarDefault} height={40} width={40} data-bs-toggle="dropdown" aria-expanded="false">
                     </img>
                     <div className="dropdown-menu dropdown-menu-right">
-                      <NavLink className="navlinks-middle text-center text-decoration-none menu-item">
+                      <NavLink to="/dashboard" className="navlinks-middle text-center text-decoration-none menu-item">
                         <button className="dropdown-item" type="button">Dashboard</button>
                       </NavLink>
                       <NavLink className="navlinks-middle text-center text-decoration-none menu-item">

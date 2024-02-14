@@ -1,10 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import RecruiterService from '../../service/RecruiterService';
+import { resetRecruiterDetails, setRecruiterDetails } from '../../redux/slices/Recruiter/RecruiterSlice';
+import { useDispatch } from 'react-redux';
 
 function NewJob() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [job, setJob] = useState({
     recruiterEmail: "jrmurodiya@gmail.com",
@@ -20,6 +24,7 @@ function NewJob() {
     bond: "",
     vacancies: "",
     jobType: ""
+    
   })
 
   const handleChange = (e) => {
@@ -33,14 +38,36 @@ function NewJob() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(job);
-    axios.post("http://localhost:8080/jobs/job", job)
-      .then((response) => { 
-        console.log(response)
-        alert("Job created successfully");
-        // navigate('/dashboard');
-      }).catch((err) => {
-        console.log(err);
-      });
+    var jwtToken = JSON.parse(localStorage.getItem('jwt-token'));
+    if (jwtToken) {
+      if (jwtToken.holder !== "RECRUITER") {
+        navigate("/login");
+      }
+      RecruiterService.createNewJob(job, jwtToken.jwtToken)
+        .then((response) => {
+          RecruiterService.loadUserByJwtToken(jwtToken.jwtToken).then((response) => {
+            alert("Job Added");
+            dispatch(setRecruiterDetails(response.data));
+            navigate("/dashboard/jobs");
+          }).catch((error) => {
+            alert("Failed to Update Details")
+          })
+        })
+        .catch((error) => {
+          if (error.response) {
+            if (error.response.status === 400) {
+              alert(error.response.data.message);
+            }
+          }
+          alert("Something went wrong!")
+        });
+    }
+    else {
+      alert("Session Expired");
+      dispatch(resetRecruiterDetails());
+      navigate("/login");
+    }
+    // dispatch();
   }
 
   return (

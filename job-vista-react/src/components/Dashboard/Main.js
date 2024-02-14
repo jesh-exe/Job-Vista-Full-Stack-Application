@@ -40,7 +40,7 @@ function Main() {
                 <div className='pb-3'>
                   <BsPeopleFill className='card-icon' />
                 </div>
-                <div className='fs-2'>100</div>
+                <div className='fs-2'>{recruiter.totalApplicants}</div>
               </div>
             </Card.Body>
           </Card>
@@ -53,7 +53,7 @@ function Main() {
                 <div className='pb-3'>
                   <FaBriefcase className='card-icon' />
                 </div>
-                <div className='fs-2'>100</div>
+                <div className='fs-2'>{recruiter.jobs.length}</div>
               </div>
             </Card.Body>
           </Card>
@@ -66,7 +66,7 @@ function Main() {
                 <div className='pb-3'>
                   <FaCheckSquare className='card-icon' />
                 </div>
-                <div className='fs-2'>100</div>
+                <div className='fs-2'>{recruiter.activeJobs}</div>
               </div>
             </Card.Body>
           </Card>

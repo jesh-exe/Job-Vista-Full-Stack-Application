@@ -55,7 +55,7 @@ const LoginPage = () => {
           alert("Invalid Credentials");
         })
     }
-    
+
     else if (user.roleType === "Recruiter") {
       //Fetching JWT Token
       RecruiterService.authenticateRecruiter(formData)
@@ -71,10 +71,14 @@ const LoginPage = () => {
           navigate("/dashboard")
         }).catch((error) => {
           console.log(error)
-          alert("Invalid credentials")
+          if (error.code == "ERR_NETWORK")
+            alert("Server Busy");
+          else {
+            alert("Invalid credentials")
+          }
         })
     }
-    
+
     else if (user.roleType === "Admin") {
 
     }

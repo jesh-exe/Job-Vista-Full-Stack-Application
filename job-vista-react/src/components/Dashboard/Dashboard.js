@@ -9,7 +9,7 @@ function Dashboard() {
   //To Ensure that the Recruiter can use Dashboard
   const navigate = useNavigate();
   const recruiter = useSelector(getLoggedRecruiter);
-  if (recruiter.email === "" || recruiter.email === undefined) {
+  if (recruiter.email === "" ) {
     navigate("/login");
   }
 

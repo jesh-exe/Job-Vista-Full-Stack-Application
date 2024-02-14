@@ -41,6 +41,9 @@ const loggedRecruiter = createSlice({
 		},
 		resetRecruiterDetails: (state, action) => { 
 			state.recruiter = initState.recruiter;
+		},
+		setRecruiterJobs: (state, action) => {
+			state.recruiter.jobs.push(action.payload);
 		}
 
 	}
@@ -56,7 +59,7 @@ export const getLoggedRecruiterJobs = createSelector(
 	(state) => state
 )
 
-export const { setRecruiterDetails,resetRecruiterDetails } = loggedRecruiter.actions;
+export const { setRecruiterDetails,resetRecruiterDetails,setRecruiterJobs } = loggedRecruiter.actions;
 
 export default loggedRecruiter.reducer;
 

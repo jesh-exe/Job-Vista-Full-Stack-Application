@@ -16,6 +16,15 @@ class RecruiterService {
         })
     }
 
+    createNewJob(job,jwtToken)
+    {
+        return axios.post("http://localhost:8080/jobs/job", job ,{
+            headers: {
+                "Authorization": "Bearer " + jwtToken,
+            }
+        })
+    }
+
     registerRecruiter(recruiter, formdata) {
         axios.post("http://localhost:8080/recruiter", recruiter)
             .then((response) => {
