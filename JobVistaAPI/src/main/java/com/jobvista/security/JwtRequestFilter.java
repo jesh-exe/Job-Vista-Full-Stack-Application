@@ -32,7 +32,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		
 		String authHeadr = request.getHeader("Authorization");
 		if (authHeadr != null && authHeadr.startsWith("Bearer")) {
-			System.out.println("got bearer token");
+			System.out.println("JWT Token Received");
 			String token = authHeadr.substring(7);
 			Claims claims = utils.validateJwtToken(token);
 			String email = utils.getUserNameFromJwtToken(claims);
@@ -45,7 +45,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			
 		} else
-			System.out.println("req did not contain any bearer token");
+			System.out.println("No JWT Token Received");
 		filterChain.doFilter(request, response);
 
 	}
