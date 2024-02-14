@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,15 +53,16 @@ public class RecruiterController {
 	}
 
 	//Upload Company Logo
-	@PostMapping(value = "/image/{id}")
+	@PostMapping(value = "/image/{id}", consumes = "multipart/form-data")
 	public ResponseEntity<?> saveCompanyLogo(@PathVariable int id,
-			@RequestParam("companyLogo") MultipartFile companyLogo) throws IOException {
+			@RequestPart("companyLogo") MultipartFile companyLogo) throws IOException {
 		return ResponseEntity.status(HttpStatus.CREATED).body(recruiterService.uploadImage(id, companyLogo));
 	}
 
 	//Login and create JWT Token if success
 	@PostMapping("/authenticate")
-	public ResponseEntity<?> signInValidation(@RequestParam("email") String email, @RequestParam("password") String password)
+	public ResponseEntity<?> signInValidation(@RequestParam("email") String email
+			, @RequestParam("password") String password)
 	{
 		Authentication principal = manager
 				.authenticate(new UsernamePasswordAuthenticationToken(email, password));

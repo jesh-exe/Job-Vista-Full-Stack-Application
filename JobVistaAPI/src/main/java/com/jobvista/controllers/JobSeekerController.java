@@ -1,5 +1,7 @@
 package com.jobvista.controllers;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jobvista.entities.JobSeeker;
 import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerCredsRequestDTO;
@@ -42,13 +47,31 @@ public class JobSeekerController {
 		log.info("Job Seeker Controller Up and Running!");
 	}
 
-	//Register New Job Seeker
+	// Register New Job Seeker
 	@PostMapping
 	private ResponseEntity<?> registerJobSeeker(@RequestBody JobSeekerRequestDTO jobSeekerRequestDTO) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(jobSeekerService.registerJobSeeker(jobSeekerRequestDTO));
 	}
 
-	//Login to generate JWT Token
+	// Save Profile photo and Resume
+	@PostMapping(value = "/files/{id}", consumes = "multipart/form-data")
+	private ResponseEntity<?> saveFiles(@PathVariable Integer id, @RequestPart("image") MultipartFile image,
+			@RequestPart("resume") MultipartFile resume) {
+		
+		return ResponseEntity.ok(jobSeekerService.saveFiles(id, image, resume));
+	}
+	
+	@GetMapping("/resume")
+	private ResponseEntity<?> serveResumePDF()
+	{
+		Authentication jwtParsedUser = SecurityContextHolder.getContext().getAuthentication();
+		String jobSeekerEmail = jwtParsedUser.getName();
+		byte[] resumeBytes = jobSeekerService.getResume(jobSeekerEmail);
+		String encoded = Base64.getEncoder().encodeToString(resumeBytes);
+		return ResponseEntity.ok(encoded);
+	}
+
+	// Login to generate JWT Token
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> authenticateJobSeeker(@RequestBody JobSeekerCredsRequestDTO credsRequestDTO) {
 		Authentication authentication = mgr.authenticate(
@@ -57,10 +80,8 @@ public class JobSeekerController {
 		return ResponseEntity.status(HttpStatus.OK).body(new JwtResponeDTO(jwtToken));
 	}
 
-//	Image and Resume Upload
-//	@PostMapping
 
-	//Get a Job Seeker by Email extracted from JWT Token
+	// Get a Job Seeker by Email extracted from JWT Token
 	@GetMapping
 	public ResponseEntity<?> getJobSeeker() {
 		Authentication jwtParsedUser = SecurityContextHolder.getContext().getAuthentication();
@@ -68,7 +89,7 @@ public class JobSeekerController {
 		return ResponseEntity.status(HttpStatus.OK).body("Valid User");
 	}
 
-	//Delete a Job Seeker by Email extracted from JWT Token
+	// Delete a Job Seeker by Email extracted from JWT Token
 	@DeleteMapping
 	public ResponseEntity<?> deleteJobSeeker() {
 		Authentication jwtParsedUser = SecurityContextHolder.getContext().getAuthentication();
