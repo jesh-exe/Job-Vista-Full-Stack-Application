@@ -1,5 +1,6 @@
 package com.jobvista.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jobvista.entities.Address;
 import com.jobvista.entities.Experience;
@@ -22,8 +24,7 @@ import com.jobvista.repositories.GraduationEducationRepository;
 import com.jobvista.repositories.HscEducationRepository;
 import com.jobvista.repositories.JobSeekerRepository;
 import com.jobvista.repositories.SscEducationRepository;
-import com.jobvista.requestDTO.jobSeekerDTO.ExperienceRequestDTO;
-import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerCredsRequestDTO;
+import com.jobvista.requestDTO.jobSeekerDTO.ExperienceDTO;
 import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerRequestDTO;
 
 @Service
@@ -60,10 +61,10 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		GraduationEducation graduationEducation = mapper.map(jobSeekerRequestDTO.getEducation().getGraduation(),
 				GraduationEducation.class);
 		// Fetching the List of ExperienceDTO
-		List<ExperienceRequestDTO> experienceDTO = jobSeekerRequestDTO.getExperiences();
+		List<ExperienceDTO> experienceDTO = jobSeekerRequestDTO.getExperiences();
 		List<Experience> experiences = new ArrayList<>();
 		// Assigning each item of ExperienceDTO to valid Experience Entity
-		for (ExperienceRequestDTO exp : experienceDTO) {
+		for (ExperienceDTO exp : experienceDTO) {
 			experiences.add(mapper.map(exp, Experience.class));
 		}
 
@@ -88,19 +89,45 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		// Persisting the JobSeeker Transient Entity, which will automatically Cascade
 		// the Insert of
 		// other Entities
-		jobSeekerRepository.save(jobSeeker);
-		return "Recieved";
+		JobSeeker persistedJobSeeker = jobSeekerRepository.save(jobSeeker);
+		return persistedJobSeeker.getId().toString();
 	}
-
-	public JobSeeker getJobseeker(String email) {
-		return jobSeekerRepository.findByEmail(email)
-				.orElseThrow(() -> new ApiCustomException("User Not Found!"));
+	
+	
+	@Override
+	public String saveFiles(Integer id, MultipartFile image, MultipartFile resume) {
+		JobSeeker jobSeeker = jobSeekerRepository.findById(id)
+				.orElseThrow(() -> new ApiCustomException("User Not Found"));
+		try {
+			jobSeeker.setProfilePhoto(image.getBytes());
+			jobSeeker.setResume(resume.getBytes());
+		} catch (IOException e) {
+			jobSeekerRepository.delete(jobSeeker);
+			throw new ApiCustomException("File Format Not Supported");
+		}
+		return "Uploaded Data";
 	}
 
 	@Override
+	public JobSeeker getJobseeker(String email) {
+		return jobSeekerRepository.findByEmail(email).orElseThrow(() -> new ApiCustomException("User Not Found!"));
+	}
+
+	@Override
+	public byte[] getResume(String jobSeekerEmail) {
+		JobSeeker jobSeeker = getJobseeker(jobSeekerEmail);
+		if(jobSeeker.getResume()==null)
+			throw new ApiCustomException("Resume Not Uploaded!");
+		return jobSeeker.getResume();
+	}
+	
+	@Override
 	public void deleteJobSeeker(String email) {
-		JobSeeker jobSeeker = jobSeekerRepository.findByEmail(email).orElseThrow(()->new ApiCustomException("Recruiter Does Not Exists!")); 
+		JobSeeker jobSeeker = jobSeekerRepository.findByEmail(email)
+				.orElseThrow(() -> new ApiCustomException("Recruiter Does Not Exists!"));
 		jobSeekerRepository.delete(jobSeeker);
 	}
+
+
 
 }
