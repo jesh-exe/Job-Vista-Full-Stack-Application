@@ -25,5 +25,6 @@ public class JobResponseDTO {
 	private String bond;
 	private Integer vacancies;
 	private String jobType;
+	private String postedDate;
 	
 }
