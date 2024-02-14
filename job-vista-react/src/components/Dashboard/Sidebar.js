@@ -8,7 +8,7 @@ export default function Sidebar() {
     <div className='container-fluid ms-0 px-0 '>
       <div className='row holder'>
         <div className='col-1 '>
-          <CDBSidebar textColor="#fff" backgroundColor="#333" toggled className='sidebar-main' >
+          <CDBSidebar textColor="#fff" backgroundColor="#333" toggled minWidth='52px' className='sidebar-main' >
             <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
               Menu
             </CDBSidebarHeader>

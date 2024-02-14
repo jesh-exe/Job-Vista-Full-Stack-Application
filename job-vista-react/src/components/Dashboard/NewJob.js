@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router';
 import RecruiterService from '../../service/RecruiterService';
 import { resetRecruiterDetails, setRecruiterDetails } from '../../redux/slices/Recruiter/RecruiterSlice';
 import { useDispatch } from 'react-redux';
+import { toast } from "react-toastify";
+
 
 function NewJob() {
 
@@ -11,7 +13,7 @@ function NewJob() {
   const dispatch = useDispatch();
 
   const [job, setJob] = useState({
-    recruiterEmail: "jrmurodiya@gmail.com",
+    recruiterEmail: "",
     jobCategory: "",
     experience: "",
     minimumEducation: "",
@@ -24,9 +26,19 @@ function NewJob() {
     bond: "",
     vacancies: "",
     jobType: ""
-    
+
   })
 
+  const jobCategories = [
+    "React",
+    "Java",
+    "Frontend",
+    "Backend",
+  ];
+
+  const jobTypes = ["Full Time", "Part Time", "Contract", "Freelance", "Internship", "Temporary"];
+
+  //Handle Form Change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setJob(prevState => ({
@@ -35,35 +47,41 @@ function NewJob() {
     }));
   };
 
+  //Handle Submit Form
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(job);
     var jwtToken = JSON.parse(localStorage.getItem('jwt-token'));
     if (jwtToken) {
       if (jwtToken.holder !== "RECRUITER") {
         navigate("/login");
       }
+      //Create Job Call
       RecruiterService.createNewJob(job, jwtToken.jwtToken)
         .then((response) => {
+
+          //If Success then reload the User Data in Redux
           RecruiterService.loadUserByJwtToken(jwtToken.jwtToken).then((response) => {
-            alert("Job Added");
+            toast.success("Job Added");
+            console.log(response.data);
             dispatch(setRecruiterDetails(response.data));
             navigate("/dashboard/jobs");
           }).catch((error) => {
-            alert("Failed to Update Details")
+            toast.error("Failed to Update Details")
           })
         })
         .catch((error) => {
           if (error.response) {
             if (error.response.status === 400) {
-              alert(error.response.data.message);
+              toast.error(error.response.data.message);
             }
           }
-          alert("Something went wrong!")
+          toast.error("Something went wrong!")
         });
     }
+
+    //If token does not exists, then redirect to Login
     else {
-      alert("Session Expired");
+      toast.error("Session Expired");
       dispatch(resetRecruiterDetails());
       navigate("/login");
     }
@@ -79,7 +97,9 @@ function NewJob() {
         <div className="row">
           <div className="col-12 col-sm-6 col-md-6">
             <div className="form-group">
-              <label htmlFor="role">Role</label>
+              <label htmlFor="role">
+                Role<span className="text-danger"> *</span>
+              </label>
               <input
                 type="role"
                 className="form-control"
@@ -121,7 +141,9 @@ function NewJob() {
           </div>
           <div className="col-12 col-sm-6 col-md-6">
             <div className="form-group">
-              <label htmlFor="responsibility">Responsibility</label>
+              <label htmlFor="responsibility">
+                Responsibility<span className="text-danger"> *</span>
+              </label>
               <textarea
                 className="form-control"
                 id="responsibility"
@@ -138,12 +160,16 @@ function NewJob() {
         <div className="row">
           <div className="col-12 col-sm-6 col-md-6">
             <div className="form-group">
-              <label htmlFor="bond">Bond</label>
+              <label htmlFor="bond">
+                Bond<span className='text-muted small'>  (Years)</span><span className="text-danger"> *</span>
+              </label>
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 id="bond"
                 name="bond"
+                min={0}
+                max={5}
                 defaultValue={job.bond}
                 onChange={handleChange}
                 required
@@ -158,6 +184,8 @@ function NewJob() {
                 className="form-control"
                 id="vacancies"
                 name="vacancies"
+                min={1}
+                title='Vacancies must be above 1'
                 defaultValue={job.vacancies}
                 onChange={handleChange}
               />
@@ -167,14 +195,18 @@ function NewJob() {
 
         <div className="row">
           <div className="col-12 col-sm-6 col-md-6">
-
             <div className="form-group">
-              <label htmlFor="workHours">Workhours</label>
+              <label htmlFor="workHours">
+                Workhours<span className="text-danger"> *</span>
+              </label>
               <input
                 type="number"
                 className="form-control"
                 id="workHours"
                 name="workHours"
+                min={1}
+                max={24}
+                title='Work Hours must be between 1 and 24'
                 defaultValue={job.workHours}
                 onChange={handleChange}
                 required
@@ -182,9 +214,10 @@ function NewJob() {
             </div>
           </div>
           <div className="col-12 col-sm-6 col-md-6">
-
             <div className="form-group">
-              <label htmlFor="expectedSalary">Expected Salary</label>
+              <label htmlFor="expectedSalary">
+                Expected Salary<span className="text-danger"> *</span>
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -198,41 +231,58 @@ function NewJob() {
           </div>
         </div>
 
+        {/* render job category from array in the form of select drop down options */}
         <div className="row">
           <div className="col-12 col-sm-6 col-md-6">
             <div className="form-group">
-              <label htmlFor="jobCategory">Job Category</label>
-              <input
-                type='text'
+              <label htmlFor="jobCategory">
+                Job Category<span className="text-danger"> *</span>
+              </label>
+              <select
                 className="form-control"
                 id="jobCategory"
                 name="jobCategory"
-                defaultValue={job.jobCategory}
+                value={job.jobCategory}
                 onChange={handleChange}
-                required
-              ></input>
+              >
+                <option value="">Select Category</option>
+                {jobCategories.map((category, index) => (
+                  <option key={index} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
-
+          {/* render job type from array in the form of select drop down options */}
           <div className="col-12 col-sm-6 col-md-6">
             <div className="form-group">
-              <label htmlFor="jobType">Job Type</label>
-              <input
-                type='text'
+              <label htmlFor="jobType">
+                Job Type<span className="text-danger"> *</span>
+              </label>
+              <select
                 className="form-control"
                 id="jobType"
                 name="jobType"
-                defaultValue={job.jobType}
+                value={job.jobType}
                 onChange={handleChange}
-                required
-              ></input>
+              >
+                <option value="">Select Type</option>
+                {jobTypes.map((type, index) => (
+                  <option key={index} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
-        <div className='row'>
-          <div className='col-12 col-sm-6 col-md-6'>
+        <div className="row">
+          <div className="col-12 col-sm-6 col-md-6">
             <div className="form-group">
-              <label htmlFor="description">Job Description</label>
+              <label htmlFor="description">
+                Job Description<span className="text-danger"> *</span>
+              </label>
               <textarea
                 className="form-control"
                 id="description"
@@ -246,7 +296,9 @@ function NewJob() {
           </div>
           <div className="col-12 col-sm-6 col-md-6">
             <div className="form-group">
-              <label htmlFor="minimumEducation">Minimum Education</label>
+              <label htmlFor="minimumEducation">
+                Minimum Education<span className="text-danger"> *</span>
+              </label>
               <textarea
                 className="form-control"
                 id="minimumEducation"
@@ -255,13 +307,14 @@ function NewJob() {
                 onChange={handleChange}
                 rows={4}
                 required
-              >
-              </textarea>
+              ></textarea>
             </div>
           </div>
         </div>
         <div className="form-group text-center p-4">
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
         </div>
       </form>
     </div>
