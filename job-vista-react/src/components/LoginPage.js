@@ -3,13 +3,16 @@ import sideImage from "../assets/loginSide.svg"
 import React, { useEffect, useState } from 'react';
 import ScrollReveal from 'scrollreveal';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
+import axios, { HttpStatusCode } from 'axios';
 import { error } from 'jquery';
 import { useNavigate } from 'react-router';
 import { setRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
 import RecruiterService from '../service/RecruiterService';
+import { toast } from 'react-toastify';
+
 
 const LoginPage = () => {
+
   useEffect(() => {
     ScrollReveal().reveal(".left", {
       origin: "left",
@@ -38,7 +41,6 @@ const LoginPage = () => {
     });
   };
 
-
   // To handle Login Event
   const handleLogin = (e) => {
     e.preventDefault();
@@ -47,15 +49,18 @@ const LoginPage = () => {
     const formData = new FormData();
     formData.append("email", user.email);
     formData.append("password", user.password);
+
+    //Jobseeker
     if (user.roleType === "JobSeeker") {
       axios.post("http://localhost:8080/jobseeker/authenticate", user)
         .then((response) => {
           console.log(response.data);
         }).catch((error) => {
-          alert("Invalid Credentials");
+          toast.error("Invalid Credentials");
         })
     }
 
+    //Recruiter
     else if (user.roleType === "Recruiter") {
       //Fetching JWT Token
       RecruiterService.authenticateRecruiter(formData)
@@ -68,26 +73,28 @@ const LoginPage = () => {
           }
           //Storing JWT in localstorage
           localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
+          toast.success("Successfully authenticated!");
           navigate("/dashboard")
         }).catch((error) => {
           console.log(error)
           if (error.code == "ERR_NETWORK")
-            alert("Server Busy");
-          else {
-            alert("Invalid credentials")
+            toast.error("Server Busy");
+          else{
+            toast.error("Invalid credentials")
           }
         })
     }
 
+    //Admin -> Optional
     else if (user.roleType === "Admin") {
 
     }
-    //dispatch(setLoggedInUser(user));
   };
 
   return (
     <div className="container mt-5 mb-5 p-4">
       <div className="row">
+
         {/* Left Side Image */}
         <div className="col-sm-12 col-md-6 col-lg-6 mb-5 left">
           <img
@@ -96,6 +103,7 @@ const LoginPage = () => {
             className="img-fluid login-side-image"
           ></img>
         </div>
+
         {/* Right Side Form */}
         <div className="col-sm-12 col-md-6 col-lg-6 text-center ps-sm-1 pe-sm-1 ps-md-1 pe-md-1 ps-lg-5 pe-lg-5 emerge">
           <div className="p-sm-5 p-md-2 p-lg-5">
@@ -155,6 +163,7 @@ const LoginPage = () => {
             </form>
           </div>
         </div>
+
       </div>
     </div>
   );

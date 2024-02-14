@@ -11,17 +11,17 @@ export default class MainPage extends Component {
       <div>
         <div className='container-fluid'>
           <div className='row '>
-            {/* Trupti */}
+            
             <Welcome></Welcome>
 
-            {/* Mandeep */}
+            
             <div className='pt-5 pb-5 bg-white rounded-3'>
               <WhatWeDo></WhatWeDo>
             </div>
 
             <div className='partition'></div>
 
-            {/* Vaishnavi */}
+            
             <Working></Working>
 
             <div className='partition'></div>

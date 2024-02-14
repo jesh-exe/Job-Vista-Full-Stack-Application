@@ -9,6 +9,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import ScrollReveal from 'scrollreveal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedRecruiter, resetRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
+import { toast } from 'react-toastify';
 
 
 const Header = () => {
@@ -24,6 +25,7 @@ const Header = () => {
   const recruiter = useSelector(getLoggedRecruiter);
   console.log(recruiter)
 
+
   useEffect(() => {
     ScrollReveal().reveal(".navbar-container", {
       origin: "top",
@@ -33,10 +35,12 @@ const Header = () => {
     });
   }, []);
 
+  //Handle Logout Button Event
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to log out")) {
       localStorage.removeItem("jwt-token");
       dispatch(resetRecruiterDetails({}));
+      toast.success("Logged out successfully")
       navigate("/")
     }
   }
@@ -68,8 +72,11 @@ const Header = () => {
               <NavLink to="/contactus" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item'>Contact</NavLink>
 
             </Nav>
+
+            {/* Conditional Rendering for the Buttons */}
             <div className='text-center'>
               {recruiter.email == "" ?
+                //Defult Buttons
                 <div>
                   {/* Register Button */}
                   <Button variant="success" onClick={handleShow}>
@@ -107,9 +114,11 @@ const Header = () => {
                   </NavLink>
                 </div>
                 :
+
+                //Buttons for Recruiter
                 <div className='d-flex justify-content-center'>
                   <div className="dropdown" style={{ width: "160px" }}>
-                    <img className=" dropdown-toggle border-dark border rounded-5 p-1" src={navbarDefault} height={40} width={40} data-bs-toggle="dropdown" aria-expanded="false">
+                    <img className=" dropdown-toggle border-dark border rounded-5" src={`data:image/jpeg;base64,${recruiter.companyLogoBase64}`} height={50} width={50} data-bs-toggle="dropdown" aria-expanded="false">
                     </img>
                     <div className="dropdown-menu dropdown-menu-right">
                       <NavLink to="/dashboard" className="navlinks-middle text-center text-decoration-none menu-item">
