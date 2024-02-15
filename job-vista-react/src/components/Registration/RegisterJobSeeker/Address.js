@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setAddressDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
+
 
 export default function Address() {
 
@@ -28,7 +30,7 @@ export default function Address() {
         e.preventDefault();
         console.log(address);
         dispatch(setAddressDetails(address));
-        alert("Success")
+        toast.success("Success, Education unlocked")
     }
 
     return (

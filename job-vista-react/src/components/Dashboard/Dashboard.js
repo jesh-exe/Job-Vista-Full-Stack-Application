@@ -1,25 +1,28 @@
-import React from 'react'
-import Main from './Main'
+import React, { useEffect } from 'react'
 import Sidebar from './Sidebar'
+<<<<<<< HEAD
 import NewJob from './NewJob'
 
+=======
+import '../../css/Dashboard/Dashboard.css'
+import { useSelector } from 'react-redux'
+import { getLoggedRecruiter, getLoggedRecruiterJobs } from '../../redux/slices/Recruiter/RecruiterSlice'
+import { useNavigate } from 'react-router'
+>>>>>>> origin/main
 function Dashboard() {
+
+  //To Ensure that the Recruiter can use Dashboard
+  const navigate = useNavigate();
+  const recruiter = useSelector(getLoggedRecruiter);
+  if (recruiter.email === "" ) {
+    navigate("/login");
+  }
+
   return (
-    <div>
-        <div className="container">
-            <div className="row">
-                <div className="col-sm-2 col-md-2">
-                    <Sidebar/>
-                </div>
-                <div className="col-sm-10 col-md-10">
-                    {/* <Main/> */}
-                    <NewJob/>
-                </div>
-            </div>
-        </div>
-        
-        
+    <div className="dashboard">
+      <Sidebar />
     </div>
+
   )
 }
 

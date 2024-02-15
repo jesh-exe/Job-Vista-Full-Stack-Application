@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPersonalDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
 
 
 export default function Personal() {
@@ -39,15 +40,15 @@ export default function Personal() {
     const savePersonalDetails = (e) => {
         e.preventDefault();
         if (confirmPassword !== personal.password)
-            alert("Password Do Not Match!");
+            toast.error("Password Do Not Match!");
         else if (personal.gender === "none" || personal.gender === "")
-            alert("Select Valid Gender");
+            toast.error("Select Valid Gender");
         else if(personal.contactNumber.length != 10)
-            alert("Contact Number must have 10 digits only")
+            toast.error("Contact Number must have 10 digits only")
         else {
             console.log(personal)
             dispatch(setPersonalDetails(personal));
-            alert("Success!");
+            toast.success("Success!");
         }
     }
 

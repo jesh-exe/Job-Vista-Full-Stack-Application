@@ -120,7 +120,7 @@ public class JobSeeker {
 	public void setExperience(Experience experience) {
 		experience.setJobSeeker(this);
 		if (!experiences.add(experience))
-			throw new RuntimeException("Experience Already Added!");
+			throw new ApiCustomException("Experience Already Added!");
 	}
 
 	public List<Experience> getExperiences() {
@@ -130,6 +130,7 @@ public class JobSeeker {
 	// Setter & Getter for JobApplications
 	public void setJobApplication(JobApplication jobApplication) {
 		jobApplication.setJobSeeker(this);
+		System.out.println("In Job Seeker");
 		if (!jobApplications.add(jobApplication))
 			throw new ApiCustomException("Job Application Already Exists");
 	}

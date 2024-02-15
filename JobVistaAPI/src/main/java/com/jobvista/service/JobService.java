@@ -5,10 +5,14 @@ import java.util.Optional;
 
 import com.jobvista.entities.Job;
 import com.jobvista.requestDTO.JobRequestDTO;
+import com.jobvista.responseDTO.ApplicantResponseDTO;
+import com.jobvista.responseDTO.JobResponseDTO;
 
 public interface JobService {
-	List<Job> getAllJobs();
+	List<JobResponseDTO> getAllJobs();
 	String createJob(JobRequestDTO jobRequestDTO);
-	String deleteJob(Integer id);
+	String deleteJob(String email,Integer id);
+	JobResponseDTO getJobDetails(Integer id);
+	List<ApplicantResponseDTO> getApplicantsOfJob(String email, Integer id);
 
 }
