@@ -83,8 +83,7 @@ public class JobSeekerController {
 	@GetMapping
 	public ResponseEntity<?> getJobSeeker() {
 		Authentication jwtParsedUser = SecurityContextHolder.getContext().getAuthentication();
-		JobSeeker jobSeeker = jobSeekerService.getJobseeker(jwtParsedUser.getName());
-		return ResponseEntity.status(HttpStatus.OK).body("Valid User");
+		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.getJobseeker(jwtParsedUser.getName()));
 	}
 
 	// Delete a Job Seeker by Email extracted from JWT Token
