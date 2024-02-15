@@ -29,4 +29,17 @@ public class JobApplicationController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(jobApplicationService.applyForJob(jwtParsedUser.getName(),jobId));
 	}
 	
+	@GetMapping("/update/{status}/{jobApplicationId}")
+	public ResponseEntity<?> updateJobApplicationStatus(@PathVariable String status, @PathVariable Integer jobApplicationId)
+	{
+		jobApplicationService.changeStatus(jobApplicationId, status);
+		return ResponseEntity.ok("Status Changed");
+	}
+	@GetMapping("/hire/{applicationId}")
+	public ResponseEntity<?> hireJobSeekerEntity (@PathVariable Integer applicationId)
+	{	
+		jobApplicationService.hireJobSeeker(applicationId);
+		return ResponseEntity.ok("Done");
+	}
+	
 }

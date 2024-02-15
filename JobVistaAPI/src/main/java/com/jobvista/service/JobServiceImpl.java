@@ -99,9 +99,11 @@ public class JobServiceImpl implements JobService {
 			JobSeeker applicant = application.getJobSeeker();
 			ApplicantResponseDTO applicantDto = mapper.map(applicant, ApplicantResponseDTO.class);
 
+			applicantDto.setJobId(application.getId());
 			applicantDto.setCity(applicant.getAddress().getCity());
 			applicantDto.setName(applicant.getFirstName() + " " + applicant.getLastName());
-
+			applicantDto.setStatus(application.getStatus());
+			
 			// Byte to Base64 String -> Profile Photo
 			String base64ProfileImage = "";
 			if (applicant.getProfilePhoto() != null)

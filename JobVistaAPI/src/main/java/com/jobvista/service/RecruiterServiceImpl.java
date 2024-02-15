@@ -95,6 +95,8 @@ public class RecruiterServiceImpl implements RecruiterService {
 					+ " " + creationDate.getYear();
 			jobResponseDTO.setPostedDate(postedDate);
 
+			jobResponseDTO.setApplicantCount(job.getJobApplications().size());
+			
 			// Setting the category of Job in the JobResponseDTO
 			jobResponseDTO.setJobCategory(job.getCategory().getName());
 			// Adding the Response to the Response List
