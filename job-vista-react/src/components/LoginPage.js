@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 import { setRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
 import RecruiterService from '../service/RecruiterService';
 import { toast } from 'react-toastify';
+import JobSeekerService from '../service/JobSeekerService';
 
 
 const LoginPage = () => {
@@ -52,11 +53,24 @@ const LoginPage = () => {
 
     //Jobseeker
     if (user.roleType === "JobSeeker") {
-      axios.post("http://localhost:8080/jobseeker/authenticate", user)
+      JobSeekerService.authenticateJobSeeker(user)
         .then((response) => {
-          console.log(response.data);
+          var jwtToken = response.data.jwtToken
+          //Storing JWT as a object
+          var jwtTokenDetails = {
+            holder: "JOBSEEKER",
+            jwtToken: jwtToken
+          }
+          localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
+          toast.success("Successfully authenticated!");
+          navigate("/")
         }).catch((error) => {
-          toast.error("Invalid Credentials");
+          console.log(error)
+          if (error.code == "ERR_NETWORK")
+            toast.error("Server Busy");
+          else {
+            toast.error("Invalid credentials")
+          }
         })
     }
 
@@ -74,12 +88,12 @@ const LoginPage = () => {
           //Storing JWT in localstorage
           localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
           toast.success("Successfully authenticated!");
-          navigate("/dashboard")
+          navigate("/dashboard")  
         }).catch((error) => {
           console.log(error)
           if (error.code == "ERR_NETWORK")
             toast.error("Server Busy");
-          else{
+          else {
             toast.error("Invalid credentials")
           }
         })

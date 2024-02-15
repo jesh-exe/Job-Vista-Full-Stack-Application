@@ -96,7 +96,7 @@ export default function ApplicantCard() {
                 <div className='row mt-3 mb-5'>
 
                     {/* Left Side */}
-                    <div className='col-sm-12 col-md-4 mt-4'>
+                    <div className='col-sm-12 col-md-4 mt-4 '>
                         {/* applicants photo */}
                         <div className='shadow pt-4 bg-white rounded pt-3 p-4 right-side'>
                             <div className='lead text-center fw-bolder mb-2'>
@@ -121,12 +121,12 @@ export default function ApplicantCard() {
 
                     {/* Right Side */}
                     <div className='col-sm-12 col-md-8 mb-2 mt-4'>
-                        <div className='shadow bg-white rounded h-100 pt-5 ps-4 pe-2 left-side'>
+                        <div className='shadow bg-white rounded h-100 pt-5 ps-4 pe-2 left-side '>
                             <div>
-                                <div className='lead fw-bolder text-muted text-center mb-3'>
+                                <div className='lead fw-bolder text-muted text-start mb-3'>
                                     Applicant's Details
                                 </div>
-                                <div className='pt-4 bg-white rou7ded pb-4 right-side'>
+                                <div className='pt-4 bg-white rounded pb-4 right-side'>
                                     <div className='mb-3 lh-lg overflow-hidden'>
                                         <div className='row'>
                                             <span className="col-5 overflow-hidden text-start fw-bold">

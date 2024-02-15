@@ -23,6 +23,7 @@ import com.jobvista.repositories.RecruiterRepository;
 import com.jobvista.requestDTO.JobRequestDTO;
 import com.jobvista.requestDTO.jobSeekerDTO.ExperienceDTO;
 import com.jobvista.responseDTO.ApplicantResponseDTO;
+import com.jobvista.responseDTO.JobListResponseDTO;
 import com.jobvista.responseDTO.JobResponseDTO;
 
 @Transactional
@@ -39,12 +40,25 @@ public class JobServiceImpl implements JobService {
 	private ModelMapper mapper;
 
 	@Override
-	public List<JobResponseDTO> getAllJobs() {
+	public List<JobListResponseDTO> getAllJobs() {
 		List<Job> jobs = jobRepository.findAll();
-		List<JobResponseDTO> jobResponseDTOs = new ArrayList<>();
+		List<JobListResponseDTO> jobResponseDTOs = new ArrayList<>();
 		for (Job job : jobs) {
 			JobResponseDTO jobResponseDTO = mapper.map(job, JobResponseDTO.class);
-			jobResponseDTOs.add(helperFillJobResponseDTO(job, jobResponseDTO));
+			jobResponseDTO = helperFillJobResponseDTO(job, jobResponseDTO);
+			JobListResponseDTO jobListResponseDTO = mapper.map(jobResponseDTO, JobListResponseDTO.class);
+			jobListResponseDTO.setCompanyName(job.getRecruiter().getCompanyName());
+			jobListResponseDTO.setCompanyAddress(job.getRecruiter().getCompanyAddr());
+			jobListResponseDTO.setCompanyUrl(job.getRecruiter().getCompanyUrl());
+			jobListResponseDTO.setApplicantCount(job.getJobApplications().size());
+			String postedDate = job.getPostingDate().getDayOfMonth() + " "
+					+ job.getPostingDate().getMonth().toString().toLowerCase() + " " + job.getPostingDate().getYear();
+			jobListResponseDTO.setPostedDate(postedDate);
+			if (job.getRecruiter().getCompanyLogo() != null)
+				jobListResponseDTO
+						.setCompanyLogo(Base64.getEncoder().encodeToString(job.getRecruiter().getCompanyLogo()));
+			jobResponseDTOs.add(jobListResponseDTO);
+
 		}
 		return jobResponseDTOs;
 	}
@@ -103,7 +117,7 @@ public class JobServiceImpl implements JobService {
 			applicantDto.setCity(applicant.getAddress().getCity());
 			applicantDto.setName(applicant.getFirstName() + " " + applicant.getLastName());
 			applicantDto.setStatus(application.getStatus());
-			
+
 			// Byte to Base64 String -> Profile Photo
 			String base64ProfileImage = "";
 			if (applicant.getProfilePhoto() != null)

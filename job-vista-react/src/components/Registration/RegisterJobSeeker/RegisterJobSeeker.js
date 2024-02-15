@@ -5,7 +5,7 @@ import Address from './Address';
 import Education from './Education';
 import Personal from './Personal';
 import { useSelector } from 'react-redux';
-import { getAddress, getExperience, getGraduationEducation, getHscEducation, getPersonal, getSscEducation } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { getAddress, getExperience, getGraduationEducation, getHscEducation, getPersonal, getSscEducation } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
 import Other from './Other';
 import axios from 'axios';
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setGraduationEducationDetails, setHscEducationDetails, setSscEducationDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { setGraduationEducationDetails, setHscEducationDetails, setSscEducationDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
 import { toast } from "react-toastify";
 
 

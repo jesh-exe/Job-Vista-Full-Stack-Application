@@ -33,8 +33,10 @@ export default function JobCard() {
     "postedDate": "",
   });
 
+
   const [applicants, setApplicants] = useState([]);
 
+  //Get job from job array of Redux Store
   const getJobFromArray = () => {
     var jobs = recruiterDetails.jobs;
     if (props.id < jobs.length) {
@@ -45,6 +47,7 @@ export default function JobCard() {
       return jobFromArray.id;
   }
 
+  //Fetching Applicants of job from backend
   const fetchJobDetails = () => {
     var jwtToken = JSON.parse(localStorage.getItem("jwt-token"));
     if (jwtToken) {
@@ -107,8 +110,8 @@ export default function JobCard() {
                 Job Details
               </div>
               <div className='row mt-3'>
-                <div className='col-sm-12 col-md-8 mt-3'>
                   {/* Heading Container */}
+                <div className='col-sm-12 col-md-8 mt-3'>
                   <div className='d-flex flex-column justify-content-end shadow bg-white h-100 rounded pt-5 ps-4 pb-4 pe-2 left'>
                     <div className='mb-3'>
                       <img src={`data:image/jpeg;base64,${recruiterDetails.companyLogoBase64}`} height={80} width={80} className='rounded-circle border-secondary border'></img>
@@ -139,8 +142,9 @@ export default function JobCard() {
                     </div>
                   </div>
                 </div>
-                <div className='col-sm-12 col-md-4 mt-3 emerge'>
+
                   {/* Job Overview & Stats */}
+                <div className='col-sm-12 col-md-4 mt-3 emerge'>
                   <div className='shadow p-2 pt-4 bg-white rounded pt-3 ps-4 right-side '>
                     <div className='fs-5 fw-bolder mb-2 '>
                       Job Overview
@@ -194,10 +198,8 @@ export default function JobCard() {
                   </div>
                 </div>
 
-                {/* Left Side of the Page */}
-                <div className='col-sm-12 col-md-12 col-12 '>
-
                   {/* Job Description Container */}
+                <div className='col-sm-12 col-md-12 col-12 '>
                   <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-4 emerge'>
                     <div className='fs-5 fw-bolder  mb-2'>
                       Job Description
@@ -237,10 +239,12 @@ export default function JobCard() {
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
 
+          {/* Table of Applicant */}
           <div className="row">
             <div className="col mt-1">
               <div className='display-6 text-center mb-4 text-muted emerge'>

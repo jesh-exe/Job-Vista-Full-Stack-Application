@@ -53,7 +53,7 @@ function Main() {
                 <div className='pb-3'>
                   <FaBriefcase className='card-icon' />
                 </div>
-                <div className='fs-2'>{recruiter.jobs.length}</div>
+                <div className='fs-2'>{recruiter.jobs.length}</div> 
               </div>
             </Card.Body>
           </Card>
