@@ -27,6 +27,7 @@ function App() {
           <Route path='recruiter' element={<RegisterRecruiter></RegisterRecruiter>}></Route>
           <Route path='jobseeker' element={<RegisterJobseeker></RegisterJobseeker>}></Route>
         </Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
       </Routes>
       <Footer></Footer>
     </div>
