@@ -17,6 +17,7 @@ import RecruiterService from "../../../service/RecruiterService";
 // 	"vacancies": 0,
 // 	"jobType": "",
 //  "postedDate": "",
+// 	"applicantCount" : "",
 // }
 
 const initState = {
