@@ -4,6 +4,8 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { getLoggedRecruiter, resetRecruiterDetails } from '../../redux/slices/Recruiter/RecruiterSlice';
 import RecruiterService from '../../service/RecruiterService';
 import { toast } from 'react-toastify';
+import { setApplicant } from '../../redux/slices/Recruiter/ApplicantSlice';
+import ScrollReveal from 'scrollreveal';
 
 export default function JobCard() {
 
@@ -11,6 +13,7 @@ export default function JobCard() {
   const dispatch = useDispatch();
   const recruiterDetails = useSelector(getLoggedRecruiter);
   const navigate = useNavigate();
+
 
   const [job, setJob] = useState({
     "id": 0,
@@ -29,6 +32,7 @@ export default function JobCard() {
     "jobType": "",
     "postedDate": "",
   });
+
   const [applicants, setApplicants] = useState([]);
 
   const getJobFromArray = () => {
@@ -37,7 +41,8 @@ export default function JobCard() {
       var jobFromArray = jobs[props.id]
       setJob(jobFromArray);
     }
-    return jobFromArray.id;
+    if (jobFromArray)
+      return jobFromArray.id;
   }
 
   const fetchJobDetails = () => {
@@ -49,6 +54,7 @@ export default function JobCard() {
         RecruiterService.getApplicantsOfJob(jobId, jwtToken.jwtToken)
           .then((response) => {
             console.log(response.data)
+            setApplicants([...response.data]);
             // dispatch(setRecruiterDetails(response.data));
           }).catch((error) => {
             console.log(error)
@@ -66,24 +72,44 @@ export default function JobCard() {
     }
   }
 
-
   useEffect(() => {
-    // console.log(props.id)
+    window.scrollTo(0, 0);
+
     fetchJobDetails();
+    ScrollReveal().reveal(".left", {
+      origin: "left",
+      duration: 1500,
+      distance: "200px",
+      scale: 1,
+    })
+
+    ScrollReveal().reveal(".emerge", {
+      duration: 1500,
+      scale: 0.38,
+    });
+
   }, [])
 
+  const handleApplicant = (e) => {
+    var applicant = JSON.parse(e.target.value);
+    console.log(applicant);
+    dispatch(setApplicant(applicant));
+    navigate("/dashboard/applicant");
+  }
+
   return (
-    <div className="container ">
+    <div className="container mb-5">
       <div className="row">
         <div className="col">
-
           <div>
             <div className='container bg-light p-2 mb-5 mt-5'>
+              <div className='text-center display-6 text-muted'>
+                Job Details
+              </div>
               <div className='row mt-3'>
-                <div className='col-sm-12 col-md-8 '>
-
+                <div className='col-sm-12 col-md-8 mt-3'>
                   {/* Heading Container */}
-                  <div className='d-flex flex-column justify-content-end shadow bg-white h-100 rounded pt-5 ps-4 pb-4 pe-2 left-side'>
+                  <div className='d-flex flex-column justify-content-end shadow bg-white h-100 rounded pt-5 ps-4 pb-4 pe-2 left'>
                     <div className='mb-3'>
                       <img src={`data:image/jpeg;base64,${recruiterDetails.companyLogoBase64}`} height={80} width={80} className='rounded-circle border-secondary border'></img>
                     </div>
@@ -113,9 +139,9 @@ export default function JobCard() {
                     </div>
                   </div>
                 </div>
-                <div className='col-sm-12 col-md-4'>
+                <div className='col-sm-12 col-md-4 mt-3 emerge'>
                   {/* Job Overview & Stats */}
-                  <div className='shadow p-2 pt-4 bg-white rounded pt-3 ps-4 right-side'>
+                  <div className='shadow p-2 pt-4 bg-white rounded pt-3 ps-4 right-side '>
                     <div className='fs-5 fw-bolder mb-2 '>
                       Job Overview
                     </div>
@@ -169,10 +195,10 @@ export default function JobCard() {
                 </div>
 
                 {/* Left Side of the Page */}
-                <div className='col-sm-12 col-md-12 col-12'>
+                <div className='col-sm-12 col-md-12 col-12 '>
 
                   {/* Job Description Container */}
-                  <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-4 left-side'>
+                  <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-4 emerge'>
                     <div className='fs-5 fw-bolder  mb-2'>
                       Job Description
                     </div>
@@ -182,7 +208,7 @@ export default function JobCard() {
                   </div>
 
                   {/* Job Data (Education, Responsiblity etc container) */}
-                  <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-2 left-side'>
+                  <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-2 emerge'>
                     <div className='fs-5 fw-bolder  mb-2'>
                       Responsiblities
                     </div>
@@ -192,7 +218,7 @@ export default function JobCard() {
                   </div>
 
                   {/* Minimum Education Required */}
-                  <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-4 left-side'>
+                  <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-4 emerge'>
                     <div className='fs-5 fw-bolder  mb-2'>
                       Minimum Education
                     </div>
@@ -202,7 +228,7 @@ export default function JobCard() {
                   </div>
 
                   {/* Experience Required */}
-                  <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-4 left-side'>
+                  <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-4 emerge'>
                     <div className='fs-5 fw-bolder  mb-2'>
                       Experience
                     </div>
@@ -217,57 +243,44 @@ export default function JobCard() {
 
           <div className="row">
             <div className="col mt-1">
-              <div className='display-6 text-center mb-4'>
+              <div className='display-6 text-center mb-4 text-muted emerge'>
                 Applicants
               </div>
               <div className="table-responsive rounded-4">
-                <table className="table text-center table-striped ">
+                <table className="table text-center table-striped">
                   <thead className="thead-light">
-                    <tr className="">
+                    <tr className="emerge">
                       <th scope="col" >
                         Id
                       </th>
                       <th scope="col" >
-                        Title
+                        Profile
                       </th>
                       <th scope="col" >
-                        Category
+                        Name
                       </th>
                       <th scope="col" >
-                        Vacancies
-                      </th>
-                      <th scope="col" >
-                        Type
+                        Email
                       </th>
                       <th scope="col" >
                         Action
                       </th>
                     </tr>
                   </thead>
-                  <tbody >
-                    {/* {jobs.map((job, index) => (
-                        <tr key={index} className="text-muted">
-                          <td >{index + 1}</td>
-                          <td >{job.role}</td>
-                          <td >{job.jobCategory}</td>
-                          <td >{job.vacancies}</td>
-                          <td >{job.jobType}</td>
-                          <td >
-                            <NavLink to={`/dashboard/${index}`}>
-                              <button className="btn btn-primary btn-sm mx-1 mb-2">
-                                Detail
-                              </button>
-                            </NavLink>
-
-                            &nbsp;
-
-                            <button type="button" className="btn btn-danger btn-sm mb-2 mx-1"
-                            >
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                      ))} */}
+                  <tbody className='emerge'>
+                    {applicants.map((applicant, index) => (
+                      <tr key={index} className="text-muted ">
+                        <td >{index + 1}</td>
+                        <td ><img src={`data:image/jpeg;base64,${applicant.profilePhoto}`} width={60} height={60} className='rounded-circle img-fluid'></img></td>
+                        <td >{applicant.name}</td>
+                        <td >{applicant.email}</td>
+                        <td >
+                          <button className="btn btn-primary btn-sm mx-1 mb-2" id={index} value={JSON.stringify(applicant)} onClick={handleApplicant}>
+                            Detail
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
