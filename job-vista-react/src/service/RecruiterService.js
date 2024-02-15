@@ -36,6 +36,30 @@ class RecruiterService {
         })
     }
 
+    getResumeOfApplicant(email, jwtToken) {
+        return axios.get('http://localhost:8080/jobseeker/resume/' + email, {
+            headers: {
+                "Authorization": "Bearer " + jwtToken,
+            }
+        })
+    }
+
+    hireApplicant(jobApplicationId, jwtToken) {
+        return axios.get('http://localhost:8080/job-application/hire/'+jobApplicationId, {
+            headers: {
+                "Authorization": "Bearer " + jwtToken,
+            }
+        })
+    }
+
+    updateApplicationStatus(jobApplicationId, status, jwtToken) {
+        return axios.get('http://localhost:8080/job-application/update/'+status+"/"+jobApplicationId, {
+            headers: {
+                "Authorization": "Bearer " + jwtToken,
+            }
+        })
+    }
+
     //Register new Recruiter
     registerRecruiter(recruiter, formdata) {
         return axios.post("http://localhost:8080/recruiter", recruiter)
