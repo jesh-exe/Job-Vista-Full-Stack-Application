@@ -94,7 +94,7 @@ const RegisterRecruiter = () => {
     //Creating the Formdata of image to send to the Backend
     const formdata = new FormData();
     formdata.append("companyLogo", logo.companyLogo);
-    console.log(recruiter)
+    console.log(recruiter);
 
     //Posting the Data to backend, returns the ID of created Recruiter and using that ID to send another call to API to save image for that Recruiter
     RecruiterService.registerRecruiter(recruiter, formdata)
