@@ -5,6 +5,7 @@ import '../css/JobDetails.css'
 export default function JobDetails() {
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         ScrollReveal().reveal(".role", {
             duration: 1500,
             scale: 0.38,

@@ -30,7 +30,7 @@ export default function Sidebar() {
             </CDBSidebarContent>
           </CDBSidebar>
         </div>
-        <div className='offset-1 col-10 offset-md-0 col-md-11 offset-lg-0 col-lg-11 p-0'>
+        <div className='offset-1 col-10 offset-md-0 col-md-11 offset-lg-0 col-lg-10 p-0'>
           <Outlet></Outlet>
         </div>
       </div>

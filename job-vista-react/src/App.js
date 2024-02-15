@@ -33,7 +33,7 @@ function App() {
   const recruiterDetails = useSelector(getLoggedRecruiter);
 
   useEffect(() => {
-    
+
     //Checking if JWT Token exists in local storage
     var jwtToken = JSON.parse(localStorage.getItem("jwt-token"));
     if (jwtToken) {
@@ -76,7 +76,8 @@ function App() {
           <Route path='' element={<Main></Main>}></Route>
           <Route path='new_job' element={<NewJob></NewJob>}></Route>
           <Route path='jobs' element={<JobList></JobList>}></Route>
-            <Route path=':id' element={<JobCard></JobCard>}></Route>
+          <Route path=':id' element={<JobCard></JobCard>}></Route>
+          <Route path='applicant' element={<ApplicantCard></ApplicantCard>}></Route>
         </Route>
       </Routes>
       <Footer></Footer>

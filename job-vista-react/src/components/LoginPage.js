@@ -135,10 +135,10 @@ const LoginPage = () => {
                 />
               </div>
               {/* Keep me Signed in */}
-              <div className="form-group checkbox">
+              {/* <div className="form-group checkbox">
                 <input type="checkbox" id="keepSignedIn" name="keepSignedIn" />
                 <label htmlFor="keepSignedIn">Keep me signed in</label>
-              </div>
+              </div> */}
               {/* Role Type */}
               <div className="mb-4 text-start">
                 <label htmlFor="roleType" className="text-muted">

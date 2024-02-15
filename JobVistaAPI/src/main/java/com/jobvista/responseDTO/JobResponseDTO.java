@@ -26,5 +26,6 @@ public class JobResponseDTO {
 	private Integer vacancies;
 	private String jobType;
 	private String postedDate;
+	private int applicantCount;
 	
 }

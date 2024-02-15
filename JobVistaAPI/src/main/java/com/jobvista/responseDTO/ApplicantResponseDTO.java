@@ -14,6 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApplicantResponseDTO {
+	private int jobId;
 	private String name;
 	private String email;
 	private String contactNumber;
@@ -22,6 +23,7 @@ public class ApplicantResponseDTO {
 	private String githubRepositoryLink;
 	private String skills;
 	private String city;
+	private String status;
 	List<ExperienceDTO> experiences;
 
 }

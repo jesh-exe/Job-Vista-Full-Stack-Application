@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoggedRecruiterJobs, resetRecruiterDetails, setRecruiterDetails } from "../../redux/slices/Recruiter/RecruiterSlice";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -10,6 +10,10 @@ export default function JobList() {
   const dispatch = useDispatch();
   const jobs = useSelector(getLoggedRecruiterJobs);
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  })
 
   const handleDelete = (id) => {
     // const updatedDataArray = [...dummyDataArray];
@@ -76,6 +80,9 @@ export default function JobList() {
                           Type
                         </th>
                         <th scope="col" >
+                          Applies
+                        </th>
+                        <th scope="col" >
                           Action
                         </th>
                       </tr>
@@ -88,6 +95,7 @@ export default function JobList() {
                           <td >{job.jobCategory}</td>
                           <td >{job.vacancies}</td>
                           <td >{job.jobType}</td>
+                          <td>{job.applicantCount}</td>
                           <td >
                             <NavLink to={`/dashboard/${index}`}>
                               <button className="btn btn-primary btn-sm">
