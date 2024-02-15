@@ -15,7 +15,7 @@ import RegisterJobseeker from './components/Registration/RegisterJobSeeker/Regis
 function App() {
   return (
     <div className="App bg-light">
-      <Header></Header>
+      {/* <Header></Header>
       <Routes>
         <Route path='/' element={<MainPage></MainPage>}></Route>
         <Route path='/jobs' element={<JobDetails></JobDetails>}></Route>
@@ -26,7 +26,9 @@ function App() {
           <Route path='jobseeker' element={<RegisterJobseeker></RegisterJobseeker>}></Route>
         </Route>
       </Routes>
-      <Footer></Footer>
+      <Footer></Footer> */}
+
+      <JobDetails></JobDetails>
     </div>
   );
 }
