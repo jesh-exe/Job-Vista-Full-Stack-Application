@@ -1,6 +1,5 @@
 package com.jobvista;
 
-import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.SpringApplication;
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Application {
 
-	// Start Point
+	//Start Point
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
@@ -18,8 +17,7 @@ public class Application {
 	@Bean
 	public ModelMapper mapper() {
 		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT)
-				.setPropertyCondition(Conditions.isNotNull());
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return modelMapper;
 	}
 

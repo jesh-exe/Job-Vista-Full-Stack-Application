@@ -78,7 +78,7 @@ public class Recruiter {
 	private String companyFax;
 
 	@Lob
-	@Column(name = "rc_Company_logo", length = 1000000, columnDefinition = "MEDIUMBLOB")
+	@Column(name = "rc_Company_logo", nullable = false, length = 1000000, columnDefinition = "MEDIUMBLOB")
 	private byte[] companyLogo;
 
 	@Lob

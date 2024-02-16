@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setExperiencesDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { setExperiencesDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
 
 
 export default function Experience() {

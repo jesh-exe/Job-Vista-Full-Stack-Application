@@ -41,7 +41,7 @@ public class Job {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_rec_id",nullable = false)
     private Recruiter recruiter;
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_jc_id", nullable = false)
     private JobCategory category;

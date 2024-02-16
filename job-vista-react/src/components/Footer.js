@@ -44,8 +44,8 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="footer-right col-md-4 col-sm-6">
-                    <h2> Job<span>Vista</span></h2>
-                    <p className="name"> JobVista &copy; 2023</p>
+                    <h2> Company<span> logo</span></h2>
+                    <p className="name"> Company Name &copy; 2016</p>
                 </div>
             </footer>
         </div>
