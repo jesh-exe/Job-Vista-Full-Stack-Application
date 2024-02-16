@@ -4,6 +4,8 @@ import { getLoggedRecruiterJobs, resetRecruiterDetails, setRecruiterDetails } fr
 import { NavLink, useNavigate } from "react-router-dom";
 import RecruiterService from "../../service/RecruiterService";
 import { toast } from "react-toastify";
+import JobService from "../../service/JobService";
+import { setJobs } from "../../redux/slices/JobsSlice";
 
 export default function JobList() {
 
@@ -11,8 +13,8 @@ export default function JobList() {
   const jobs = useSelector(getLoggedRecruiterJobs);
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    window.scrollTo(0,0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
   })
 
   const handleDelete = (id) => {
@@ -31,6 +33,10 @@ export default function JobList() {
             RecruiterService.loadUserByJwtToken(jwtToken.jwtToken)
               .then((response) => {
                 dispatch(setRecruiterDetails(response.data));
+                JobService.getAllJobs()
+                  .then((response) => {
+                    dispatch(setJobs(response.data))
+                  })
               })
               .catch((error) => {
                 console.log(error)
