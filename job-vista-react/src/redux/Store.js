@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginReducer from './slices/LoginSlice'
 import jobReducer from './slices/RegisterJobSeekerSlice'
+import loggedReducer from './slices/Recruiter/RecruiterSlice'
+import applicant from './slices/Recruiter/ApplicantSlice'
 
 //Redux using Redux Toolkit
 //Create a store to handle all the slices (Different state data)
@@ -9,6 +11,8 @@ export const store = configureStore({
     reducer: {
         // Giving the name to the property of the state and fetching it from the reducers in Login Slice.
         login: loginReducer,
-        jobSeeker: jobReducer
+        jobSeeker: jobReducer,
+        loggedRecruiter: loggedReducer,
+        applicant : applicant
     }
 });

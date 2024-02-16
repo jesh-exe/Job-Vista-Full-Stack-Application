@@ -57,6 +57,7 @@ public class JobApplication {
 		return result;
 	}
 
+	//Checking if the ID of Job Seeker matches with 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -64,10 +65,10 @@ public class JobApplication {
 		if (!(obj instanceof JobApplication))
 			return false;
 		JobApplication other = (JobApplication) obj;
-		if (job == null) {
-			if (other.job != null)
+		if (jobSeeker.getId() == null) {
+			if (other.jobSeeker.getId() != null)
 				return false;
-		} else if (!job.equals(other.job))
+		} else if (!jobSeeker.getId().equals(other.jobSeeker.getId()))
 			return false;
 		return true;
 	}

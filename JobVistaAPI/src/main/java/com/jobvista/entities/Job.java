@@ -48,16 +48,12 @@ public class Job {
     @JoinColumn(name = "job_jc_id", nullable = false)
     private JobCategory category;
 
-    @Size(max = 100)    
-    @Column(name = "job_title", nullable = false, length = 100)
-    private String title;
-
-    @Size(max = 100)
-    @Column(name = "job_exp", length = 100)
+    @Lob
+    @Column(name = "job_exp",length = 8000,columnDefinition = "TEXT")
     private String experience;
 
-    @Size(max = 100)
-    @Column(name = "job_min_edu", nullable = false, length = 100)
+    @Lob
+    @Column(name = "job_min_edu", nullable = false,length = 8000,columnDefinition = "TEXT")
     private String minimumEducation;
 
     @Lob

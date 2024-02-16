@@ -1,34 +1,37 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import Working from './Working'
 import WhatWeDo from './WhatWeDo'
 import Welcome from './Welcome'
 import "../../css/MainPage/MainPage.css"
 
-export default class MainPage extends Component {
+export default function MainPage() {
 
-  render() {
-    return (
-      <div>
-        <div className='container-fluid'>
-          <div className='row '>
-            {/* Trupti */}
-            <Welcome></Welcome>
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
-            {/* Mandeep */}
-            <div className='pt-5 pb-5 bg-white rounded-3'>
-              <WhatWeDo></WhatWeDo>
-            </div>
 
-            <div className='partition'></div>
+  return (
+    <div>
+      <div className='container-fluid'>
+        <div className='row '>
 
-            {/* Vaishnavi */}
-            <Working></Working>
+          <Welcome></Welcome>
 
-            <div className='partition'></div>
 
+          <div className='pt-5 pb-5 bg-white rounded-3'>
+            <WhatWeDo></WhatWeDo>
           </div>
+
+          <div className='partition'></div>
+
+
+          <Working></Working>
+
+          <div className='partition'></div>
+
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }

@@ -31,4 +31,11 @@ public class ApiExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("Failed to Upload Image");
 	}
 
+//	@ExceptionHandler(JwtCustomException.class)
+//	public ResponseEntity<?> handleJWTExceptions(JwtCustomException e){
+//		if(e.getMessage().startsWith("UNAUTHORIZED"))
+//			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiExceptionResponseDTO(e.getMessage()));
+//		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ApiExceptionResponseDTO(e.getMessage()));
+//	}
+//	
 }

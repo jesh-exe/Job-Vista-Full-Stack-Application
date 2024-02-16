@@ -1,6 +1,10 @@
 package com.jobvista.service;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -9,10 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jobvista.entities.Job;
 import com.jobvista.entities.Recruiter;
 import com.jobvista.exception.ApiCustomException;
 import com.jobvista.repositories.RecruiterRepository;
 import com.jobvista.requestDTO.RecruiterRequestDTO;
+import com.jobvista.responseDTO.JobResponseDTO;
+import com.jobvista.responseDTO.RecruiterResponseDTO;
 
 @Service
 @Transactional
@@ -28,39 +35,90 @@ public class RecruiterServiceImpl implements RecruiterService {
 		System.out.println("Recruiter Service Up and Running!");
 	}
 
+	// ADD RECRUITER
 	@Override
 	public String addRecruiter(RecruiterRequestDTO recruiterRequestDTO) {
 		Recruiter recruiter = mapper.map(recruiterRequestDTO, Recruiter.class);
+		// Checking for Unique Constraint Violations
 		if (recruiterRepository.existsRecruiterByEmail(recruiterRequestDTO.getEmail()))
 			throw new ApiCustomException("Email ID Already Exists");
 		if (recruiterRepository.existsRecruiterByCompanyUrl(recruiterRequestDTO.getCompanyUrl()))
 			throw new ApiCustomException("Company URL Already Exists");
+		if (recruiterRepository.existsRecruiterByUsername(recruiterRequestDTO.getUsername()))
+			throw new ApiCustomException("Username Already Exists");
 		recruiter = recruiterRepository.save(recruiter);
 		return recruiter.getId().toString();
 	}
 
+	// UPLOAD COMPANY LOGO
 	@Override
-	public String uploadImage(int id, MultipartFile companyLogo) throws IOException {
+	public String uploadImage(int id, MultipartFile companyLogo){
 		Recruiter recruiter = recruiterRepository.findById(id)
-				.orElseThrow(() -> new ApiCustomException("Failed to Upload Image"));
-		recruiter.setCompanyLogo(companyLogo.getBytes());
+				.orElseThrow(() -> new ApiCustomException("User Not Found"));
+		try {
+			recruiter.setCompanyLogo(companyLogo.getBytes());			
+		} catch (IOException e) {
+			recruiterRepository.delete(recruiter);
+			throw new ApiCustomException("Image Format Not Supported!");
+		}
 		return "Uploaded Image";
 	}
 
+	// LOGIN VALIDATION & RETURNING RECRUITER INFO
 	@Override
-	public Recruiter validateRecruiter(RecruiterRequestDTO recruiterRequestDTO) {
-		Recruiter recruiter = recruiterRepository
-				.findByEmailAndPassword(recruiterRequestDTO.getEmail(), recruiterRequestDTO.getPassword())
+	public RecruiterResponseDTO getRecruiter(String recruiterEmail) {
+		Recruiter recruiter = recruiterRepository.findByEmail(recruiterEmail)
 				.orElseThrow(() -> new ApiCustomException("Wrong Credentials!"));
-		return recruiter;
+		RecruiterResponseDTO recruiterResponseDTO = mapper.map(recruiter, RecruiterResponseDTO.class);
+
+		int jobApplicants = 0;
+		int activeJobs = 0;
+
+		// Fetching the list of Jobs to be mapped with JobResponseDTO to be sent to the
+		// Recruiter
+		List<Job> jobs = recruiter.getJobs();
+		List<JobResponseDTO> jobResponseDTOList = new ArrayList<>();
+		for (Job job : jobs) {
+			// Adding the Size of Job Application List of each job to get the Total
+			// application count
+			jobApplicants += job.getJobApplications().size();
+			// Job Status -> OPEN or CLOSE
+			// To add the cound of Active Jobs(OPEN)
+			if (job.getStatus().equals("OPEN"))
+				activeJobs++;
+			// Mapping the Job Object to the JobResponseDTO
+			JobResponseDTO jobResponseDTO = mapper.map(job, JobResponseDTO.class);
+
+			// Creating postedDate from creationDate
+			LocalDateTime creationDate = job.getCreationTimestamp();
+			String postedDate = creationDate.getDayOfMonth() + " " + creationDate.getMonth().toString().toLowerCase()
+					+ " " + creationDate.getYear();
+			jobResponseDTO.setPostedDate(postedDate);
+
+			jobResponseDTO.setApplicantCount(job.getJobApplications().size());
+			
+			// Setting the category of Job in the JobResponseDTO
+			jobResponseDTO.setJobCategory(job.getCategory().getName());
+			// Adding the Response to the Response List
+			jobResponseDTOList.add(jobResponseDTO);
+		}
+
+		// Setting the jobResponseDTOList fetched from above loop
+		String base64Logo = Base64.getEncoder().encodeToString(recruiter.getCompanyLogo());
+		recruiterResponseDTO.setCompanyLogoBase64(base64Logo);
+		
+		recruiterResponseDTO.setJobs(jobResponseDTOList);
+		recruiterResponseDTO.setTotalApplicants(jobApplicants);
+		recruiterResponseDTO.setActiveJobs(activeJobs);
+		return recruiterResponseDTO;
 	}
 
+	// DELETE RECRUITER
 	@Override
-	public String deleteRecruiter(Integer id) {
-		if (!recruiterRepository.existsById(id))
-			throw new ApiCustomException("Recruiter Does Not Exists");
-		recruiterRepository.deleteById(id);
-		return "Deleted";
+	public void deleteRecruiter(String email) {
+		Recruiter recruiter = recruiterRepository.findByEmail(email)
+				.orElseThrow(() -> new ApiCustomException("Recruiter Does Not Exists"));
+		recruiterRepository.delete(recruiter);
 	}
 
 }

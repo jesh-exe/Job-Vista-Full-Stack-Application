@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setGraduationEducationDetails, setHscEducationDetails, setSscEducationDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
+
 
 export default function Education() {
 
@@ -65,7 +67,7 @@ export default function Education() {
         dispatch(setSscEducationDetails(sscEducation));
         dispatch(setHscEducationDetails(hscEducation));
         dispatch(setGraduationEducationDetails(graduationEducation));
-        alert("Success")
+        toast.success("Success, Experience unlocked")
     }
 
 

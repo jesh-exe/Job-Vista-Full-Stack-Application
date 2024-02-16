@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExperienceRequestDTO {
+public class ExperienceDTO {
 
 	private String role;
 	private String companyName;

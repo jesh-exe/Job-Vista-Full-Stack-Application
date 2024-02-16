@@ -16,6 +16,6 @@ public class JobSeekerRequestDTO {
 	private PersonalDetailsDTO personal;
 	private AddressRequestDTO address;
 	private EducationRequestDTO education;
-	private List<ExperienceRequestDTO> experiences;
+	private List<ExperienceDTO> experiences;
 
 }

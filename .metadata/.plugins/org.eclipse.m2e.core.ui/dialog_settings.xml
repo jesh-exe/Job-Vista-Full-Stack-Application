@@ -6,7 +6,11 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+<<<<<<< HEAD
 			<item value="F:\Job-Vista\JobVistaAPI"/>
+=======
+			<item value="D:\2.CDAC ACTS\JobVista - CDAC Project\Source Code\JobVistaAPI"/>
+>>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

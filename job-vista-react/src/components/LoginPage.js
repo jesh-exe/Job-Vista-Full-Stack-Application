@@ -3,10 +3,16 @@ import sideImage from "../assets/loginSide.svg"
 import React, { useEffect, useState } from 'react';
 import ScrollReveal from 'scrollreveal';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
+import axios, { HttpStatusCode } from 'axios';
 import { error } from 'jquery';
+import { useNavigate } from 'react-router';
+import { setRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
+import RecruiterService from '../service/RecruiterService';
+import { toast } from 'react-toastify';
+
 
 const LoginPage = () => {
+
   useEffect(() => {
     ScrollReveal().reveal(".left", {
       origin: "left",
@@ -26,6 +32,7 @@ const LoginPage = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUser({
@@ -34,37 +41,60 @@ const LoginPage = () => {
     });
   };
 
-
   // To handle Login Event
   const handleLogin = (e) => {
     e.preventDefault();
     // Sent to the Reducer where state is changed
     console.log(user)
+    const formData = new FormData();
+    formData.append("email", user.email);
+    formData.append("password", user.password);
+
+    //Jobseeker
     if (user.roleType === "JobSeeker") {
-      axios.post("http://localhost:8080/jobseeker/validate", user)
+      axios.post("http://localhost:8080/jobseeker/authenticate", user)
         .then((response) => {
-          console.log(response.status, response.data);
+          console.log(response.data);
+        }).catch((error) => {
+          toast.error("Invalid Credentials");
+        })
+    }
+
+    //Recruiter
+    else if (user.roleType === "Recruiter") {
+      //Fetching JWT Token
+      RecruiterService.authenticateRecruiter(formData)
+        .then((response) => {
+          var jwtToken = response.data.jwtToken
+          //Storing JWT as a object
+          var jwtTokenDetails = {
+            holder: "RECRUITER",
+            jwtToken: jwtToken
+          }
+          //Storing JWT in localstorage
+          localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
+          toast.success("Successfully authenticated!");
+          navigate("/dashboard")
         }).catch((error) => {
           console.log(error)
+          if (error.code == "ERR_NETWORK")
+            toast.error("Server Busy");
+          else{
+            toast.error("Invalid credentials")
+          }
         })
     }
-    else if (user.roleType === "Recruiter") {
-      axios.post("http://localhost:8080/recruiter/validate", user)
-        .then((response) => {
-          console.log(response.status, response.data);
-        }).catch((error) => {
-          console.log("Error")
-        })
-    }
+
+    //Admin -> Optional
     else if (user.roleType === "Admin") {
 
     }
-    //dispatch(setLoggedInUser(user));
   };
 
   return (
     <div className="container mt-5 mb-5 p-4">
       <div className="row">
+
         {/* Left Side Image */}
         <div className="col-sm-12 col-md-6 col-lg-6 mb-5 left">
           <img
@@ -73,6 +103,7 @@ const LoginPage = () => {
             className="img-fluid login-side-image"
           ></img>
         </div>
+
         {/* Right Side Form */}
         <div className="col-sm-12 col-md-6 col-lg-6 text-center ps-sm-1 pe-sm-1 ps-md-1 pe-md-1 ps-lg-5 pe-lg-5 emerge">
           <div className="p-sm-5 p-md-2 p-lg-5">
@@ -104,10 +135,10 @@ const LoginPage = () => {
                 />
               </div>
               {/* Keep me Signed in */}
-              <div className="form-group checkbox">
+              {/* <div className="form-group checkbox">
                 <input type="checkbox" id="keepSignedIn" name="keepSignedIn" />
                 <label htmlFor="keepSignedIn">Keep me signed in</label>
-              </div>
+              </div> */}
               {/* Role Type */}
               <div className="mb-4 text-start">
                 <label htmlFor="roleType" className="text-muted">
@@ -132,6 +163,7 @@ const LoginPage = () => {
             </form>
           </div>
         </div>
+
       </div>
     </div>
   );
