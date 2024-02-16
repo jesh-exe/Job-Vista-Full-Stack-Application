@@ -121,4 +121,9 @@ public class RecruiterServiceImpl implements RecruiterService {
 		recruiterRepository.delete(recruiter);
 	}
 
+	@Override
+	public boolean checkEmail(String email) {
+		return recruiterRepository.existsRecruiterByEmail(email);
+	}
+
 }
