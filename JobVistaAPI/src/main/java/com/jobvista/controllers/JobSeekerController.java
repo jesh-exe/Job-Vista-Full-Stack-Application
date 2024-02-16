@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jobvista.entities.JobSeeker;
+import com.jobvista.exception.ApiCustomException;
 import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerCredsRequestDTO;
 import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerRequestDTO;
 import com.jobvista.responseDTO.JwtResponeDTO;
@@ -72,6 +73,8 @@ public class JobSeekerController {
 	// Login to generate JWT Token
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> authenticateJobSeeker(@RequestBody JobSeekerCredsRequestDTO credsRequestDTO) {
+		if(!jobSeekerService.checkEmail(credsRequestDTO.getEmail()))
+			throw new ApiCustomException("Invalid Credentials");
 		Authentication authentication = mgr.authenticate(
 				new UsernamePasswordAuthenticationToken(credsRequestDTO.getEmail(), credsRequestDTO.getPassword()));
 		String jwtToken = utils.generateJwtToken(authentication);
