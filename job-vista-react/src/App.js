@@ -29,6 +29,7 @@ import axios from 'axios';
 import JobService from './service/JobService';
 import { error } from 'jquery';
 import { getJobs, setJobs } from './redux/slices/JobsSlice';
+import AllJobs from './components/AllJobs';
 
 
 
@@ -99,6 +100,7 @@ function App() {
       <Routes>
         <Route path='/' element={<MainPage></MainPage>}></Route>
         <Route path='/jobs'>
+          <Route path='' element={<AllJobs></AllJobs>}></Route>
           <Route path=':id' element={<JobDetails></JobDetails>} ></Route>
         </Route>
         <Route path='/contactus' element={<ContactPage></ContactPage>}></Route>

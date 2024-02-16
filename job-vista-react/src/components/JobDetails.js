@@ -80,32 +80,38 @@ export default function JobDetails() {
 
 
     const handleApply = () => {
-        var jwtToken = JSON.parse(localStorage.getItem('jwt-token'));
-        if (jwtToken) {
-            if (jwtToken.holder === "RECRUITER") {
-                toast.warn("Recruiter Cannot Apply for Job")
-            }
-            else if (jwtToken.holder === "JOBSEEKER") {
-                if (!isApplied) {
-                    if (jobSeeker.email != "" || jobSeeker.email != undefined || jwtToken.holder === "JOBSEEKER") {
-                        JobService.applyForJob(props.id, jwtToken.jwtToken)
-                            .then((response) => {
-                                console.log(response.data);
-                            }).catch((response) => {
-                                console.log(response)
-                            })
+        if (window.confirm("Are you sure you want to Apply?")) {
+            var jwtToken = JSON.parse(localStorage.getItem('jwt-token'));
+            if (jwtToken) {
+                if (jwtToken.holder === "RECRUITER") {
+                    toast.warn("Recruiter Cannot Apply for Job")
+                }
+                else if (jwtToken.holder === "JOBSEEKER") {
+                    if (!isApplied) {
+                        if (jobSeeker.email != "" || jobSeeker.email != undefined || jwtToken.holder === "JOBSEEKER") {
+                            JobService.applyForJob(props.id, jwtToken.jwtToken)
+                                .then((response) => {
+                                    window.history.back();
+                                    window.location.reload();
+                                    toast.success("Job Applied Successfully!");
+                                }).catch((response) => {
+                                    console.log(response)
+                                })
+                        }
+                    }
+                    else {
+                        toast.error("Already Applied")
                     }
                 }
                 else {
-                    toast.error("Already Applied")
+                    toast.warn("Login or Register as JobSeeker First")
                 }
             }
-        }
-        else {
-            dispatch(resetRecruiterDetails());
-            dispatch(resetRecruiterDetails());
-            toast.warn("Session Expired");
-            navigate("/login")
+            else {
+                dispatch(resetRecruiterDetails());
+                dispatch(resetRecruiterDetails());
+                toast.warn("Login or Register as JobSeeker First");
+            }
         }
     }
 
@@ -207,7 +213,7 @@ export default function JobDetails() {
                                         Bond
                                     </span>
                                     <span className="col-6 overflow-hidden text-end">
-                                        {job.bond}
+                                        {job.bond} Year
                                     </span>
                                     <span className="col-6 overflow-hidden text-start fw-bold">
                                         Applicants
