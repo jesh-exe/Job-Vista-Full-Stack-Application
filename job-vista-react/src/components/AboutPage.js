@@ -25,7 +25,7 @@ const AboutPage = () => {
             </div>
         </div>
 
-        <div className="bg-img-blur"></div>
+        {/* <div className="bg-img-blur"></div> */}
 
         <div className='card-holder-main text-white rounded-3 pt-md-5 pb-mt-5 pt-lg-5 pb-lg-5'>
             <div class="container-fluid text-center emerge pt-md-5 pb-mt-5 pt-lg-5 pb-lg-5">
@@ -62,7 +62,7 @@ const AboutPage = () => {
 
       
 
-        <div className='bg-img-solid'></div>
+        <div className='bg-img-blur'></div>
 
 
       <div id="carouselExampleDark" className="carousel carousel-dark slide">
@@ -74,29 +74,29 @@ const AboutPage = () => {
 
         <div className="carousel-inner">
           <div className="carousel-item active" data-bs-interval="10000" >
-            <div className="d-block w-100" style={{ backgroundSize: 'cover', backgroundPosition: 'center', height: '400px' }}>
+            <div className="d-block w-100" style={{ backgroundSize: 'cover', backgroundPosition: 'center', height: '70vh' }}>
               <div className="carousel-caption d-none d-md-block">
-                <h5 className="text-primary">Margaret Lawson</h5>
-                <p className="text-primary">Creative Director</p>
-                <p className="text-primary">“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
+                <h5 className="text-primary display-6">Margaret Lawson</h5>
+                <p className="lh-lg lead">Creative Director</p>
+                <p className="text-muted small">“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
               </div>
             </div>
           </div>
           <div className="carousel-item" data-bs-interval="2000">
-            <div className="d-block w-100" style={{ backgroundSize: 'cover', backgroundPosition: 'center', height: '400px' }}>
+            <div className="d-block w-100" style={{ backgroundSize: 'cover', backgroundPosition: 'center', height: '70vh' }}>
               <div className="carousel-caption d-none d-md-block">
-                <h5 className="text-primary">Margaret Lawson</h5>
-                <p className="text-primary">Creative Director</p>
-                <p className="text-primary">“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
+                <h5 className="text-primary display-6">Margaret Lawson</h5>
+                <p className="lh-lg lead">Creative Director</p>
+                <p className="text-muted small">“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
               </div>
             </div>
           </div>
           <div className="carousel-item" data-bs-interval="2000" >
-            <div className="d-block w-100" style={{ backgroundSize: 'cover', backgroundPosition: 'center', height: '400px' }}>
+            <div className="d-block w-100" style={{ backgroundSize: 'cover', backgroundPosition: 'center', height: '70vh' }}>
               <div className="carousel-caption d-none d-md-block">
-                <h5 className="text-primary">Margaret Lawson</h5>
-                <p className="text-primary">Creative Director</p>
-                <p className="text-primary">“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
+                <h5 className="text-primary display-6">Margaret Lawson</h5>
+                <p className="lh-lg lead">Creative Director</p>
+                <p className="text-muted small">“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
               </div>
             </div>
           </div>
