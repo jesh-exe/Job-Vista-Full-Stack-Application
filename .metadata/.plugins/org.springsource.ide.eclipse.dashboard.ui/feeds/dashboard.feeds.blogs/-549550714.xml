@@ -1,8 +1,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 15 Feb 2024 16:57:07 GMT</lastBuildDate><item><title><![CDATA[Spring Framework 6.1.4, 6.0.17 and 5.3.32 Available Now]]></title><link>https://spring.io/blog/2024/02/15/spring-framework-6-1-4-6-0-17-and-5-3-32-available-now</link><guid isPermaLink="true">https://spring.io/blog/2024/02/15/spring-framework-6-1-4-6-0-17-and-5-3-32-available-now</guid><dc:creator><![CDATA[SÃ©bastien Deleuze]]></dc:creator><pubDate>Thu, 15 Feb 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Framework &lt;code&gt;6.1.4&lt;/code&gt;, &lt;code&gt;6.0.17&lt;/code&gt; and &lt;code&gt;5.3.32&lt;/code&gt; are available now.&lt;/p&gt;
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 17 Feb 2024 00:48:29 GMT</lastBuildDate><item><title><![CDATA[First milestone of Spring Data 2024.0.0 available]]></title><link>https://spring.io/blog/2024/02/16/first-milestone-of-spring-data-2024-0-0-available</link><guid isPermaLink="true">https://spring.io/blog/2024/02/16/first-milestone-of-spring-data-2024-0-0-available</guid><dc:creator><![CDATA[Mark Paluch]]></dc:creator><pubDate>Fri, 16 Feb 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I’m pleased to announce the first milestone &lt;code&gt;2024.0.0-M1&lt;/code&gt; of the Spring Data 2024.0 release train.&lt;/p&gt;
@@ -62,6 +65,9 @@
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: Oracle Java Developer Advocate Nicolai Parlog on the latest and greatest in Java ]]></title><link>https://spring.io/blog/2024/02/15/a-bootiful-podcast-oracle-java-developer-advocate-nicolai-parlog-on-the</link><guid isPermaLink="true">https://spring.io/blog/2024/02/15/a-bootiful-podcast-oracle-java-developer-advocate-nicolai-parlog-on-the</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 15 Feb 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, I talk to Oracle Java Developer Advocate Nicolai Parlog on the latest and greatest in Java.&lt;/p&gt;
 &lt;iframe title=&quot;Oracle Java Developer Advocate Nicolai Parlog on the latest and greatest in Java &quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=96fat-1581b3f-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring Framework 6.1.4, 6.0.17 and 5.3.32 Available Now]]></title><link>https://spring.io/blog/2024/02/15/spring-framework-6-1-4-6-0-17-and-5-3-32-available-now</link><guid isPermaLink="true">https://spring.io/blog/2024/02/15/spring-framework-6-1-4-6-0-17-and-5-3-32-available-now</guid><dc:creator><![CDATA[Sébastien Deleuze]]></dc:creator><pubDate>Thu, 15 Feb 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Framework &lt;code&gt;6.1.4&lt;/code&gt;, &lt;code&gt;6.0.17&lt;/code&gt; and &lt;code&gt;5.3.32&lt;/code&gt; are available now.&lt;/p&gt;
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -71,9 +77,12 @@
 &lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-framework/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-framework&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-framework/reference/&quot;&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - February 14th, 2024]]></title><link>https://spring.io/blog/2024/02/13/this-week-in-spring-february-14th-2024</link><guid isPermaLink="true">https://spring.io/blog/2024/02/13/this-week-in-spring-february-14th-2024</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 13 Feb 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! Friends, tomorrow is Valentine&apos;s day, and I &lt;em&gt;love&lt;/em&gt; Spring. So, it&apos;s a very exciting thing indeed to be able to share this week&apos;s jam-packed roundup. Let&apos;s dive right into it!&lt;/p&gt;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 15 Feb 2024 08:39:40 GMT</lastBuildDate><item><title><![CDATA[This Week in Spring - February 14th, 2024]]></title><link>https://spring.io/blog/2024/02/13/this-week-in-spring-february-14th-2024</link><guid isPermaLink="true">https://spring.io/blog/2024/02/13/this-week-in-spring-february-14th-2024</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 13 Feb 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! Friends, tomorrow is Valentine&apos;s day, and I &lt;em&gt;love&lt;/em&gt; Spring. So, it&apos;s a very exciting thing indeed to be able to share this week&apos;s jam-packed roundup. Let&apos;s dive right into it!&lt;/p&gt;
 >>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
@@ -123,6 +132,7 @@
 &lt;li&gt;Did you see this video &lt;a href=&quot;https://www.youtube.com/watch?v=srBYXhhLVV4&amp;#x26;list=PLgGXSWYM2FpPw8rV0tZoMiJYSCiLhPnOc&amp;#x26;index=4&quot;&gt;I did introducing Spring Data JDBC?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;...or &lt;a href=&quot;https://www.youtube.com/watch?v=rt_cUtb8LnQ&amp;#x26;list=PLgGXSWYM2FpPw8rV0tZoMiJYSCiLhPnOc&amp;#x26;index=3&quot;&gt;this one introducing &lt;code&gt;DataSource&lt;/code&gt;s?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;...or this &lt;a href=&quot;https://www.youtube.com/watch?v=5YdjBWSGtbE&amp;#x26;list=PLgGXSWYM2FpPw8rV0tZoMiJYSCiLhPnOc&amp;#x26;index=5&quot;&gt;one looking at Spring&apos;s &lt;code&gt;ApplicationEvent&lt;/code&gt; mechanism&lt;/a&gt;?&lt;/li&gt;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: Gunnar Morling on the 1BRC challenge and taking Java to BLAZING fast performance territory]]></title><link>https://spring.io/blog/2024/02/01/a-bootiful-podcast-gunnar-morling-on-the-1brc-challenge-and-taking-java-to</link><guid isPermaLink="true">https://spring.io/blog/2024/02/01/a-bootiful-podcast-gunnar-morling-on-the-1brc-challenge-and-taking-java-to</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 01 Feb 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, I talk to fellow Java Champion Gunnar Morling, and we look at how his 1BRC challenge helped the community eek out some of Java&apos;s best performance numbers&lt;/p&gt;
@@ -317,6 +327,9 @@ compile &apos;org.springframework.cloud:spring-cloud-starter-netflix-eureka-clie
 }
 &lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
 >>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
+=======
+&lt;/ul&gt;</content:encoded></item></channel></rss>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 &lt;/ul&gt;</content:encoded></item></channel></rss>
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

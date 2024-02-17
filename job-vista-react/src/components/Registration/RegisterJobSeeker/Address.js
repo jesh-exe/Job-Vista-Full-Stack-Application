@@ -3,7 +3,11 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { setAddressDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+=======
+import { setAddressDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import { setAddressDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

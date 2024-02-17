@@ -23,6 +23,10 @@ public class RecruiterResponseDTO {
 	private String companyLogoBase64;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	private int totalHired;
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 	private int totalHired;
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

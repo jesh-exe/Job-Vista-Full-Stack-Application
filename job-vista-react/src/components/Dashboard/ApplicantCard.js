@@ -92,7 +92,10 @@ export default function ApplicantCard() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     const handleReject = () => {
@@ -117,6 +120,9 @@ export default function ApplicantCard() {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -128,7 +134,11 @@ export default function ApplicantCard() {
                     {/* Left Side */}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <div className='col-sm-12 col-md-4 mt-4'>
+=======
+                    <div className='col-sm-12 col-md-4 mt-4 '>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                     <div className='col-sm-12 col-md-4 mt-4 '>
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -161,6 +171,7 @@ export default function ApplicantCard() {
                     <div className='col-sm-12 col-md-8 mb-2 mt-4'>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <div className='shadow bg-white rounded h-100 pt-5 ps-4 pe-2 left-side'>
                             <div>
                                 <div className='lead fw-bolder text-muted text-center mb-3'>
@@ -170,6 +181,8 @@ export default function ApplicantCard() {
 =======
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                         <div className='shadow bg-white rounded h-100 pt-5 ps-4 pe-2 left-side '>
                             <div>
                                 <div className='lead fw-bolder text-muted text-start mb-3'>
@@ -177,6 +190,9 @@ export default function ApplicantCard() {
                                 </div>
                                 <div className='pt-4 bg-white rounded pb-4 right-side'>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -264,7 +280,11 @@ export default function ApplicantCard() {
                                             <div className='col-12 text-center mt-5'>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <button className='btn btn-outline-success mx-2 my-2' onClick={handleHire}>
+=======
+                                                <button className='btn btn-outline-success mx-2 my-2' onClick={handleHire} disabled = {applicant.status === "REJECT" ? true : false}>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                                                 <button className='btn btn-outline-success mx-2 my-2' onClick={handleHire} disabled = {applicant.status === "REJECT" ? true : false}>
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -280,8 +300,13 @@ export default function ApplicantCard() {
                                                     applicant.status === "HIRED" ? "" :
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                         <button className='btn btn-outline-danger mx-2 my-2'>
                                                             Reject
+=======
+                                                        <button className='btn btn-outline-danger mx-2 my-2' onClick={handleReject} disabled={applicant.status === "REJECT" ? true : false}>
+                                                            {applicant.status === "REJECT" ? "Rejected" : "Reject" }
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                                                         <button className='btn btn-outline-danger mx-2 my-2' onClick={handleReject} disabled={applicant.status === "REJECT" ? true : false}>
                                                             {applicant.status === "REJECT" ? "Rejected" : "Reject" }

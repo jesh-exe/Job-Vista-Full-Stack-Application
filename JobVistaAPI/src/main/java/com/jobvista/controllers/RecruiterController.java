@@ -24,6 +24,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.jobvista.exception.ApiCustomException;
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import com.jobvista.exception.ApiCustomException;
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -74,6 +78,11 @@ public class RecruiterController {
 	{
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		if(!recruiterService.checkEmail(email))
+			throw new ApiCustomException("Invalid Credentials");
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 		if(!recruiterService.checkEmail(email))
 			throw new ApiCustomException("Invalid Credentials");

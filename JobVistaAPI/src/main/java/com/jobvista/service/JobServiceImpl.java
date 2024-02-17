@@ -25,6 +25,10 @@ import com.jobvista.requestDTO.jobSeekerDTO.ExperienceDTO;
 import com.jobvista.responseDTO.ApplicantResponseDTO;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.jobvista.responseDTO.JobListResponseDTO;
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import com.jobvista.responseDTO.JobListResponseDTO;
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -49,6 +53,7 @@ public class JobServiceImpl implements JobService {
 	@Override
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public List<JobResponseDTO> getAllJobs() {
 		List<Job> jobs = jobRepository.findAll();
 		List<JobResponseDTO> jobResponseDTOs = new ArrayList<>();
@@ -56,6 +61,8 @@ public class JobServiceImpl implements JobService {
 			JobResponseDTO jobResponseDTO = mapper.map(job, JobResponseDTO.class);
 			jobResponseDTOs.add(helperFillJobResponseDTO(job, jobResponseDTO));
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 	public List<JobListResponseDTO> getAllJobs() {
@@ -78,6 +85,9 @@ public class JobServiceImpl implements JobService {
 			jobResponseDTOs.add(jobListResponseDTO);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -141,7 +151,11 @@ public class JobServiceImpl implements JobService {
 			applicantDto.setStatus(application.getStatus());
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

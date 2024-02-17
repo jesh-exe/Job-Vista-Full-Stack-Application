@@ -11,6 +11,10 @@ import RecruiterService from '../service/RecruiterService';
 import { toast } from 'react-toastify';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import JobSeekerService from '../service/JobSeekerService';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import JobSeekerService from '../service/JobSeekerService';
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -62,6 +66,7 @@ const LoginPage = () => {
     if (user.roleType === "JobSeeker") {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       axios.post("http://localhost:8080/jobseeker/authenticate", user)
         .then((response) => {
           console.log(response.data);
@@ -92,6 +97,10 @@ const LoginPage = () => {
       JobSeekerService.authenticateJobSeeker(user)
         .then((response) => {
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
+      JobSeekerService.authenticateJobSeeker(user)
+        .then((response) => {
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
           var jwtToken = response.data.jwtToken
           //Storing JWT as a object
           var jwtTokenDetails = {
@@ -102,6 +111,9 @@ const LoginPage = () => {
           toast.success("Successfully authenticated!");
           navigate("/")
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -111,7 +123,11 @@ const LoginPage = () => {
             toast.error("Server Busy");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           else{
+=======
+          else {
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
           else {
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -125,7 +141,10 @@ const LoginPage = () => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     //Recruiter
@@ -154,6 +173,9 @@ const LoginPage = () => {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

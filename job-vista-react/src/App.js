@@ -24,7 +24,10 @@ import { toast } from "react-toastify";
 import ApplicantCard from './components/Dashboard/ApplicantCard';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 import { getLoggedJobSeeker, setLoggedJobSeekerDetails } from './redux/slices/JobSeeker/JobSeekerSlice';
@@ -36,6 +39,9 @@ import { error } from 'jquery';
 import { getJobs, setJobs } from './redux/slices/JobsSlice';
 import AllJobs from './components/AllJobs';
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -50,10 +56,13 @@ function App() {
   const recruiterDetails = useSelector(getLoggedRecruiter);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   useEffect(() => {
 
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
   const jobseekerDetails = useSelector(getLoggedJobSeeker)
@@ -73,6 +82,9 @@ function App() {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -83,6 +95,7 @@ function App() {
       if (jwtToken.holder === "RECRUITER") {
         //Send the jwt as header to the Backend
         if (recruiterDetails.email === "" || recruiterDetails.email === undefined) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           RecruiterService.loadUserByJwtToken(jwtToken.jwtToken).then((response) => {
@@ -98,6 +111,8 @@ function App() {
 =======
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
           RecruiterService.loadUserByJwtToken(jwtToken.jwtToken)
             .then((response) => {
               //Set recruiter Details
@@ -109,6 +124,9 @@ function App() {
               toast.error("Session expired");
             })
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -118,7 +136,10 @@ function App() {
       //For Jobseeker
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
       else if (jwtToken.holder === "JOBSEEKER") {
@@ -135,6 +156,9 @@ function App() {
         }
       }
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -166,6 +190,12 @@ function App() {
           <Route path='applicant' element={<ApplicantCard></ApplicantCard>}></Route>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        </Route>
+        <Route path='/jobseeker'>
+          <Route path='applied' element={<AppliedJobs></AppliedJobs>}></Route>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
         </Route>
         <Route path='/jobseeker'>

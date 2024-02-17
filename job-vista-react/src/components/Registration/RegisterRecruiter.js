@@ -100,7 +100,11 @@ const RegisterRecruiter = () => {
     formdata.append("companyLogo", logo.companyLogo);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     console.log(recruiter)
+=======
+    console.log(recruiter);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
     console.log(recruiter);
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

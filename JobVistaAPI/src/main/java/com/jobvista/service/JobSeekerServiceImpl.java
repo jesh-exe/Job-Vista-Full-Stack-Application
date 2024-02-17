@@ -96,6 +96,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return persistedJobSeeker.getId().toString();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 	
 	
@@ -118,6 +119,81 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return jobSeekerRepository.findByEmail(email).orElseThrow(() -> new ApiCustomException("User Not Found!"));
 =======
 =======
+=======
+	}
+
+	@Override
+	public String saveFiles(Integer id, MultipartFile image, MultipartFile resume) {
+		JobSeeker jobSeeker = jobSeekerRepository.findById(id)
+				.orElseThrow(() -> new ApiCustomException("User Not Found"));
+		try {
+			jobSeeker.setProfilePhoto(image.getBytes());
+			jobSeeker.setResume(resume.getBytes());
+		} catch (IOException e) {
+			jobSeekerRepository.delete(jobSeeker);
+			throw new ApiCustomException("File Format Not Supported");
+		}
+		return "Uploaded Data";
+	}
+
+	@Override
+	public JobSeekerResponseDTO getJobseeker(String email) {
+		JobSeeker jobSeeker = jobSeekerRepository.findByEmail(email)
+				.orElseThrow(() -> new ApiCustomException("User Not Found!"));
+		List<JobApplication> jobApplications = jobSeeker.getJobApplications();
+		List<AppliedJobResponseDTO> appliedJobResponseDTOs = new ArrayList<AppliedJobResponseDTO>();
+		for (JobApplication jobApplication : jobApplications) {
+
+			AppliedJobResponseDTO appliedJob = new AppliedJobResponseDTO();
+
+			appliedJob.setApplicationId(jobApplication.getId());
+			appliedJob.setJobId(jobApplication.getJob().getId());
+			appliedJob.setJobCategory(jobApplication.getJob().getCategory().getName());
+			appliedJob.setRecruiterName(jobApplication.getJob().getRecruiter().getFirstName());
+			appliedJob.setRole(jobApplication.getJob().getRole());
+			appliedJob.setExpectedSalary(jobApplication.getJob().getExpectedSalary());
+			appliedJob.setApplicationStatus(jobApplication.getStatus());
+			appliedJob.setCompanyName(jobApplication.getJob().getRecruiter().getCompanyName());
+
+			if (jobApplication.getJob().getRecruiter().getCompanyLogo() != null) {
+				String base64CompanyLogo = Base64.getEncoder()
+						.encodeToString(jobApplication.getJob().getRecruiter().getCompanyLogo());
+				appliedJob.setCompanyLogo(base64CompanyLogo);
+			}
+
+			appliedJobResponseDTOs.add(appliedJob);
+		}
+		JobSeekerResponseDTO jobSeekerResponseDTO = mapper.map(jobSeeker, JobSeekerResponseDTO.class);
+		jobSeekerResponseDTO.setAppliedJobs(appliedJobResponseDTOs);
+		jobSeekerResponseDTO.setName(jobSeeker.getFirstName() + " " + jobSeeker.getLastName());
+
+		String base64ProfilePhoto = Base64.getEncoder().encodeToString(jobSeeker.getProfilePhoto());
+		jobSeekerResponseDTO.setProfilePhoto(base64ProfilePhoto);
+
+		return jobSeekerResponseDTO;
+
+	}
+
+	@Override
+	public byte[] getResume(String jobSeekerEmail) {
+		JobSeeker jobSeeker = jobSeekerRepository.findByEmail(jobSeekerEmail)
+				.orElseThrow(() -> new ApiCustomException("User Not Found!"));
+		if (jobSeeker.getResume() == null)
+			throw new ApiCustomException("Resume Not Uploaded!");
+		return jobSeeker.getResume();
+	}
+
+	@Override
+	public void deleteJobSeeker(String email) {
+		JobSeeker jobSeeker = jobSeekerRepository.findByEmail(email)
+				.orElseThrow(() -> new ApiCustomException("Recruiter Does Not Exists!"));
+		jobSeekerRepository.delete(jobSeeker);
+	}
+
+	@Override
+	public boolean checkEmail(String email) {
+		return jobSeekerRepository.existsJobSeekerByEmail(email);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 	}
 
 	@Override

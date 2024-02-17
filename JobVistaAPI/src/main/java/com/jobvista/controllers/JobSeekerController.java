@@ -75,6 +75,11 @@ public class JobSeekerController {
 	public ResponseEntity<?> authenticateJobSeeker(@RequestBody JobSeekerCredsRequestDTO credsRequestDTO) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		if(!jobSeekerService.checkEmail(credsRequestDTO.getEmail()))
+			throw new ApiCustomException("Invalid Credentials");
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 		if(!jobSeekerService.checkEmail(credsRequestDTO.getEmail()))
 			throw new ApiCustomException("Invalid Credentials");
@@ -96,8 +101,12 @@ public class JobSeekerController {
 		Authentication jwtParsedUser = SecurityContextHolder.getContext().getAuthentication();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		JobSeeker jobSeeker = jobSeekerService.getJobseeker(jwtParsedUser.getName());
 		return ResponseEntity.status(HttpStatus.OK).body("Valid User");
+=======
+		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.getJobseeker(jwtParsedUser.getName()));
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.getJobseeker(jwtParsedUser.getName()));
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

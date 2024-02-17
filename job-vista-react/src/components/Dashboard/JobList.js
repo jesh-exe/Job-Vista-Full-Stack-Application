@@ -6,6 +6,11 @@ import RecruiterService from "../../service/RecruiterService";
 import { toast } from "react-toastify";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import JobService from "../../service/JobService";
+import { setJobs } from "../../redux/slices/JobsSlice";
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import JobService from "../../service/JobService";
 import { setJobs } from "../../redux/slices/JobsSlice";
@@ -23,8 +28,13 @@ export default function JobList() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   useEffect(()=>{
     window.scrollTo(0,0);
+=======
+  useEffect(() => {
+    window.scrollTo(0, 0);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -53,7 +63,10 @@ export default function JobList() {
                 dispatch(setRecruiterDetails(response.data));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                 JobService.getAllJobs()
@@ -61,6 +74,9 @@ export default function JobList() {
                     dispatch(setJobs(response.data))
                   })
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -115,7 +131,11 @@ export default function JobList() {
                         <th scope="col" >
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                           Applies
+=======
+                          Applicants
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                           Applicants
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

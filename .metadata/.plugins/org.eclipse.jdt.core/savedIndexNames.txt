@@ -106,7 +106,11 @@ INDEX VERSION 1.131+F:\Job-Vista\.metadata\.plugins\org.eclipse.jdt.core
 INDEX VERSION 1.131+D:\2.CDAC ACTS\JobVista - CDAC Project\Source Code\.metadata\.plugins\org.eclipse.jdt.core
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 3174784245.index
+=======
+3119602561.index
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 3119602561.index
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -127,10 +131,13 @@ INDEX VERSION 1.131+D:\2.CDAC ACTS\JobVista - CDAC Project\Source Code\.metadata
 599867790.index
 3266667581.index
 <<<<<<< HEAD
+<<<<<<< HEAD
 940357575.index
 1865797976.index
 =======
 3266667581.index
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 1865797976.index
@@ -138,6 +145,9 @@ INDEX VERSION 1.131+D:\2.CDAC ACTS\JobVista - CDAC Project\Source Code\.metadata
 1710274635.index
 3775832540.index
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -181,8 +191,11 @@ INDEX VERSION 1.131+D:\2.CDAC ACTS\JobVista - CDAC Project\Source Code\.metadata
 2822975499.index
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 4216694498.index
 2704865876.index
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
@@ -247,9 +260,12 @@ INDEX VERSION 1.131+D:\2.CDAC ACTS\JobVista - CDAC Project\Source Code\.metadata
 1780331285.index
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 3119602561.index
 2889921289.index
 >>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======

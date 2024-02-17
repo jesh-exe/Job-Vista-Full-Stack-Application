@@ -2,6 +2,7 @@
 <qualifiedTypeNameHistroy>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
     <fullyQualifiedTypeName name="io.swagger.v3.oas.annotations.parameters.RequestBody"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
@@ -13,6 +14,8 @@
     <fullyQualifiedTypeName name="com.jobvista.entities.Recruiter"/>
     <fullyQualifiedTypeName name="java.lang.Runtime"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
@@ -42,6 +45,7 @@
     <fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
@@ -50,10 +54,13 @@
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     <fullyQualifiedTypeName name="com.jobvista.entities.Job"/>
     <fullyQualifiedTypeName name="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/>
     <fullyQualifiedTypeName name="org.springframework.security.authentication.BadCredentialsException"/>
     <fullyQualifiedTypeName name="com.jobvista.service.JobService"/>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <fullyQualifiedTypeName name="com.jobvista.entities.JobSeeker"/>
@@ -66,10 +73,14 @@
 =======
     <fullyQualifiedTypeName name="com.jobvista.entities.Experience"/>
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
+    <fullyQualifiedTypeName name="com.jobvista.entities.Experience"/>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     <fullyQualifiedTypeName name="com.jobvista.requestDTO.jobSeekerDTO.ExperienceDTO"/>
     <fullyQualifiedTypeName name="com.jobvista.responseDTO.ApplicantResponseDTO"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpHeaders"/>
     <fullyQualifiedTypeName name="org.springframework.http.MediaType"/>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <fullyQualifiedTypeName name="com.jobvista.entities.JobApplication"/>
@@ -104,6 +115,29 @@
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
     <fullyQualifiedTypeName name="com.jobvista.exception.ApiCustomException"/>
+=======
+    <fullyQualifiedTypeName name="org.springframework.security.core.GrantedAuthority"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PatchMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="com.jobvista.entities.JobSeeker"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.jobvista.responseDTO.AppliedJobResponseDTO"/>
+    <fullyQualifiedTypeName name="com.jobvista.repositories.JobRepository"/>
+    <fullyQualifiedTypeName name="com.jobvista.responseDTO.JobSeekerResponseDTO"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="java.util.Base64"/>
+    <fullyQualifiedTypeName name="com.jobvista.responseDTO.JobListResponseDTO"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
+    <fullyQualifiedTypeName name="com.jobvista.exception.ApiCustomException"/>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
     <fullyQualifiedTypeName name="org.springframework.security.core.GrantedAuthority"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
@@ -135,6 +169,9 @@
     <fullyQualifiedTypeName name="org.springframework.security.web.header.writers.CrossOriginResourcePolicyHeaderWriter.CrossOriginResourcePolicy"/>
     <fullyQualifiedTypeName name="com.jobvista.entities.JobApplication"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

@@ -7,6 +7,12 @@ import { useDispatch } from 'react-redux';
 import { toast } from "react-toastify";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import JobSeekerService from '../../service/JobSeekerService';
+import JobService from '../../service/JobService';
+import { setJobs } from '../../redux/slices/JobsSlice';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import JobSeekerService from '../../service/JobSeekerService';
 import JobService from '../../service/JobService';
@@ -73,7 +79,10 @@ function NewJob() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
           JobService.getAllJobs()
@@ -81,6 +90,9 @@ function NewJob() {
               dispatch(setJobs(response.data));
           })
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

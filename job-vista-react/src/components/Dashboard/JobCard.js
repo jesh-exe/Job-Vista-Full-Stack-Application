@@ -1,9 +1,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
@@ -18,7 +21,10 @@ import { setApplicant } from '../../redux/slices/Recruiter/ApplicantSlice';
 import ScrollReveal from 'scrollreveal';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
@@ -52,9 +58,12 @@ export default function JobCard() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [applicants, setApplicants] = useState([]);
 
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
@@ -62,6 +71,9 @@ export default function JobCard() {
 
   //Get job from job array of Redux Store
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -77,6 +89,10 @@ export default function JobCard() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  //Fetching Applicants of job from backend
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
   //Fetching Applicants of job from backend
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -90,6 +106,7 @@ export default function JobCard() {
         var jobId = getJobFromArray();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         console.log(jobId);
         RecruiterService.getApplicantsOfJob(jobId, jwtToken.jwtToken)
           .then((response) => {
@@ -101,6 +118,8 @@ export default function JobCard() {
 =======
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
         // console.log(jobId);
         RecruiterService.getApplicantsOfJob(jobId, jwtToken.jwtToken)
           .then((response) => {
@@ -110,6 +129,9 @@ export default function JobCard() {
           }).catch((error) => {
             // console.log(error)
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -149,7 +171,11 @@ export default function JobCard() {
     var applicant = JSON.parse(e.target.value);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     console.log(applicant);
+=======
+    // console.log(applicant);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
     // console.log(applicant);
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -161,6 +187,7 @@ export default function JobCard() {
   }
 
   return (
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -218,6 +245,8 @@ export default function JobCard() {
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     <div className="container mb-5">
       <div className="row">
         <div className="col">
@@ -229,8 +258,13 @@ export default function JobCard() {
               <div className='row mt-3'>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div className='col-sm-12 col-md-8 mt-3'>
                   {/* Heading Container */}
+=======
+                  {/* Heading Container */}
+                <div className='col-sm-12 col-md-8 mt-3'>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                   {/* Heading Container */}
                 <div className='col-sm-12 col-md-8 mt-3'>
@@ -271,8 +305,14 @@ export default function JobCard() {
                 </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div className='col-sm-12 col-md-4 mt-3 emerge'>
                   {/* Job Overview & Stats */}
+=======
+
+                  {/* Job Overview & Stats */}
+                <div className='col-sm-12 col-md-4 mt-3 emerge'>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 
                   {/* Job Overview & Stats */}
@@ -338,10 +378,15 @@ export default function JobCard() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 {/* Left Side of the Page */}
                 <div className='col-sm-12 col-md-12 col-12 '>
 
                   {/* Job Description Container */}
+=======
+                  {/* Job Description Container */}
+                <div className='col-sm-12 col-md-12 col-12 '>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                   {/* Job Description Container */}
                 <div className='col-sm-12 col-md-12 col-12 '>
@@ -391,11 +436,20 @@ export default function JobCard() {
                 </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               </div>
 >>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
             </div>
           </div>
 
+=======
+
+              </div>
+            </div>
+          </div>
+
+          {/* Table of Applicant */}
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 
               </div>
@@ -435,6 +489,12 @@ export default function JobCard() {
                       </th>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                      <th scope='col'>
+                        Status
+                      </th>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                       <th scope='col'>
                         Status
@@ -453,8 +513,11 @@ export default function JobCard() {
                   <tbody className='emerge'>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     {applicants.map((applicant, index) => (
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                   {
@@ -465,6 +528,9 @@ export default function JobCard() {
                      :
                     applicants.map((applicant, index) => (
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -475,6 +541,10 @@ export default function JobCard() {
                         <td >{applicant.email}</td>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                        <td>{applicant.status}</td>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                         <td>{applicant.status}</td>
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -489,7 +559,12 @@ export default function JobCard() {
                       </tr>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     ))}
+=======
+                    ))
+                  }
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                     ))
                   }

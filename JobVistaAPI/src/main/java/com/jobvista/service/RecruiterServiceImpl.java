@@ -16,6 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.jobvista.entities.Job;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.jobvista.entities.JobApplication;
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import com.jobvista.entities.JobApplication;
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -83,6 +87,10 @@ public class RecruiterServiceImpl implements RecruiterService {
 		int activeJobs = 0;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		int totalHired = 0;
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 		int totalHired = 0;
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -100,7 +108,10 @@ public class RecruiterServiceImpl implements RecruiterService {
 			jobApplicants += job.getJobApplications().size();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 			
@@ -110,6 +121,9 @@ public class RecruiterServiceImpl implements RecruiterService {
 					++totalHired;
 			
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -140,6 +154,10 @@ public class RecruiterServiceImpl implements RecruiterService {
 		
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		recruiterResponseDTO.setTotalHired(totalHired);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 		recruiterResponseDTO.setTotalHired(totalHired);
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -152,6 +170,8 @@ public class RecruiterServiceImpl implements RecruiterService {
 		return recruiterResponseDTO;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 =======
 	}
@@ -182,6 +202,20 @@ public class RecruiterServiceImpl implements RecruiterService {
 		Recruiter recruiter = recruiterRepository.findByEmail(email)
 				.orElseThrow(() -> new ApiCustomException("Recruiter Does Not Exists"));
 		recruiterRepository.delete(recruiter);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+	}
+
+	// DELETE RECRUITER
+	@Override
+<<<<<<< HEAD
+	public void deleteRecruiter(String email) {
+		Recruiter recruiter = recruiterRepository.findByEmail(email)
+				.orElseThrow(() -> new ApiCustomException("Recruiter Does Not Exists"));
+		recruiterRepository.delete(recruiter);
+=======
+	public boolean checkEmail(String email) {
+		return recruiterRepository.existsRecruiterByEmail(email);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 	public boolean checkEmail(String email) {
 		return recruiterRepository.existsRecruiterByEmail(email);

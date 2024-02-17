@@ -3,7 +3,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { setPersonalDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+=======
+import { setPersonalDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import { setPersonalDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -57,7 +61,11 @@ export default function Personal() {
             toast.error("Select Valid Gender");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         else if(personal.contactNumber.length != 10)
+=======
+        else if (personal.contactNumber.length != 10)
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
         else if (personal.contactNumber.length != 10)
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -70,7 +78,11 @@ export default function Personal() {
             dispatch(setPersonalDetails(personal));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             toast.success("Success!");
+=======
+            toast.success("Success, Address Unlocked");
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
             toast.success("Success, Address Unlocked");
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
