@@ -167,7 +167,7 @@ const LoginPage = () => {
                 >
                   <option name="jobseeker">JobSeeker</option>
                   <option name="recruiter">Recruiter</option>
-                  <option name="admin">Admin</option>
+                  {/* <option name="admin">Admin</option> */}
                 </select>
               </div>
               {/* Login Button */}

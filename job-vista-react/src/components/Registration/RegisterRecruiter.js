@@ -11,7 +11,7 @@ const RegisterRecruiter = () => {
 
   useEffect(()=>{
     window.scrollTo(0,0)
-  },)
+  },[])
 
   //To Hold State of the whole form information
   const [recruiter, setRecruiter] = useState({
