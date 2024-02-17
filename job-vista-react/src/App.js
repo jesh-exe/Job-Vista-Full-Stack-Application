@@ -17,7 +17,7 @@ import JobCard from './components/Dashboard/JobCard';
 import { getLoggedRecruiter, resetRecruiterDetails, setRecruiterDetails } from './redux/slices/Recruiter/RecruiterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import RecruiterService from './service/RecruiterService';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
@@ -30,6 +30,7 @@ import JobService from './service/JobService';
 import { error } from 'jquery';
 import { getJobs, setJobs } from './redux/slices/JobsSlice';
 import AllJobs from './components/AllJobs';
+import AboutUs from './components/AboutUs';
 
 
 
@@ -41,18 +42,23 @@ function App() {
   const recruiterDetails = useSelector(getLoggedRecruiter);
   const jobseekerDetails = useSelector(getLoggedJobSeeker)
   const jobs = useSelector(getJobs);
+  const [jobCall, setJobCall] = useState(true);
 
   useEffect(() => {
-
-    //Load Redux Store with all Jobs
-    if (jobs[0].id === "") {
-      JobService.getAllJobs()
-        .then((response) => {
-          console.log(response.data)
-          dispatch(setJobs(response.data))
-        }).catch((error) => {
-          console.log(error)
-        })
+    //Load Redux Store with all Jobs  
+    console.log(jobs)
+    if (jobCall == true) {
+      if (jobs[0].id == 0) {
+        JobService.getAllJobs()
+          .then((response) => {
+            if (response.data.length == 0)
+              setJobCall(false);
+            else
+              dispatch(setJobs(response.data))
+          }).catch((error) => {
+            console.log(error)
+          })
+      }
     }
 
     //Checking if JWT Token exists in local storage
@@ -99,6 +105,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<MainPage></MainPage>}></Route>
+        <Route path='/about' element={<AboutUs></AboutUs>}></Route>
         <Route path='/jobs'>
           <Route path='' element={<AllJobs></AllJobs>}></Route>
           <Route path=':id' element={<JobDetails></JobDetails>} ></Route>
