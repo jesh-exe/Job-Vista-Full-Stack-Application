@@ -40,9 +40,8 @@ export default function AllJobs() {
     return (
         <div>
             {
-
                 loader ?
-
+                    jobs[0].id != "" ? 
                     <div className='container pt-5 pb-5' style={{ minHeight: "90vh" }}>
                         <div className='row'>
                             <div className='display-6 text-center mb-4 text-primary mt-2 top'>All Jobs</div>
@@ -117,7 +116,8 @@ export default function AllJobs() {
                             </div>
                         </div>
                     </div>
-
+                    :
+                    <div className='text-center text-muted fs-2 mt-5 pt-5' style={{minHeight:"90vh"}}>No Jobs Found</div>
                     :
 
                     <div className='d-flex justify-content-center align-items-center' style={{ minHeight: "90vh" }}>

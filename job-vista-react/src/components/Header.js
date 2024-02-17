@@ -70,7 +70,7 @@ const Header = () => {
               <NavLink to="/jobs" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item'  >Find a Job</NavLink>
 
               {/* About us Button */}
-              <NavLink href="#pricing" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >About</NavLink>
+              <NavLink to="/about" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >About</NavLink>
 
               {/* Contact us Button */}
               <NavLink to="/contactus" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item'>Contact</NavLink>

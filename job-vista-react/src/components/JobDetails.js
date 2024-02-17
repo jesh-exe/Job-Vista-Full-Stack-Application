@@ -122,7 +122,7 @@ export default function JobDetails() {
         <div>
             <div className='img-holder d-flex justify-content-center' >
                 <div className='role-main display-4 text-white d-flex role'>
-                    Full Stack Developer
+                    {job.role}
                 </div>
             </div>
             <div className='container bg-light p-5 mb-5'>
