@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import AboutPage from './components/AboutPage';
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -103,6 +104,7 @@ function App() {
           <Route path='' element={<AllJobs></AllJobs>}></Route>
           <Route path=':id' element={<JobDetails></JobDetails>} ></Route>
         </Route>
+        <Route path='/aboutus' element={<AboutPage></AboutPage>}></Route>
         <Route path='/contactus' element={<ContactPage></ContactPage>}></Route>
         <Route path='/login' element={<LoginPage></LoginPage>}></Route>
         <Route path='/register'>
