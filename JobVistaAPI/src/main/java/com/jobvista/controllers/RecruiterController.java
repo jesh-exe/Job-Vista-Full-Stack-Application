@@ -23,6 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.jobvista.exception.ApiCustomException;
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import com.jobvista.exception.ApiCustomException;
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -69,6 +73,11 @@ public class RecruiterController {
 			, @RequestParam("password") String password)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		if(!recruiterService.checkEmail(email))
+			throw new ApiCustomException("Invalid Credentials");
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 		if(!recruiterService.checkEmail(email))
 			throw new ApiCustomException("Invalid Credentials");

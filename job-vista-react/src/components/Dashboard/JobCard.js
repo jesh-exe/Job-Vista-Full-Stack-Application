@@ -1,8 +1,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 import React, { useEffect, useState } from 'react'
@@ -14,7 +17,10 @@ import { toast } from 'react-toastify';
 import { setApplicant } from '../../redux/slices/Recruiter/ApplicantSlice';
 import ScrollReveal from 'scrollreveal';
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
@@ -45,13 +51,19 @@ export default function JobCard() {
   });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [applicants, setApplicants] = useState([]);
 
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
   const [applicants, setApplicants] = useState([]);
 
   //Get job from job array of Redux Store
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
   const getJobFromArray = () => {
     var jobs = recruiterDetails.jobs;
@@ -64,6 +76,10 @@ export default function JobCard() {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  //Fetching Applicants of job from backend
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
   //Fetching Applicants of job from backend
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -72,6 +88,7 @@ export default function JobCard() {
     if (jwtToken) {
       if (jwtToken.holder === "RECRUITER") {
         var jobId = getJobFromArray();
+<<<<<<< HEAD
 <<<<<<< HEAD
         console.log(jobId);
         RecruiterService.getApplicantsOfJob(jobId, jwtToken.jwtToken)
@@ -82,6 +99,8 @@ export default function JobCard() {
           }).catch((error) => {
             console.log(error)
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
         // console.log(jobId);
         RecruiterService.getApplicantsOfJob(jobId, jwtToken.jwtToken)
           .then((response) => {
@@ -90,6 +109,9 @@ export default function JobCard() {
             // dispatch(setRecruiterDetails(response.data));
           }).catch((error) => {
             // console.log(error)
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
           })
       }
@@ -126,7 +148,11 @@ export default function JobCard() {
   const handleApplicant = (e) => {
     var applicant = JSON.parse(e.target.value);
 <<<<<<< HEAD
+<<<<<<< HEAD
     console.log(applicant);
+=======
+    // console.log(applicant);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
     // console.log(applicant);
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -135,6 +161,7 @@ export default function JobCard() {
   }
 
   return (
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <div className='container mt-5'>
@@ -189,6 +216,8 @@ export default function JobCard() {
 =======
 =======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     <div className="container mb-5">
       <div className="row">
         <div className="col">
@@ -199,8 +228,13 @@ export default function JobCard() {
               </div>
               <div className='row mt-3'>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div className='col-sm-12 col-md-8 mt-3'>
                   {/* Heading Container */}
+=======
+                  {/* Heading Container */}
+                <div className='col-sm-12 col-md-8 mt-3'>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                   {/* Heading Container */}
                 <div className='col-sm-12 col-md-8 mt-3'>
@@ -236,8 +270,14 @@ export default function JobCard() {
                   </div>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div className='col-sm-12 col-md-4 mt-3 emerge'>
                   {/* Job Overview & Stats */}
+=======
+
+                  {/* Job Overview & Stats */}
+                <div className='col-sm-12 col-md-4 mt-3 emerge'>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 
                   {/* Job Overview & Stats */}
@@ -297,10 +337,15 @@ export default function JobCard() {
                 </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 {/* Left Side of the Page */}
                 <div className='col-sm-12 col-md-12 col-12 '>
 
                   {/* Job Description Container */}
+=======
+                  {/* Job Description Container */}
+                <div className='col-sm-12 col-md-12 col-12 '>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                   {/* Job Description Container */}
                 <div className='col-sm-12 col-md-12 col-12 '>
@@ -345,11 +390,20 @@ export default function JobCard() {
                   </div>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
               </div>
 >>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
             </div>
           </div>
 
+=======
+
+              </div>
+            </div>
+          </div>
+
+          {/* Table of Applicant */}
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 
               </div>
@@ -380,6 +434,12 @@ export default function JobCard() {
                         Email
                       </th>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                      <th scope='col'>
+                        Status
+                      </th>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                       <th scope='col'>
                         Status
@@ -392,8 +452,11 @@ export default function JobCard() {
                   </thead>
                   <tbody className='emerge'>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     {applicants.map((applicant, index) => (
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                   {
                     applicants.length == 0 ? 
                      <tr>
@@ -401,6 +464,9 @@ export default function JobCard() {
                      </tr>
                      :
                     applicants.map((applicant, index) => (
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                       <tr key={index} className="text-muted ">
                         <td >{index + 1}</td>
@@ -408,6 +474,10 @@ export default function JobCard() {
                         <td >{applicant.name}</td>
                         <td >{applicant.email}</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                        <td>{applicant.status}</td>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                         <td>{applicant.status}</td>
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -418,7 +488,12 @@ export default function JobCard() {
                         </td>
                       </tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     ))}
+=======
+                    ))
+                  }
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                     ))
                   }

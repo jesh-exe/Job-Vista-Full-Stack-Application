@@ -60,6 +60,10 @@ export default function JobDetails() {
 
     useEffect(() => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        fetchJob();
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
         fetchJob();
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

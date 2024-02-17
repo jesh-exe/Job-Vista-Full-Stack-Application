@@ -31,7 +31,12 @@ const initState = {
 		"totalApplicants": 0,
 		"activeJobs": 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"companyLogoBase64" : ""
+=======
+		"companyLogoBase64" : "",
+		"totalHired" : 0,
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 		"companyLogoBase64" : "",
 		"totalHired" : 0,

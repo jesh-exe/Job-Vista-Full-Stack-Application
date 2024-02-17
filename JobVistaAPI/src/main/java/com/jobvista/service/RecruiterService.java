@@ -14,6 +14,10 @@ public interface RecruiterService {
 	RecruiterResponseDTO getRecruiter(String recruiterEmail);
 	void deleteRecruiter(String email);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	boolean checkEmail(String email);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 	boolean checkEmail(String email);
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { setExperiencesDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+=======
+import { setExperiencesDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import { setExperiencesDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

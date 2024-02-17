@@ -10,6 +10,10 @@ import { setRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
 import RecruiterService from '../service/RecruiterService';
 import { toast } from 'react-toastify';
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import JobSeekerService from '../service/JobSeekerService';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import JobSeekerService from '../service/JobSeekerService';
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -57,6 +61,7 @@ const LoginPage = () => {
     //Jobseeker
     if (user.roleType === "JobSeeker") {
 <<<<<<< HEAD
+<<<<<<< HEAD
       axios.post("http://localhost:8080/jobseeker/authenticate", user)
         .then((response) => {
           console.log(response.data);
@@ -83,6 +88,10 @@ const LoginPage = () => {
 =======
       JobSeekerService.authenticateJobSeeker(user)
         .then((response) => {
+=======
+      JobSeekerService.authenticateJobSeeker(user)
+        .then((response) => {
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
           var jwtToken = response.data.jwtToken
           //Storing JWT as a object
           var jwtTokenDetails = {
@@ -92,13 +101,20 @@ const LoginPage = () => {
           localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
           toast.success("Successfully authenticated!");
           navigate("/")
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
         }).catch((error) => {
           console.log(error)
           if (error.code == "ERR_NETWORK")
             toast.error("Server Busy");
 <<<<<<< HEAD
+<<<<<<< HEAD
           else{
+=======
+          else {
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
           else {
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -108,7 +124,10 @@ const LoginPage = () => {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     //Recruiter
     else if (user.roleType === "Recruiter") {
       //Fetching JWT Token
@@ -134,6 +153,9 @@ const LoginPage = () => {
         })
     }
 
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     //Admin -> Optional
     else if (user.roleType === "Admin") {

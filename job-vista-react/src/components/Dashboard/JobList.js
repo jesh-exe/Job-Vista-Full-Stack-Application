@@ -5,6 +5,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import RecruiterService from "../../service/RecruiterService";
 import { toast } from "react-toastify";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import JobService from "../../service/JobService";
+import { setJobs } from "../../redux/slices/JobsSlice";
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import JobService from "../../service/JobService";
 import { setJobs } from "../../redux/slices/JobsSlice";
@@ -17,8 +22,13 @@ export default function JobList() {
   const navigate = useNavigate();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   useEffect(()=>{
     window.scrollTo(0,0);
+=======
+  useEffect(() => {
+    window.scrollTo(0, 0);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,11 +52,17 @@ export default function JobList() {
               .then((response) => {
                 dispatch(setRecruiterDetails(response.data));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                 JobService.getAllJobs()
                   .then((response) => {
                     dispatch(setJobs(response.data))
                   })
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
               })
               .catch((error) => {
@@ -98,7 +114,11 @@ export default function JobList() {
                         </th>
                         <th scope="col" >
 <<<<<<< HEAD
+<<<<<<< HEAD
                           Applies
+=======
+                          Applicants
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
                           Applicants
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

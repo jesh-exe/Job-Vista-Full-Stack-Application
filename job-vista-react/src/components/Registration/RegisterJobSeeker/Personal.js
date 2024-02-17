@@ -2,7 +2,11 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { setPersonalDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+=======
+import { setPersonalDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import { setPersonalDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -52,7 +56,11 @@ export default function Personal() {
         else if (personal.gender === "none" || personal.gender === "")
             toast.error("Select Valid Gender");
 <<<<<<< HEAD
+<<<<<<< HEAD
         else if(personal.contactNumber.length != 10)
+=======
+        else if (personal.contactNumber.length != 10)
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
         else if (personal.contactNumber.length != 10)
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -61,7 +69,11 @@ export default function Personal() {
             console.log(personal)
             dispatch(setPersonalDetails(personal));
 <<<<<<< HEAD
+<<<<<<< HEAD
             toast.success("Success!");
+=======
+            toast.success("Success, Address Unlocked");
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
             toast.success("Success, Address Unlocked");
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

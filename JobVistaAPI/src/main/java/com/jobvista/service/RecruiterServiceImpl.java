@@ -15,6 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jobvista.entities.Job;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.jobvista.entities.JobApplication;
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import com.jobvista.entities.JobApplication;
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -78,6 +82,10 @@ public class RecruiterServiceImpl implements RecruiterService {
 		int jobApplicants = 0;
 		int activeJobs = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		int totalHired = 0;
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 		int totalHired = 0;
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -91,13 +99,19 @@ public class RecruiterServiceImpl implements RecruiterService {
 			// application count
 			jobApplicants += job.getJobApplications().size();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 			
 			//Hired Applicants
 			for(JobApplication jobApplication : job.getJobApplications())
 				if(jobApplication.getStatus().equals("HIRED"))
 					++totalHired;
 			
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 			// Job Status -> OPEN or CLOSE
 			// To add the cound of Active Jobs(OPEN)
@@ -125,6 +139,10 @@ public class RecruiterServiceImpl implements RecruiterService {
 		recruiterResponseDTO.setCompanyLogoBase64(base64Logo);
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		recruiterResponseDTO.setTotalHired(totalHired);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 		recruiterResponseDTO.setTotalHired(totalHired);
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -133,6 +151,8 @@ public class RecruiterServiceImpl implements RecruiterService {
 		recruiterResponseDTO.setActiveJobs(activeJobs);
 		return recruiterResponseDTO;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 	}
 
@@ -152,6 +172,20 @@ public class RecruiterServiceImpl implements RecruiterService {
 		Recruiter recruiter = recruiterRepository.findByEmail(email)
 				.orElseThrow(() -> new ApiCustomException("Recruiter Does Not Exists"));
 		recruiterRepository.delete(recruiter);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+	}
+
+	// DELETE RECRUITER
+	@Override
+<<<<<<< HEAD
+	public void deleteRecruiter(String email) {
+		Recruiter recruiter = recruiterRepository.findByEmail(email)
+				.orElseThrow(() -> new ApiCustomException("Recruiter Does Not Exists"));
+		recruiterRepository.delete(recruiter);
+=======
+	public boolean checkEmail(String email) {
+		return recruiterRepository.existsRecruiterByEmail(email);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 	public boolean checkEmail(String email) {
 		return recruiterRepository.existsRecruiterByEmail(email);

@@ -5,6 +5,11 @@ import { useSelector } from 'react-redux'
 import { getLoggedRecruiter, getLoggedRecruiterJobs } from '../../redux/slices/Recruiter/RecruiterSlice'
 import { useNavigate } from 'react-router'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import { getLoggedJobSeeker } from '../../redux/slices/JobSeeker/JobSeekerSlice'
+import { toast } from 'react-toastify'
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import { getLoggedJobSeeker } from '../../redux/slices/JobSeeker/JobSeekerSlice'
 import { toast } from 'react-toastify'
@@ -15,10 +20,13 @@ function Dashboard() {
   const navigate = useNavigate();
   const recruiter = useSelector(getLoggedRecruiter);
 <<<<<<< HEAD
+<<<<<<< HEAD
   if (recruiter.email === "" ) {
     navigate("/login");
   }
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
   const jobSeeker = useSelector(getLoggedJobSeeker);
   if(jobSeeker.email !== "")
   {
@@ -28,6 +36,9 @@ function Dashboard() {
   // else if (recruiter.email === "" ) {
   //   navigate("/login");
   // }
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
   return (

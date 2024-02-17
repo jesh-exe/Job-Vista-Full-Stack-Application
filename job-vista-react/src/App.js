@@ -23,7 +23,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
 import ApplicantCard from './components/Dashboard/ApplicantCard';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 import { getLoggedJobSeeker, setLoggedJobSeekerDetails } from './redux/slices/JobSeeker/JobSeekerSlice';
 import JobSeekerService from './service/JobSeekerService';
 import AppliedJobs from './components/JobSeeker/AppliedJobs';
@@ -32,6 +35,9 @@ import JobService from './service/JobService';
 import { error } from 'jquery';
 import { getJobs, setJobs } from './redux/slices/JobsSlice';
 import AllJobs from './components/AllJobs';
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
 
@@ -43,10 +49,13 @@ function App() {
   const navigate = useNavigate();
   const recruiterDetails = useSelector(getLoggedRecruiter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   useEffect(() => {
 
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
   const jobseekerDetails = useSelector(getLoggedJobSeeker)
   const jobs = useSelector(getJobs);
 
@@ -63,6 +72,9 @@ function App() {
         })
     }
 
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     //Checking if JWT Token exists in local storage
     var jwtToken = JSON.parse(localStorage.getItem("jwt-token"));
@@ -71,6 +83,7 @@ function App() {
       if (jwtToken.holder === "RECRUITER") {
         //Send the jwt as header to the Backend
         if (recruiterDetails.email === "" || recruiterDetails.email === undefined) {
+<<<<<<< HEAD
 <<<<<<< HEAD
           RecruiterService.loadUserByJwtToken(jwtToken.jwtToken).then((response) => {
             //Set recruiter Details
@@ -83,6 +96,8 @@ function App() {
             toast.error("Session expired");
           })
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
           RecruiterService.loadUserByJwtToken(jwtToken.jwtToken)
             .then((response) => {
               //Set recruiter Details
@@ -93,13 +108,19 @@ function App() {
               dispatch(resetRecruiterDetails());
               toast.error("Session expired");
             })
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
         }
       }
 
       //For Jobseeker
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
       else if (jwtToken.holder === "JOBSEEKER") {
         if (jobseekerDetails.email === "" || jobseekerDetails.email === undefined) {
           JobSeekerService.loadUserByJwtToken(jwtToken.jwtToken)
@@ -113,6 +134,9 @@ function App() {
             })
         }
       }
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
     }
@@ -141,6 +165,12 @@ function App() {
           <Route path=':id' element={<JobCard></JobCard>}></Route>
           <Route path='applicant' element={<ApplicantCard></ApplicantCard>}></Route>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        </Route>
+        <Route path='/jobseeker'>
+          <Route path='applied' element={<AppliedJobs></AppliedJobs>}></Route>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
         </Route>
         <Route path='/jobseeker'>

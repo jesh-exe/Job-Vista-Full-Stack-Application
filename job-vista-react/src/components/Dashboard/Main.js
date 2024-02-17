@@ -12,7 +12,11 @@ function Main() {
 
   const recruiter = useSelector(getLoggedRecruiter);
 <<<<<<< HEAD
+<<<<<<< HEAD
   console.log(recruiter)
+=======
+  // console.log(recruiter)
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
   // console.log(recruiter)
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -34,7 +38,11 @@ function Main() {
     <div className="container bg-grey p-5 mt-5 mb-5">
       <div className="row mt-3 mb-5 text-center">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className='display-6 heading-holder'><span className='text-primary fw-bold'>Dashboard {recruiter.firstName}</span></div>
+=======
+        <div className='display-6 heading-holder'><span className='text-primary fw-bold'>Dashboard </span></div>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
         <div className='display-6 heading-holder'><span className='text-primary fw-bold'>Dashboard </span></div>
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759

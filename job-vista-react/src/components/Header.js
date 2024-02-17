@@ -11,6 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedRecruiter, resetRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
 import { toast } from 'react-toastify';
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import { getLoggedJobSeeker, resetLoggedJobSeekerDetails } from '../redux/slices/JobSeeker/JobSeekerSlice';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
 import { getLoggedJobSeeker, resetLoggedJobSeekerDetails } from '../redux/slices/JobSeeker/JobSeekerSlice';
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -28,12 +32,18 @@ const Header = () => {
   // Get the logged in user information from Redux store
   const recruiter = useSelector(getLoggedRecruiter);
 <<<<<<< HEAD
+<<<<<<< HEAD
   console.log(recruiter)
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
   // console.log("Recruiter: ", recruiter)
 
   const jobSeeker = useSelector(getLoggedJobSeeker);
   // console.log("JobSeeker: ", jobSeeker);
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
 
@@ -51,7 +61,12 @@ const Header = () => {
     if (window.confirm("Are you sure you want to log out")) {
       localStorage.removeItem("jwt-token");
 <<<<<<< HEAD
+<<<<<<< HEAD
       dispatch(resetRecruiterDetails({}));
+=======
+      dispatch(resetRecruiterDetails());
+      dispatch(resetLoggedJobSeekerDetails());
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
       dispatch(resetRecruiterDetails());
       dispatch(resetLoggedJobSeekerDetails());
@@ -91,7 +106,11 @@ const Header = () => {
             {/* Conditional Rendering for the Buttons */}
             <div className='text-center'>
 <<<<<<< HEAD
+<<<<<<< HEAD
               {recruiter.email == "" ?
+=======
+              {recruiter.email == "" && jobSeeker.email == "" ?
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 =======
               {recruiter.email == "" && jobSeeker.email == "" ?
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
@@ -138,12 +157,15 @@ const Header = () => {
                 <div className='d-flex justify-content-center'>
                   <div className="dropdown" style={{ width: "160px" }}>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <img className=" dropdown-toggle border-dark border rounded-5" src={`data:image/jpeg;base64,${recruiter.companyLogoBase64}`} height={50} width={50} data-bs-toggle="dropdown" aria-expanded="false">
                     </img>
                     <div className="dropdown-menu dropdown-menu-right">
                       <NavLink to="/dashboard" className="navlinks-middle text-center text-decoration-none menu-item">
                         <button className="dropdown-item" type="button">Dashboard</button>
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                     <img className=" dropdown-toggle border-dark border rounded-5 cursor"
                       role='button'
                       src={
@@ -157,6 +179,9 @@ const Header = () => {
                         recruiter.email != "" ? "/dashboard" : "/jobseeker/applied"
                       } className="navlinks-middle text-center text-decoration-none menu-item">
                         <button className="dropdown-item" type="button">{recruiter.email != "" ? "Dashboard" : "Applied Jobs"}</button>
+<<<<<<< HEAD
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
+=======
 >>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                       </NavLink>
                       <NavLink className="navlinks-middle text-center text-decoration-none menu-item">
