@@ -124,7 +124,7 @@ const Header = () => {
                 <div className='d-flex justify-content-center'>
                   <div className="dropdown" style={{ width: "160px" }}>
                     <img className=" dropdown-toggle border-dark border rounded-5 cursor"
-                    role='button'
+                      role='button'
                       src={
                         recruiter.email != "" ? `data:image/jpeg;base64,${recruiter.companyLogoBase64}` :
                           `data:image/jpeg;base64,${jobSeeker.profilePhoto}`

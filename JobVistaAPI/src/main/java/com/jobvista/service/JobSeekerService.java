@@ -16,5 +16,6 @@ public interface JobSeekerService {
 	void deleteJobSeeker(String email);
 	String saveFiles(Integer id,MultipartFile image, MultipartFile resume) throws IOException;
 	byte[] getResume(String jobSeekerEmail);
+	boolean checkEmail(String email);
 
 }

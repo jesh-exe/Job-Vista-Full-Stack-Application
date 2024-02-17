@@ -29,7 +29,7 @@ function Main() {
   return (
     <div className="container bg-grey p-5 mt-5 mb-5">
       <div className="row mt-3 mb-5 text-center">
-        <div className='display-6 heading-holder'><span className='text-primary fw-bold'>Dashboard {recruiter.firstName}</span></div>
+        <div className='display-6 heading-holder'><span className='text-primary fw-bold'>Dashboard </span></div>
       </div>
       <div className="row mt-3 mb-5 card-container lead text-center">
         <div className="col-sm-9 col-md-6 col-lg-6 col-xl-3 mb-3">
@@ -53,7 +53,7 @@ function Main() {
                 <div className='pb-3'>
                   <FaBriefcase className='card-icon' />
                 </div>
-                <div className='fs-2'>{recruiter.jobs.length}</div> 
+                <div className='fs-2'>{recruiter.jobs.length}</div>
               </div>
             </Card.Body>
           </Card>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import RecruiterService from '../../service/RecruiterService';
 import { toast } from "react-toastify";
@@ -8,6 +8,10 @@ import { toast } from "react-toastify";
 const RegisterRecruiter = () => {
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },)
 
   //To Hold State of the whole form information
   const [recruiter, setRecruiter] = useState({

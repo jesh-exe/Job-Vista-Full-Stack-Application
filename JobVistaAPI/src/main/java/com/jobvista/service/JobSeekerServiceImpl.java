@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,16 +41,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Autowired
 	private JobSeekerRepository jobSeekerRepository;
+
 	@Autowired
-	private AddressRepository addressRepository;
-	@Autowired
-	private SscEducationRepository sscEducationRepository;
-	@Autowired
-	private HscEducationRepository hscEducationRepository;
-	@Autowired
-	private GraduationEducationRepository graduationEducationRepository;
-	@Autowired
-	private ExperienceRepository experienceRepository;
+	private PasswordEncoder encoder;
 
 	public JobSeekerServiceImpl() {
 		System.out.println("Job Seeker Service Up and Running!");
@@ -71,6 +65,11 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		for (ExperienceDTO exp : experienceDTO) {
 			experiences.add(mapper.map(exp, Experience.class));
 		}
+
+		if (jobSeekerRepository.existsJobSeekerByEmail(jobSeeker.getEmail()))
+			throw new ApiCustomException("Email is Already Registered!");
+		if (jobSeekerRepository.existsJobSeekerByUsername(jobSeeker.getUsername()))
+			throw new ApiCustomException("Username is Already Registered!");
 
 		// Setting 2-way Data for automatic ID mapping
 		address.setJobSeeker(jobSeeker);
@@ -118,9 +117,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		List<JobApplication> jobApplications = jobSeeker.getJobApplications();
 		List<AppliedJobResponseDTO> appliedJobResponseDTOs = new ArrayList<AppliedJobResponseDTO>();
 		for (JobApplication jobApplication : jobApplications) {
-			
+
 			AppliedJobResponseDTO appliedJob = new AppliedJobResponseDTO();
-			
+
 			appliedJob.setApplicationId(jobApplication.getId());
 			appliedJob.setJobId(jobApplication.getJob().getId());
 			appliedJob.setJobCategory(jobApplication.getJob().getCategory().getName());
@@ -129,19 +128,22 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 			appliedJob.setExpectedSalary(jobApplication.getJob().getExpectedSalary());
 			appliedJob.setApplicationStatus(jobApplication.getStatus());
 			appliedJob.setCompanyName(jobApplication.getJob().getRecruiter().getCompanyName());
-			
-			String base64CompanyLogo = Base64.getEncoder().encodeToString(jobApplication.getJob().getRecruiter().getCompanyLogo());
-			appliedJob.setCompanyLogo(base64CompanyLogo);
-			
+
+			if (jobApplication.getJob().getRecruiter().getCompanyLogo() != null) {
+				String base64CompanyLogo = Base64.getEncoder()
+						.encodeToString(jobApplication.getJob().getRecruiter().getCompanyLogo());
+				appliedJob.setCompanyLogo(base64CompanyLogo);
+			}
+
 			appliedJobResponseDTOs.add(appliedJob);
 		}
 		JobSeekerResponseDTO jobSeekerResponseDTO = mapper.map(jobSeeker, JobSeekerResponseDTO.class);
 		jobSeekerResponseDTO.setAppliedJobs(appliedJobResponseDTOs);
-		jobSeekerResponseDTO.setName(jobSeeker.getFirstName()+" "+jobSeeker.getLastName());
-		
+		jobSeekerResponseDTO.setName(jobSeeker.getFirstName() + " " + jobSeeker.getLastName());
+
 		String base64ProfilePhoto = Base64.getEncoder().encodeToString(jobSeeker.getProfilePhoto());
 		jobSeekerResponseDTO.setProfilePhoto(base64ProfilePhoto);
-		
+
 		return jobSeekerResponseDTO;
 
 	}
@@ -160,6 +162,11 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		JobSeeker jobSeeker = jobSeekerRepository.findByEmail(email)
 				.orElseThrow(() -> new ApiCustomException("Recruiter Does Not Exists!"));
 		jobSeekerRepository.delete(jobSeeker);
+	}
+
+	@Override
+	public boolean checkEmail(String email) {
+		return jobSeekerRepository.existsJobSeekerByEmail(email);
 	}
 
 }

@@ -90,6 +90,27 @@ export default function ApplicantCard() {
         }
     }
 
+    const handleReject = () => {
+
+        var jwtToken = JSON.parse(localStorage.getItem("jwt-token"));
+        if (jwtToken) {
+            if (jwtToken.holder === "RECRUITER") {
+                RecruiterService.updateApplicationStatus(applicant.jobId, "REJECT", jwtToken.jwtToken)
+                    .then((response) => {
+                        toast.success("Client Notified");
+                        setApplicant({
+                            ...applicant,
+                            status: "REJECT"
+                        })
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                        toast.error("Client Not Notified");
+                    })
+            }
+        }
+    }
+
     return (
         <div>
             <div className='container bg-light mb-5 pe-4'>
@@ -217,7 +238,7 @@ export default function ApplicantCard() {
                                                 </button>
                                                 {
                                                     applicant.status === "HIRED" ? "" :
-                                                        <button className='btn btn-outline-danger mx-2 my-2'>
+                                                        <button className='btn btn-outline-danger mx-2 my-2' onClick={handleReject}>
                                                             Reject
                                                         </button>
                                                 }

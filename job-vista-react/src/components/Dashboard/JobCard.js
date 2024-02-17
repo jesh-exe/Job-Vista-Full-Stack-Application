@@ -266,25 +266,36 @@ export default function JobCard() {
                       <th scope="col" >
                         Email
                       </th>
+                      <th scope='col'>
+                        Status
+                      </th>
                       <th scope="col" >
                         Action
                       </th>
                     </tr>
                   </thead>
                   <tbody className='emerge'>
-                    {applicants.map((applicant, index) => (
+                  {
+                    applicants.length == 0 ? 
+                     <tr>
+                      <td colSpan="6">No Applicants Record Found</td>
+                     </tr>
+                     :
+                    applicants.map((applicant, index) => (
                       <tr key={index} className="text-muted ">
                         <td >{index + 1}</td>
                         <td ><img src={`data:image/jpeg;base64,${applicant.profilePhoto}`} width={60} height={60} className='rounded-circle img-fluid'></img></td>
                         <td >{applicant.name}</td>
                         <td >{applicant.email}</td>
+                        <td>{applicant.status}</td>
                         <td >
                           <button className="btn btn-primary btn-sm mx-1 mb-2" id={index} value={JSON.stringify(applicant)} onClick={handleApplicant}>
                             Detail
                           </button>
                         </td>
                       </tr>
-                    ))}
+                    ))
+                  }
                   </tbody>
                 </table>
               </div>
