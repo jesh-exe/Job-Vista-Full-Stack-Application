@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import { useSelector } from "react-redux";
-import { getLoggedRecruiterJobs } from "../../redux/slices/Recruiter/RecruiterSlice";
-=======
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoggedRecruiterJobs, resetRecruiterDetails, setRecruiterDetails } from "../../redux/slices/Recruiter/RecruiterSlice";
@@ -11,7 +6,6 @@ import RecruiterService from "../../service/RecruiterService";
 import { toast } from "react-toastify";
 import JobService from "../../service/JobService";
 import { setJobs } from "../../redux/slices/JobsSlice";
->>>>>>> 7f2d34c3d7921bfa28efe843f4abd111dc3246e2
 
 export default function JobList() {
 
