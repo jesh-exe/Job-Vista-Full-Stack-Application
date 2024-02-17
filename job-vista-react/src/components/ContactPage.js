@@ -5,24 +5,27 @@ import ScrollReveal from 'scrollreveal';
 export default function Contact() {
 
     useEffect(() => {
-        ScrollReveal().reveal(".top-side",{
+
+        window.scrollTo(0, 0);
+
+        ScrollReveal().reveal(".top-side", {
             origin: "top",
             duration: 1500,
-            distance : "200px"
+            distance: "200px"
         })
-        ScrollReveal().reveal(".left-side",{
+        ScrollReveal().reveal(".left-side", {
             origin: "left",
             duration: 1500,
-            distance : "200px",
+            distance: "200px",
             scale: 1.2
         })
-        ScrollReveal().reveal(".right-side",{
+        ScrollReveal().reveal(".right-side", {
             origin: "right",
             duration: 1500,
-            distance : "200px",
+            distance: "200px",
             scale: 1.2
         })
-    },[])
+    }, [])
 
     return (
         <>
@@ -48,17 +51,17 @@ export default function Contact() {
                                                 <div className="row">
                                                     <div className="col-md-6 pt-3">
                                                         <div className="form-group">
-                                                            <input type="text" className="form-control" name="name" id="name" placeholder="Name" required/>
+                                                            <input type="text" className="form-control" name="name" id="name" placeholder="Name" required />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6 pt-3">
                                                         <div className="form-group">
-                                                            <input type="email" className="form-control" name="email" id="email" placeholder="Email" required/>
+                                                            <input type="email" className="form-control" name="email" id="email" placeholder="Email" required />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-12 pt-3">
                                                         <div className="form-group">
-                                                            <input type="text" className="form-control" name="subject" id="subject" placeholder="Subject" required/>
+                                                            <input type="text" className="form-control" name="subject" id="subject" placeholder="Subject" required />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-12 pt-3">

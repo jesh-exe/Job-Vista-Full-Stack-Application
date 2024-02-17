@@ -9,6 +9,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import ScrollReveal from 'scrollreveal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedRecruiter, resetRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
+import { toast } from 'react-toastify';
+import { getLoggedJobSeeker, resetLoggedJobSeekerDetails } from '../redux/slices/JobSeeker/JobSeekerSlice';
 
 
 const Header = () => {
@@ -22,7 +24,11 @@ const Header = () => {
 
   // Get the logged in user information from Redux store
   const recruiter = useSelector(getLoggedRecruiter);
-  console.log(recruiter)
+  // console.log("Recruiter: ", recruiter)
+
+  const jobSeeker = useSelector(getLoggedJobSeeker);
+  // console.log("JobSeeker: ", jobSeeker);
+
 
   useEffect(() => {
     ScrollReveal().reveal(".navbar-container", {
@@ -33,10 +39,13 @@ const Header = () => {
     });
   }, []);
 
+  //Handle Logout Button Event
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to log out")) {
       localStorage.removeItem("jwt-token");
-      dispatch(resetRecruiterDetails({}));
+      dispatch(resetRecruiterDetails());
+      dispatch(resetLoggedJobSeekerDetails());
+      toast.success("Logged out successfully")
       navigate("/")
     }
   }
@@ -57,7 +66,6 @@ const Header = () => {
             <Nav className="me-auto">
               {/* Home Button */}
               <NavLink to="/" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >Home</NavLink>
-
               {/* Find Jobs Button */}
               <NavLink to="/jobs" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item'  >Find a Job</NavLink>
 
@@ -68,8 +76,11 @@ const Header = () => {
               <NavLink to="/contactus" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item'>Contact</NavLink>
 
             </Nav>
+
+            {/* Conditional Rendering for the Buttons */}
             <div className='text-center'>
-              {recruiter.email == "" ?
+              {recruiter.email == "" && jobSeeker.email == "" ?
+                //Defult Buttons
                 <div>
                   {/* Register Button */}
                   <Button variant="success" onClick={handleShow}>
@@ -107,13 +118,23 @@ const Header = () => {
                   </NavLink>
                 </div>
                 :
+
+                //Buttons for Recruiter
                 <div className='d-flex justify-content-center'>
                   <div className="dropdown" style={{ width: "160px" }}>
-                    <img className=" dropdown-toggle border-dark border rounded-5 p-1" src={navbarDefault} height={40} width={40} data-bs-toggle="dropdown" aria-expanded="false">
+                    <img className=" dropdown-toggle border-dark border rounded-5 cursor"
+                      role='button'
+                      src={
+                        recruiter.email != "" ? `data:image/jpeg;base64,${recruiter.companyLogoBase64}` :
+                          `data:image/jpeg;base64,${jobSeeker.profilePhoto}`
+                      }
+                      height={50} width={50} data-bs-toggle="dropdown" aria-expanded="false">
                     </img>
                     <div className="dropdown-menu dropdown-menu-right">
-                      <NavLink to="/dashboard" className="navlinks-middle text-center text-decoration-none menu-item">
-                        <button className="dropdown-item" type="button">Dashboard</button>
+                      <NavLink to={
+                        recruiter.email != "" ? "/dashboard" : "/jobseeker/applied"
+                      } className="navlinks-middle text-center text-decoration-none menu-item">
+                        <button className="dropdown-item" type="button">{recruiter.email != "" ? "Dashboard" : "Applied Jobs"}</button>
                       </NavLink>
                       <NavLink className="navlinks-middle text-center text-decoration-none menu-item">
                         <button className="dropdown-item" type="button">Profile</button>

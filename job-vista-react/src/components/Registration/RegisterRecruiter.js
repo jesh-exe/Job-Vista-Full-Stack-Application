@@ -1,11 +1,17 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import RecruiterService from '../../service/RecruiterService';
+import { toast } from "react-toastify";
+
 
 const RegisterRecruiter = () => {
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },)
 
   //To Hold State of the whole form information
   const [recruiter, setRecruiter] = useState({
@@ -46,7 +52,7 @@ const RegisterRecruiter = () => {
       var fileType = new String(file.type);
       //To Check if File Type is of Image else Show error message
       if (!fileType.startsWith("image")) {
-        alert("Select Image File Only")
+        toast.warn("Select Image File Only")
         setLogo({
           companyLogo: null
         });
@@ -56,7 +62,7 @@ const RegisterRecruiter = () => {
       var fileSize = file.size / 1024;
       //Checking the File Size to be of Atmost of 1 MB
       if (fileSize > 1024) {
-        alert('File size must be below 1MB!')
+        toast.warn('File size must be below 1MB!')
         setLogo({
           companyLogo: null
         });
@@ -74,35 +80,64 @@ const RegisterRecruiter = () => {
     }
   };
 
+  //Handle Register Recruiter Recruiter
   const handleSubmit = (e) => {
     e.preventDefault();
 
     //To Check if the Number contians 0 at the front
     if (recruiter.companyContact.length != 10) {
-      alert("Contact Number must have 10 digits only")
+      toast.warn("Contact Number must have 10 digits only")
       return;
     }
     //To Check whether the file was uploaded properly
     if (!logo.companyLogo) {
-      alert("Select Image below Size 1MB")
+      toast.warn("Select Image below Size 1MB")
       return;
     }
 
     //Creating the Formdata of image to send to the Backend
     const formdata = new FormData();
     formdata.append("companyLogo", logo.companyLogo);
-    console.log(recruiter)
+    console.log(recruiter);
+
     //Posting the Data to backend, returns the ID of created Recruiter and using that ID to send another call to API to save image for that Recruiter
-    if (RecruiterService.registerRecruiter(recruiter, formdata))
-      navigate("/");
+    RecruiterService.registerRecruiter(recruiter, formdata)
+      .then((response) => {
+        //Storing the Recruiter ID created in a var, to send it to backend for persisting the Logo
+        var registeredRecruiterID = response.data;
+
+        //  Sending the data with Image to backend
+        RecruiterService.uploadCompanyLogo(registeredRecruiterID, formdata)
+          .then((response) => {
+            // If Success, then Show the message and Navigate User to the Homepage for Login
+            toast.success("Registered Successfully");
+            navigate("/");
+          }).catch((error) => {
+            //Else Show that Image was not uploaded on the server
+            toast.error("Failed To Upload the Image");
+          })
+      })
+      .catch((error) => {
+        //If Error in First Axios Call, then check the error message whether Backend is listening or not.
+        console.log(error)
+        if (error.message === "Network Error") {
+          toast.error("Server Not Started/Failed")
+        }
+        //Second Case to check if the Status code is 400 (BAD_REQUEST) comming from Backend which shows Constraint Violation in this case.
+        if (error.response.status === 400)
+          //Fetching the Message from the Response Body and Showing to the User via Alert
+          toast.error(error.response.data.message);
+      })
   };
 
 
   return (
     <div className="container bg-white mt-5 p-sm-1 p-md-4 p-lg-5 mb-5">
+
       <div className="row text-center ">
         <h2 className="text-primary p-2 mb-4 display-6"> Register as Recruiter </h2>
       </div>
+
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col">
@@ -201,6 +236,7 @@ const RegisterRecruiter = () => {
             </div>
           </div>
         </div>
+
         <div className="row">
           <div className="col">
             <div className="form-group">
@@ -251,6 +287,7 @@ const RegisterRecruiter = () => {
             </div>
           </div>
         </div>
+
         <div className="row">
           <div className="col">
             <div className="form-group">
@@ -313,6 +350,8 @@ const RegisterRecruiter = () => {
           <button type="submit" className="btn btn-primary">Submit</button>
         </div>
       </form>
+
+
     </div>
   );
 };

@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setExperiencesDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { setExperiencesDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
 
 
 export default function Experience() {
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const [experience, setExperience] = useState({
         role: "",
@@ -15,10 +20,42 @@ export default function Experience() {
         salary: "",
         startDate: "",
         endDate: "",
-        status: "",
+        status: "None",
     })
 
     const [experiences, setExperiences] = useState([]);
+
+    const handleStartDate = (e) => {
+        if (experience.endDate === "") {
+            setExperience(prevState => ({
+                ...prevState,
+                "status": "Currently Working"
+            }))
+        }
+        else {
+            setExperience(prevState => ({
+                ...prevState,
+                "status": "Completed"
+            }))
+        }
+        handleChange(e);
+    }
+
+    const handleEndDate = (e) => {
+        if (e.target.value === "") {
+            setExperience(prevState => ({
+                ...prevState,
+                "status": "Currently Working"
+            }))
+        }
+        else {
+            setExperience(prevState => ({
+                ...prevState,
+                "status": "Completed"
+            }))
+        }
+        handleChange(e);
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -50,6 +87,7 @@ export default function Experience() {
         console.log(experiences)
         dispatch(setExperiencesDetails(experience));
         resetExperience()
+        toast.success("Success, File Section Unlocked");
     }
 
     return (
@@ -148,7 +186,7 @@ export default function Experience() {
                                     className=' form-control'
                                     value={experience.startDate}
                                     required
-                                    onChange={handleChange}
+                                    onChange={handleStartDate}
                                 ></input>
                             </div>
                         </div>
@@ -161,7 +199,7 @@ export default function Experience() {
                                     name='endDate'
                                     className=' form-control'
                                     value={experience.endDate}
-                                    onChange={handleChange}
+                                    onChange={handleEndDate}
                                 ></input>
                             </div>
                         </div>
@@ -172,6 +210,7 @@ export default function Experience() {
                                     type='text'
                                     id='status'
                                     name='status'
+                                    disabled
                                     className=' form-control'
                                     value={experience.status}
                                     readOnly

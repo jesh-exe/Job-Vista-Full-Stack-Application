@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setAddressDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { setAddressDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
+
 
 export default function Address() {
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
 
     const [address, setAddress] = useState({
         lane1: "",
@@ -28,7 +34,7 @@ export default function Address() {
         e.preventDefault();
         console.log(address);
         dispatch(setAddressDetails(address));
-        alert("Success")
+        toast.success("Success, Education unlocked")
     }
 
     return (
@@ -45,7 +51,7 @@ export default function Address() {
                                     id='lane1'
                                     name='lane1'
                                     className='form-control'
-                                    pattern='^(?=.*[a-z])(?=.*[^\s])(?=.*[\S])[^\s]{5,}$'
+                                    pattern='^(?=.*[a-z])(?=.*[^\s])(?=.*[\S]){5,}$'
                                     value={address.lane1}
                                     required
                                     onChange={handleChange}

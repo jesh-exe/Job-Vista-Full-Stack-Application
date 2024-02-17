@@ -1,8 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
-
 import { Route, Routes, useNavigate } from 'react-router-dom';
-
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -20,6 +18,20 @@ import { getLoggedRecruiter, resetRecruiterDetails, setRecruiterDetails } from '
 import { useDispatch, useSelector } from 'react-redux';
 import RecruiterService from './service/RecruiterService';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import ApplicantCard from './components/Dashboard/ApplicantCard';
+import { getLoggedJobSeeker, setLoggedJobSeekerDetails } from './redux/slices/JobSeeker/JobSeekerSlice';
+import JobSeekerService from './service/JobSeekerService';
+import AppliedJobs from './components/JobSeeker/AppliedJobs';
+import axios from 'axios';
+import JobService from './service/JobService';
+import { error } from 'jquery';
+import { getJobs, setJobs } from './redux/slices/JobsSlice';
+import AllJobs from './components/AllJobs';
+
+
 
 
 function App() {
@@ -27,57 +39,91 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const recruiterDetails = useSelector(getLoggedRecruiter);
-
-  //Checking if JWT Token exists in local storage
+  const jobseekerDetails = useSelector(getLoggedJobSeeker)
+  const jobs = useSelector(getJobs);
 
   useEffect(() => {
+
+    //Load Redux Store with all Jobs
+    if (jobs[0].id === "") {
+      JobService.getAllJobs()
+        .then((response) => {
+          console.log(response.data)
+          dispatch(setJobs(response.data))
+        }).catch((error) => {
+          console.log(error)
+        })
+    }
+
+    //Checking if JWT Token exists in local storage
     var jwtToken = JSON.parse(localStorage.getItem("jwt-token"));
     if (jwtToken) {
       //If Recruiter
       if (jwtToken.holder === "RECRUITER") {
         //Send the jwt as header to the Backend
         if (recruiterDetails.email === "" || recruiterDetails.email === undefined) {
-          RecruiterService.loadUserByJwtToken(jwtToken.jwtToken).then((response) => {
-            //Set recruiter Details
-            // console.log(recruiterDetails)
-            dispatch(setRecruiterDetails(response.data));
-          }).catch((error) => {
-            //Might be expired
-            localStorage.removeItem("jwt-token");
-            dispatch(resetRecruiterDetails);
-            alert("Session expired");
-          })
+          RecruiterService.loadUserByJwtToken(jwtToken.jwtToken)
+            .then((response) => {
+              //Set recruiter Details
+              dispatch(setRecruiterDetails(response.data));
+            }).catch((error) => {
+              //Might be expired
+              localStorage.removeItem("jwt-token");
+              dispatch(resetRecruiterDetails());
+              toast.error("Session expired");
+            })
         }
       }
 
       //For Jobseeker
+      else if (jwtToken.holder === "JOBSEEKER") {
+        if (jobseekerDetails.email === "" || jobseekerDetails.email === undefined) {
+          JobSeekerService.loadUserByJwtToken(jwtToken.jwtToken)
+            .then((response) => {
+              dispatch(setLoggedJobSeekerDetails(response.data));
+            })
+            .catch((error) => {
+              localStorage.removeItem("jwt-token");
+              dispatch(resetRecruiterDetails());
+              toast.error("Session expired");
+            })
+        }
+      }
 
     }
 
   })
 
-return (
-  <div className="App bg-light">
-    <Header></Header>
-    <Routes>
-      <Route path='/' element={<MainPage></MainPage>}></Route>
-      <Route path='/jobs' element={<JobDetails></JobDetails>}></Route>
-      <Route path='/contactus' element={<ContactPage></ContactPage>}></Route>
-      <Route path='/login' element={<LoginPage></LoginPage>}></Route>
-      <Route path='/register'>
-        <Route path='recruiter' element={<RegisterRecruiter></RegisterRecruiter>}></Route>
-        <Route path='jobseeker' element={<RegisterJobseeker></RegisterJobseeker>}></Route>
-      </Route>
-      <Route path='/dashboard' element={<Dashboard></Dashboard>}>
-        <Route path='' element={<Main></Main>}></Route>
-        <Route path='new_job' element={<NewJob></NewJob>}></Route>
-        <Route path='jobs' element={<JobList></JobList>}></Route>
-        <Route path='job' element={<JobCard></JobCard>}></Route>
-      </Route>
-    </Routes>
-    <Footer></Footer>
-  </div>
-);
+  return (
+    <div className="App bg-light">
+      <Header></Header>
+      <Routes>
+        <Route path='/' element={<MainPage></MainPage>}></Route>
+        <Route path='/jobs'>
+          <Route path='' element={<AllJobs></AllJobs>}></Route>
+          <Route path=':id' element={<JobDetails></JobDetails>} ></Route>
+        </Route>
+        <Route path='/contactus' element={<ContactPage></ContactPage>}></Route>
+        <Route path='/login' element={<LoginPage></LoginPage>}></Route>
+        <Route path='/register'>
+          <Route path='recruiter' element={<RegisterRecruiter></RegisterRecruiter>}></Route>
+          <Route path='jobseeker' element={<RegisterJobseeker></RegisterJobseeker>}></Route>
+        </Route>
+        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+          <Route path='' element={<Main></Main>}></Route>
+          <Route path='new_job' element={<NewJob></NewJob>}></Route>
+          <Route path='jobs' element={<JobList></JobList>}></Route>
+          <Route path=':id' element={<JobCard></JobCard>}></Route>
+          <Route path='applicant' element={<ApplicantCard></ApplicantCard>}></Route>
+        </Route>
+        <Route path='/jobseeker'>
+          <Route path='applied' element={<AppliedJobs></AppliedJobs>}></Route>
+        </Route>
+      </Routes>
+      <Footer></Footer>
+      <ToastContainer className="mt-5 pt-2" />
+    </div>
+  );
 }
 
 export default App;

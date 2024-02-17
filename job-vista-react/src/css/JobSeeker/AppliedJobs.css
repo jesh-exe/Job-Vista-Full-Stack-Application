@@ -1,0 +1,11 @@
+.job-holder{
+    transition: all 0.3s ease-in-out;
+}
+
+.job-holder:hover{
+    scale: 1.03;
+}
+
+
+
+

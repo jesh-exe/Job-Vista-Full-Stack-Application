@@ -16,6 +16,8 @@ import RecruiterService from "../../../service/RecruiterService";
 // 	"bond": "",
 // 	"vacancies": 0,
 // 	"jobType": "",
+//  "postedDate": "",
+// 	"applicantCount" : "",
 // }
 
 const initState = {
@@ -27,7 +29,9 @@ const initState = {
 		"companyUrl": "",
 		"jobs": [],
 		"totalApplicants": 0,
-		"activeJobs": 0
+		"activeJobs": 0,
+		"companyLogoBase64" : "",
+		"totalHired" : 0,
 	}
 }
 

@@ -1,15 +1,65 @@
+<<<<<<< HEAD
 import React from "react";
 import { useSelector } from "react-redux";
 import { getLoggedRecruiterJobs } from "../../redux/slices/Recruiter/RecruiterSlice";
+=======
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getLoggedRecruiterJobs, resetRecruiterDetails, setRecruiterDetails } from "../../redux/slices/Recruiter/RecruiterSlice";
+import { NavLink, useNavigate } from "react-router-dom";
+import RecruiterService from "../../service/RecruiterService";
+import { toast } from "react-toastify";
+import JobService from "../../service/JobService";
+import { setJobs } from "../../redux/slices/JobsSlice";
+>>>>>>> 7f2d34c3d7921bfa28efe843f4abd111dc3246e2
 
 export default function JobList() {
 
+  const dispatch = useDispatch();
   const jobs = useSelector(getLoggedRecruiterJobs);
+  const navigate = useNavigate();
 
-  const handleDelete = (index) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  })
+
+  const handleDelete = (id) => {
     // const updatedDataArray = [...dummyDataArray];
     // updatedDataArray.splice(index, 1);
     // setDummyDataArray(updatedDataArray);
+    if (window.confirm("Sure to Delete Job?")) {
+      var jwtToken = JSON.parse(localStorage.getItem('jwt-token'));
+      if (jwtToken) {
+        if (jwtToken.holder !== "RECRUITER") {
+          navigate("/login");
+        }
+        RecruiterService.deleteJob(id, jwtToken.jwtToken)
+          .then((response) => {
+            toast.success(response.data);
+            RecruiterService.loadUserByJwtToken(jwtToken.jwtToken)
+              .then((response) => {
+                dispatch(setRecruiterDetails(response.data));
+                JobService.getAllJobs()
+                  .then((response) => {
+                    dispatch(setJobs(response.data))
+                  })
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+          })
+          .catch((error) => {
+            toast.error("Not Deleted")
+            console.log(error)
+          })
+
+      }
+      else {
+        toast.error("Session Expired");
+        dispatch(resetRecruiterDetails());
+        navigate("/login");
+      }
+    }
   };
 
   return (
@@ -20,7 +70,7 @@ export default function JobList() {
             <div className="mx-auto">Jobs List</div>
           </div>
           <div className="container">
-            <div className="row mx-auto">
+            <div className="row">
               <div className="col mt-4">
                 <div className="table-responsive rounded-4">
                   <table className="table text-center table-striped ">
@@ -42,11 +92,14 @@ export default function JobList() {
                           Type
                         </th>
                         <th scope="col" >
+                          Applicants
+                        </th>
+                        <th scope="col" >
                           Action
                         </th>
                       </tr>
                     </thead>
-                    <tbody >
+                    <tbody className="small">
                       {jobs.map((job, index) => (
                         <tr key={index} className="text-muted">
                           <td >{index + 1}</td>
@@ -54,21 +107,17 @@ export default function JobList() {
                           <td >{job.jobCategory}</td>
                           <td >{job.vacancies}</td>
                           <td >{job.jobType}</td>
+                          <td>{job.applicantCount}</td>
                           <td >
-                            <a
-                              href="your_link_here"
-                              className="btn btn-primary btn-sm mx-1 mb-2"
-                              target="_blank"
-                            >
-                              Detail
-                            </a>
+                            <NavLink to={`/dashboard/${index}`}>
+                              <button className="btn btn-primary btn-sm">
+                                Detail
+                              </button>
+                            </NavLink>
 
                             &nbsp;
 
-                            <button
-                              type="button"
-                              className="btn btn-danger btn-sm mb-2 mx-1"
-                              onClick={() => handleDelete(index)}
+                            <button type="button" className="btn btn-danger btn-sm " onClick={() => handleDelete(job.id)}
                             >
                               Delete
                             </button>

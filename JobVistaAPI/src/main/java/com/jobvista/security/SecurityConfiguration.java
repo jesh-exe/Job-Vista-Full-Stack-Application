@@ -43,11 +43,13 @@ public class SecurityConfiguration {
 	    		"/*/authenticate",
 	    		"/recruiter",
 	    		"/jobseeker",
-	    		"/*/image/*").permitAll()
+	    		"/recruiter/image/*",
+	    		"/jobseeker/files/*").permitAll()
 	    .antMatchers(HttpMethod.POST,
 	    		"/jobs/job").hasRole("RECRUITER")
 	    .antMatchers(HttpMethod.GET,
-	    		"/recruiter").hasRole("RECRUITER")
+	    		"/recruiter",
+	    		"jobs/applicants/**").hasRole("RECRUITER")
 	    .antMatchers(HttpMethod.DELETE,
 	    		"/jobs/job/*",
 	    		"/recruiter").hasRole("RECRUITER")
