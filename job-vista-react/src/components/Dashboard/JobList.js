@@ -86,7 +86,7 @@ export default function JobList() {
                           Type
                         </th>
                         <th scope="col" >
-                          Applies
+                          Applicants
                         </th>
                         <th scope="col" >
                           Action

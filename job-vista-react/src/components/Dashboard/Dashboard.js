@@ -17,9 +17,9 @@ function Dashboard() {
     toast.warn("You are not Authorized");
     navigate("/");
   }
-  else if (recruiter.email === "" ) {
-    navigate("/login");
-  }
+  // else if (recruiter.email === "" ) {
+  //   navigate("/login");
+  // }
 
   return (
     <div className="dashboard">

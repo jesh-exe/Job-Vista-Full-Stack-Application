@@ -76,7 +76,8 @@ export default function JobDetails() {
             duration: 1500,
         });
         checkApplied();
-    }, [])
+    },[])
+
 
 
     const handleApply = () => {
@@ -91,7 +92,7 @@ export default function JobDetails() {
                         if (jobSeeker.email != "" || jobSeeker.email != undefined || jwtToken.holder === "JOBSEEKER") {
                             JobService.applyForJob(props.id, jwtToken.jwtToken)
                                 .then((response) => {
-                                    window.history.back();
+                                    navigate("/jobs")
                                     window.location.reload();
                                     toast.success("Job Applied Successfully!");
                                 }).catch((response) => {

@@ -55,8 +55,8 @@ public class JobSeeker {
 	@Column(name = "js_username", nullable = false, length = 45, unique = true)
 	private String username;
 
-	@Size(max = 45)
-	@Column(name = "js_password", nullable = false, length = 45)
+
+	@Column(name = "js_password", nullable = false)
 	private String password;
 
 	@Size(max = 45)
