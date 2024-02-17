@@ -2,7 +2,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit"
 
 const initState = {
     "jobs": [{
-        "id": "",
+        "id": 0,
         "recruiterName": "",
         "companyName": "",
         "companyAddress": "",
