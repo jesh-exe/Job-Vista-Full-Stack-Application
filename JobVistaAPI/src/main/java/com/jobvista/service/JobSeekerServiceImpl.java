@@ -92,19 +92,15 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return "Recieved";
 	}
 
-	public JobSeeker validateJobseeker(JobSeekerCredsRequestDTO jobSeekerCredsRequestDTO) {
-		String email = jobSeekerCredsRequestDTO.getEmail();
-		String password = jobSeekerCredsRequestDTO.getPassword();
-		return jobSeekerRepository.findByEmailAndPassword(email, password)
-				.orElseThrow(() -> new ApiCustomException("Wrong Credentialls!"));
+	public JobSeeker getJobseeker(String email) {
+		return jobSeekerRepository.findByEmail(email)
+				.orElseThrow(() -> new ApiCustomException("User Not Found!"));
 	}
 
 	@Override
-	public String deleteJobSeeker(Integer id) {
-		if (!jobSeekerRepository.existsById(id))
-			throw new ApiCustomException("Recruiter Does Not Exists!");
-		jobSeekerRepository.deleteById(id);
-		return "Deleted";
+	public void deleteJobSeeker(String email) {
+		JobSeeker jobSeeker = jobSeekerRepository.findByEmail(email).orElseThrow(()->new ApiCustomException("Recruiter Does Not Exists!")); 
+		jobSeekerRepository.delete(jobSeeker);
 	}
 
 }

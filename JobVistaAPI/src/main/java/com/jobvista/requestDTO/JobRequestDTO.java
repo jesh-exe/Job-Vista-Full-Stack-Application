@@ -14,7 +14,6 @@ import lombok.ToString;
 public class JobRequestDTO {
 	private String recruiterEmail;
 	private String jobCategory;
-	private String title;
 	private String experience;
 	private String minimumEducation;
 	private String description;
@@ -26,5 +25,4 @@ public class JobRequestDTO {
 	private String bond;
 	private Integer vacancies;
 	private String jobType;
-
 }

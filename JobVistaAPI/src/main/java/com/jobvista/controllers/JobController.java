@@ -1,8 +1,5 @@
 package com.jobvista.controllers;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jobvista.entities.Job;
 import com.jobvista.requestDTO.JobRequestDTO;
 import com.jobvista.service.JobService;
 
 
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/jobs")
 public class JobController {
@@ -33,17 +29,16 @@ public class JobController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Job>> getAllJobs() {
-		List<Job> jobs = jobService.getAllJobs();
-		return ResponseEntity.ok(jobs);
+	public ResponseEntity<?> getAllJobs() {
+		return ResponseEntity.ok(jobService.getAllJobs());
 	}
 	
-//	get job by id
-//	@GetMapping("/{id}")
-//	public ResponseEntity<Job> getJobById(@PathVariable Integer id) {
-//		Optional<Job> job = jobService.getJobById(id);
-//		return job.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-//	}
+	@GetMapping("/job/{id}")
+	public ResponseEntity<?> getJobDetails(@PathVariable Integer id)
+	{
+		System.out.println("In get Job Details");
+		return ResponseEntity.status(HttpStatus.OK).body(jobService.getJobDetails(id));
+	}
 	
 	@PostMapping("/job")
 	public ResponseEntity<?> createJob(@RequestBody JobRequestDTO jobRequestDTO) {

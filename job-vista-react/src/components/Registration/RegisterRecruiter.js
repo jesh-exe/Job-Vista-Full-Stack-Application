@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import RecruiterService from '../../service/RecruiterService';
 
 const RegisterRecruiter = () => {
 
@@ -90,35 +91,10 @@ const RegisterRecruiter = () => {
     //Creating the Formdata of image to send to the Backend
     const formdata = new FormData();
     formdata.append("companyLogo", logo.companyLogo);
-
+    console.log(recruiter)
     //Posting the Data to backend, returns the ID of created Recruiter and using that ID to send another call to API to save image for that Recruiter
-    axios.post("http://localhost:8080/recruiter", recruiter)
-      .then((response) => {
-        //Storing the Recruiter ID created in a var, to send it to backend for persisting the Logo
-        var registeredRecruiterID = response.data;
-
-        //  Sending the data with Image to backend
-        axios.post(`http://localhost:8080/recruiter/image/${registeredRecruiterID}`, formdata)
-          .then((response) => {
-            // If Success, then Show the message and Navigate User to the Homepage for Login
-            alert("Signed Up Successfully!");
-            navigate("/");
-          }).catch((error) => {
-            //Else Show that Image was not uploaded on the server
-            alert("Failed To Upload the Image");
-          })
-      })
-      .catch((error) => {
-        //If Error in First Axios Call, then check the error message whether Backend is listening or not.
-        if (error.message === "Network Error") {
-          alert("Server Not Started/Failed")
-          return;
-        }
-        //Second Case to check if the Status code is 400 (BAD_REQUEST) comming from Backend which shows Constraint Violation in this case.
-        if (error.response.status === 400)
-          //Fetching the Message from the Response Body and Showing to the User via Alert
-          alert(error.response.data.message);
-      })
+    if (RecruiterService.registerRecruiter(recruiter, formdata))
+      navigate("/");
   };
 
 

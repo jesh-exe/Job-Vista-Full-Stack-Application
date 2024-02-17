@@ -7,7 +7,7 @@ import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerRequestDTO;
 public interface JobSeekerService {
 
 	String registerJobSeeker(JobSeekerRequestDTO jobSeekerRequestDTO);
-	JobSeeker validateJobseeker(JobSeekerCredsRequestDTO jobSeekerCredsRequestDTO);
-	String deleteJobSeeker(Integer id);
+	JobSeeker getJobseeker(String email);
+	void deleteJobSeeker(String email);
 
 }

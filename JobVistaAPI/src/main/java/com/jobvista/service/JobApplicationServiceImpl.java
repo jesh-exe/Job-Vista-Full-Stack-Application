@@ -32,13 +32,9 @@ public class JobApplicationServiceImpl implements JobApplicationService {
 		JobSeeker jobSeeker = jobSeekerRepository.findByEmail(jobSeekerEmail)
 				.orElseThrow(() -> new ApiCustomException("Recruiter Not Found!"));
 		Job job = jobRepository.findById(jobId).orElseThrow(() -> new ApiCustomException("Job Does Not Exists"));
-
 		JobApplication jobApplication = new JobApplication();
-
 		jobSeeker.setJobApplication(jobApplication);
 		job.setJobApplication(jobApplication);
-		
-
 		return "Applied";
 	}
 

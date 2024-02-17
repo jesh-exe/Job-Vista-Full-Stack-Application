@@ -1,10 +1,13 @@
-import '../css/LoginPage.css'
-import sideImage from "../assets/loginSide.svg"
-import React, { useEffect, useState } from 'react';
-import ScrollReveal from 'scrollreveal';
-import { useDispatch } from 'react-redux';
-import axios from 'axios';
-import { error } from 'jquery';
+import "../css/LoginPage.css";
+import sideImage from "../assets/loginSide.svg";
+import React, { useEffect, useState } from "react";
+import ScrollReveal from "scrollreveal";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { error } from "jquery";
+import { useNavigate } from "react-router";
+import { setRecruiterDetails } from "../redux/slices/Recruiter/RecruiterSlice";
+import RecruiterService from "../service/RecruiterService";
 
 const LoginPage = () => {
   useEffect(() => {
@@ -26,6 +29,7 @@ const LoginPage = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUser({
@@ -34,30 +38,45 @@ const LoginPage = () => {
     });
   };
 
-
   // To handle Login Event
   const handleLogin = (e) => {
     e.preventDefault();
     // Sent to the Reducer where state is changed
-    console.log(user)
+    console.log(user);
+    const formData = new FormData();
+    formData.append("email", user.email);
+    formData.append("password", user.password);
     if (user.roleType === "JobSeeker") {
-      axios.post("http://localhost:8080/jobseeker/validate", user)
+      axios
+        .post("http://localhost:8080/jobseeker/authenticate", user)
         .then((response) => {
-          console.log(response.status, response.data);
-        }).catch((error) => {
-          console.log(error)
+          console.log(response.data);
         })
-    }
-    else if (user.roleType === "Recruiter") {
-      axios.post("http://localhost:8080/recruiter/validate", user)
+        .catch((error) => {
+          alert("Invalid Credentials");
+        });
+    } else if (user.roleType === "Recruiter") {
+      //Fetching JWT Token
+      RecruiterService.authenticateRecruiter(formData)
         .then((response) => {
-          console.log(response.status, response.data);
-        }).catch((error) => {
-          console.log("Error")
+          var jwtToken = response.data.jwtToken;
+          //Storing JWT as a object
+          var jwtTokenDetails = {
+            holder: "RECRUITER",
+            jwtToken: jwtToken,
+          };
+          //Storing JWT in localstorage
+          localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
+          navigate("/dashboard");
         })
-    }
-    else if (user.roleType === "Admin") {
-
+        .catch((error) => {
+          console.log(error);
+          if (error.code == "ERR_NETWORK") alert("Server Busy");
+          else {
+            alert("Invalid credentials");
+          }
+        });
+    } else if (user.roleType === "Admin") {
     }
     //dispatch(setLoggedInUser(user));
   };
@@ -80,7 +99,9 @@ const LoginPage = () => {
             <form onSubmit={handleLogin}>
               {/* Email */}
               <div className="form-group">
-                <label htmlFor="email">Email<span className='text-danger'> *</span></label>
+                <label htmlFor="email">
+                  Email<span className="text-danger"> *</span>
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -92,7 +113,9 @@ const LoginPage = () => {
               </div>
               {/* Password */}
               <div className="form-group mt-4">
-                <label htmlFor="password">Password<span className='text-danger'> *</span></label>
+                <label htmlFor="password">
+                  Password<span className="text-danger"> *</span>
+                </label>
                 <input
                   type="password"
                   id="password"
@@ -126,7 +149,7 @@ const LoginPage = () => {
                 </select>
               </div>
               {/* Login Button */}
-              <button type="submit" className="btn btn-outline-success" >
+              <button type="submit" className="btn btn-outline-success">
                 Log Me In
               </button>
             </form>
