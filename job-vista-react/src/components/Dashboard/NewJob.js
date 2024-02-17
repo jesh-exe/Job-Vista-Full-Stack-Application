@@ -5,6 +5,12 @@ import RecruiterService from '../../service/RecruiterService';
 import { resetRecruiterDetails, setRecruiterDetails } from '../../redux/slices/Recruiter/RecruiterSlice';
 import { useDispatch } from 'react-redux';
 import { toast } from "react-toastify";
+<<<<<<< HEAD
+=======
+import JobSeekerService from '../../service/JobSeekerService';
+import JobService from '../../service/JobService';
+import { setJobs } from '../../redux/slices/JobsSlice';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
 
 function NewJob() {
@@ -59,6 +65,13 @@ function NewJob() {
       RecruiterService.createNewJob(job, jwtToken.jwtToken)
         .then((response) => {
 
+<<<<<<< HEAD
+=======
+          JobService.getAllJobs()
+          .then((response)=>{
+              dispatch(setJobs(response.data));
+          })
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
           //If Success then reload the User Data in Redux
           RecruiterService.loadUserByJwtToken(jwtToken.jwtToken).then((response) => {
             toast.success("Job Added");

@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
@@ -10,7 +13,10 @@ import RecruiterService from '../../service/RecruiterService';
 import { toast } from 'react-toastify';
 import { setApplicant } from '../../redux/slices/Recruiter/ApplicantSlice';
 import ScrollReveal from 'scrollreveal';
+<<<<<<< HEAD
 >>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
 export default function JobCard() {
 
@@ -38,8 +44,15 @@ export default function JobCard() {
     "postedDate": "",
   });
 
+<<<<<<< HEAD
   const [applicants, setApplicants] = useState([]);
 
+=======
+
+  const [applicants, setApplicants] = useState([]);
+
+  //Get job from job array of Redux Store
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
   const getJobFromArray = () => {
     var jobs = recruiterDetails.jobs;
     if (props.id < jobs.length) {
@@ -50,11 +63,16 @@ export default function JobCard() {
       return jobFromArray.id;
   }
 
+<<<<<<< HEAD
+=======
+  //Fetching Applicants of job from backend
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
   const fetchJobDetails = () => {
     var jwtToken = JSON.parse(localStorage.getItem("jwt-token"));
     if (jwtToken) {
       if (jwtToken.holder === "RECRUITER") {
         var jobId = getJobFromArray();
+<<<<<<< HEAD
         console.log(jobId);
         RecruiterService.getApplicantsOfJob(jobId, jwtToken.jwtToken)
           .then((response) => {
@@ -63,6 +81,16 @@ export default function JobCard() {
             // dispatch(setRecruiterDetails(response.data));
           }).catch((error) => {
             console.log(error)
+=======
+        // console.log(jobId);
+        RecruiterService.getApplicantsOfJob(jobId, jwtToken.jwtToken)
+          .then((response) => {
+            // console.log(response.data)
+            setApplicants([...response.data]);
+            // dispatch(setRecruiterDetails(response.data));
+          }).catch((error) => {
+            // console.log(error)
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
           })
       }
       else {
@@ -97,12 +125,17 @@ export default function JobCard() {
 
   const handleApplicant = (e) => {
     var applicant = JSON.parse(e.target.value);
+<<<<<<< HEAD
     console.log(applicant);
+=======
+    // console.log(applicant);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     dispatch(setApplicant(applicant));
     navigate("/dashboard/applicant");
   }
 
   return (
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div className='container mt-5'>
         <div className='row'>
@@ -154,6 +187,8 @@ export default function JobCard() {
             <div className='col'>
                     JAYESH
 =======
+=======
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     <div className="container mb-5">
       <div className="row">
         <div className="col">
@@ -163,8 +198,13 @@ export default function JobCard() {
                 Job Details
               </div>
               <div className='row mt-3'>
+<<<<<<< HEAD
                 <div className='col-sm-12 col-md-8 mt-3'>
                   {/* Heading Container */}
+=======
+                  {/* Heading Container */}
+                <div className='col-sm-12 col-md-8 mt-3'>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                   <div className='d-flex flex-column justify-content-end shadow bg-white h-100 rounded pt-5 ps-4 pb-4 pe-2 left'>
                     <div className='mb-3'>
                       <img src={`data:image/jpeg;base64,${recruiterDetails.companyLogoBase64}`} height={80} width={80} className='rounded-circle border-secondary border'></img>
@@ -195,8 +235,14 @@ export default function JobCard() {
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div className='col-sm-12 col-md-4 mt-3 emerge'>
                   {/* Job Overview & Stats */}
+=======
+
+                  {/* Job Overview & Stats */}
+                <div className='col-sm-12 col-md-4 mt-3 emerge'>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                   <div className='shadow p-2 pt-4 bg-white rounded pt-3 ps-4 right-side '>
                     <div className='fs-5 fw-bolder mb-2 '>
                       Job Overview
@@ -250,10 +296,15 @@ export default function JobCard() {
                   </div>
                 </div>
 
+<<<<<<< HEAD
                 {/* Left Side of the Page */}
                 <div className='col-sm-12 col-md-12 col-12 '>
 
                   {/* Job Description Container */}
+=======
+                  {/* Job Description Container */}
+                <div className='col-sm-12 col-md-12 col-12 '>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                   <div className='mt-3 p-1 bg-white rounded pt-3 ps-4 pb-4 emerge'>
                     <div className='fs-5 fw-bolder  mb-2'>
                       Job Description
@@ -293,11 +344,20 @@ export default function JobCard() {
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
               </div>
 >>>>>>> 0c7acf78bd7bc2b9b2c9362056f8e24564635438
             </div>
           </div>
 
+=======
+
+              </div>
+            </div>
+          </div>
+
+          {/* Table of Applicant */}
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
           <div className="row">
             <div className="col mt-1">
               <div className='display-6 text-center mb-4 text-muted emerge'>
@@ -319,25 +379,50 @@ export default function JobCard() {
                       <th scope="col" >
                         Email
                       </th>
+<<<<<<< HEAD
+=======
+                      <th scope='col'>
+                        Status
+                      </th>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                       <th scope="col" >
                         Action
                       </th>
                     </tr>
                   </thead>
                   <tbody className='emerge'>
+<<<<<<< HEAD
                     {applicants.map((applicant, index) => (
+=======
+                  {
+                    applicants.length == 0 ? 
+                     <tr>
+                      <td colSpan="6">No Applicants Record Found</td>
+                     </tr>
+                     :
+                    applicants.map((applicant, index) => (
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                       <tr key={index} className="text-muted ">
                         <td >{index + 1}</td>
                         <td ><img src={`data:image/jpeg;base64,${applicant.profilePhoto}`} width={60} height={60} className='rounded-circle img-fluid'></img></td>
                         <td >{applicant.name}</td>
                         <td >{applicant.email}</td>
+<<<<<<< HEAD
+=======
+                        <td>{applicant.status}</td>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                         <td >
                           <button className="btn btn-primary btn-sm mx-1 mb-2" id={index} value={JSON.stringify(applicant)} onClick={handleApplicant}>
                             Detail
                           </button>
                         </td>
                       </tr>
+<<<<<<< HEAD
                     ))}
+=======
+                    ))
+                  }
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                   </tbody>
                 </table>
               </div>

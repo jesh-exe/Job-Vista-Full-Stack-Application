@@ -11,7 +11,11 @@ import { useNavigate } from 'react-router';
 function Main() {
 
   const recruiter = useSelector(getLoggedRecruiter);
+<<<<<<< HEAD
   console.log(recruiter)
+=======
+  // console.log(recruiter)
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
   useEffect(() => {
     ScrollReveal().reveal(".card-holder", {
@@ -29,7 +33,11 @@ function Main() {
   return (
     <div className="container bg-grey p-5 mt-5 mb-5">
       <div className="row mt-3 mb-5 text-center">
+<<<<<<< HEAD
         <div className='display-6 heading-holder'><span className='text-primary fw-bold'>Dashboard {recruiter.firstName}</span></div>
+=======
+        <div className='display-6 heading-holder'><span className='text-primary fw-bold'>Dashboard </span></div>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
       </div>
       <div className="row mt-3 mb-5 card-container lead text-center">
         <div className="col-sm-9 col-md-6 col-lg-6 col-xl-3 mb-3">
@@ -73,13 +81,13 @@ function Main() {
         </div>
         <div className="col-sm-9 col-md-6 col-lg-6 col-xl-3 mb-3">
           <Card className='py-4 card-holder bg-green-dark rounded-3 border-0'>
-            <Card.Header className='border-white text-start'>Contacted Users</Card.Header>
+            <Card.Header className='border-white text-start'>Total Hired</Card.Header>
             <Card.Body>
               <div className='d-flex align-items-end justify-content-between'>
                 <div className='pb-3'>
                   <FaEnvelopeOpenText className='card-icon' />
                 </div>
-                <div className='fs-2'>100</div>
+                <div className='fs-2'>{recruiter.totalHired}</div>
               </div>
             </Card.Body>
           </Card>

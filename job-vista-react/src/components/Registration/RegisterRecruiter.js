@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import RecruiterService from '../../service/RecruiterService';
 import { toast } from "react-toastify";
@@ -8,6 +8,10 @@ import { toast } from "react-toastify";
 const RegisterRecruiter = () => {
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },)
 
   //To Hold State of the whole form information
   const [recruiter, setRecruiter] = useState({
@@ -94,7 +98,11 @@ const RegisterRecruiter = () => {
     //Creating the Formdata of image to send to the Backend
     const formdata = new FormData();
     formdata.append("companyLogo", logo.companyLogo);
+<<<<<<< HEAD
     console.log(recruiter)
+=======
+    console.log(recruiter);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
     //Posting the Data to backend, returns the ID of created Recruiter and using that ID to send another call to API to save image for that Recruiter
     RecruiterService.registerRecruiter(recruiter, formdata)

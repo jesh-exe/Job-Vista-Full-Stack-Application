@@ -13,4 +13,8 @@ public interface RecruiterService {
 	String uploadImage(int id, MultipartFile companyLogo);
 	RecruiterResponseDTO getRecruiter(String recruiterEmail);
 	void deleteRecruiter(String email);
+<<<<<<< HEAD
+=======
+	boolean checkEmail(String email);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 }

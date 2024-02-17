@@ -90,13 +90,41 @@ export default function ApplicantCard() {
         }
     }
 
+<<<<<<< HEAD
+=======
+    const handleReject = () => {
+
+        var jwtToken = JSON.parse(localStorage.getItem("jwt-token"));
+        if (jwtToken) {
+            if (jwtToken.holder === "RECRUITER") {
+                RecruiterService.updateApplicationStatus(applicant.jobId, "REJECT", jwtToken.jwtToken)
+                    .then((response) => {
+                        toast.success("Client Notified");
+                        setApplicant({
+                            ...applicant,
+                            status: "REJECT"
+                        })
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                        toast.error("Client Not Notified");
+                    })
+            }
+        }
+    }
+
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     return (
         <div>
             <div className='container bg-light mb-5 pe-4'>
                 <div className='row mt-3 mb-5'>
 
                     {/* Left Side */}
+<<<<<<< HEAD
                     <div className='col-sm-12 col-md-4 mt-4'>
+=======
+                    <div className='col-sm-12 col-md-4 mt-4 '>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                         {/* applicants photo */}
                         <div className='shadow pt-4 bg-white rounded pt-3 p-4 right-side'>
                             <div className='lead text-center fw-bolder mb-2'>
@@ -121,12 +149,21 @@ export default function ApplicantCard() {
 
                     {/* Right Side */}
                     <div className='col-sm-12 col-md-8 mb-2 mt-4'>
+<<<<<<< HEAD
                         <div className='shadow bg-white rounded h-100 pt-5 ps-4 pe-2 left-side'>
                             <div>
                                 <div className='lead fw-bolder text-muted text-center mb-3'>
                                     Applicant's Details
                                 </div>
                                 <div className='pt-4 bg-white rou7ded pb-4 right-side'>
+=======
+                        <div className='shadow bg-white rounded h-100 pt-5 ps-4 pe-2 left-side '>
+                            <div>
+                                <div className='lead fw-bolder text-muted text-start mb-3'>
+                                    Applicant's Details
+                                </div>
+                                <div className='pt-4 bg-white rounded pb-4 right-side'>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                                     <div className='mb-3 lh-lg overflow-hidden'>
                                         <div className='row'>
                                             <span className="col-5 overflow-hidden text-start fw-bold">
@@ -209,7 +246,11 @@ export default function ApplicantCard() {
                                                 {applicant.skills}
                                             </span>
                                             <div className='col-12 text-center mt-5'>
+<<<<<<< HEAD
                                                 <button className='btn btn-outline-success mx-2 my-2' onClick={handleHire}>
+=======
+                                                <button className='btn btn-outline-success mx-2 my-2' onClick={handleHire} disabled = {applicant.status === "REJECT" ? true : false}>
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                                                     {applicant.status === "HIRED" ? "Hired" : "Hire"}
                                                 </button>
                                                 <button className='btn btn-secondary mx-2 my-2' onClick={getResume}>
@@ -217,8 +258,13 @@ export default function ApplicantCard() {
                                                 </button>
                                                 {
                                                     applicant.status === "HIRED" ? "" :
+<<<<<<< HEAD
                                                         <button className='btn btn-outline-danger mx-2 my-2'>
                                                             Reject
+=======
+                                                        <button className='btn btn-outline-danger mx-2 my-2' onClick={handleReject} disabled={applicant.status === "REJECT" ? true : false}>
+                                                            {applicant.status === "REJECT" ? "Rejected" : "Reject" }
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                                                         </button>
                                                 }
                                             </div>

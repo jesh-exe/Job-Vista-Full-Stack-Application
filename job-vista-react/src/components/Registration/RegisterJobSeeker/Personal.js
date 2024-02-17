@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+<<<<<<< HEAD
 import { setPersonalDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+=======
+import { setPersonalDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 import { toast } from "react-toastify";
 
 
 export default function Personal() {
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const [personal, setPersonal] = useState({
         firstName: "",
@@ -43,12 +51,20 @@ export default function Personal() {
             toast.error("Password Do Not Match!");
         else if (personal.gender === "none" || personal.gender === "")
             toast.error("Select Valid Gender");
+<<<<<<< HEAD
         else if(personal.contactNumber.length != 10)
+=======
+        else if (personal.contactNumber.length != 10)
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
             toast.error("Contact Number must have 10 digits only")
         else {
             console.log(personal)
             dispatch(setPersonalDetails(personal));
+<<<<<<< HEAD
             toast.success("Success!");
+=======
+            toast.success("Success, Address Unlocked");
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
         }
     }
 
@@ -238,7 +254,6 @@ export default function Personal() {
                                 className="form-control"
                                 id="gitRepositoryLink"
                                 name="gitRepositoryLink"
-                                pattern='[a-zA-Z]{1,}'
                                 defaultValue={personal.gitRepositoryLink}
                                 onChange={personalDetailChange}
                             />

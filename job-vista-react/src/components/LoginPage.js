@@ -9,6 +9,10 @@ import { useNavigate } from 'react-router';
 import { setRecruiterDetails } from '../redux/slices/Recruiter/RecruiterSlice';
 import RecruiterService from '../service/RecruiterService';
 import { toast } from 'react-toastify';
+<<<<<<< HEAD
+=======
+import JobSeekerService from '../service/JobSeekerService';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
 
 const LoginPage = () => {
@@ -52,6 +56,7 @@ const LoginPage = () => {
 
     //Jobseeker
     if (user.roleType === "JobSeeker") {
+<<<<<<< HEAD
       axios.post("http://localhost:8080/jobseeker/authenticate", user)
         .then((response) => {
           console.log(response.data);
@@ -75,16 +80,61 @@ const LoginPage = () => {
           localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
           toast.success("Successfully authenticated!");
           navigate("/dashboard")
+=======
+      JobSeekerService.authenticateJobSeeker(user)
+        .then((response) => {
+          var jwtToken = response.data.jwtToken
+          //Storing JWT as a object
+          var jwtTokenDetails = {
+            holder: "JOBSEEKER",
+            jwtToken: jwtToken
+          }
+          localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
+          toast.success("Successfully authenticated!");
+          navigate("/")
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
         }).catch((error) => {
           console.log(error)
           if (error.code == "ERR_NETWORK")
             toast.error("Server Busy");
+<<<<<<< HEAD
           else{
+=======
+          else {
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
             toast.error("Invalid credentials")
           }
         })
     }
 
+<<<<<<< HEAD
+=======
+    //Recruiter
+    else if (user.roleType === "Recruiter") {
+      //Fetching JWT Token
+      RecruiterService.authenticateRecruiter(formData)
+        .then((response) => {
+          var jwtToken = response.data.jwtToken
+          //Storing JWT as a object
+          var jwtTokenDetails = {
+            holder: "RECRUITER",
+            jwtToken: jwtToken
+          }
+          //Storing JWT in localstorage
+          localStorage.setItem("jwt-token", JSON.stringify(jwtTokenDetails));
+          toast.success("Successfully authenticated!");
+          navigate("/dashboard")  
+        }).catch((error) => {
+          console.log(error)
+          if (error.code == "ERR_NETWORK")
+            toast.error("Server Busy");
+          else {
+            toast.error("Invalid credentials")
+          }
+        })
+    }
+
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
     //Admin -> Optional
     else if (user.roleType === "Admin") {
 

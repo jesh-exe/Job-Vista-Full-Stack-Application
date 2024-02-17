@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+<<<<<<< HEAD
 import { setGraduationEducationDetails, setHscEducationDetails, setSscEducationDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+=======
+import { setGraduationEducationDetails, setHscEducationDetails, setSscEducationDetails } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 import { toast } from "react-toastify";
 
 
 export default function Education() {
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
 
     const [sscEducation, setSscEducation] = useState({
         schoolName: '',
@@ -50,7 +58,7 @@ export default function Education() {
         percentage: '',
         backlogs: '',
         attempts: '',
-        status : ''
+        status: ''
     });
 
     const graduationEducationChange = (e) => {

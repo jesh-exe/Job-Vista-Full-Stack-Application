@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jobvista.entities.JobSeeker;
+import com.jobvista.exception.ApiCustomException;
 import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerCredsRequestDTO;
 import com.jobvista.requestDTO.jobSeekerDTO.JobSeekerRequestDTO;
 import com.jobvista.responseDTO.JwtResponeDTO;
@@ -72,6 +73,11 @@ public class JobSeekerController {
 	// Login to generate JWT Token
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> authenticateJobSeeker(@RequestBody JobSeekerCredsRequestDTO credsRequestDTO) {
+<<<<<<< HEAD
+=======
+		if(!jobSeekerService.checkEmail(credsRequestDTO.getEmail()))
+			throw new ApiCustomException("Invalid Credentials");
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 		Authentication authentication = mgr.authenticate(
 				new UsernamePasswordAuthenticationToken(credsRequestDTO.getEmail(), credsRequestDTO.getPassword()));
 		String jwtToken = utils.generateJwtToken(authentication);
@@ -83,8 +89,12 @@ public class JobSeekerController {
 	@GetMapping
 	public ResponseEntity<?> getJobSeeker() {
 		Authentication jwtParsedUser = SecurityContextHolder.getContext().getAuthentication();
+<<<<<<< HEAD
 		JobSeeker jobSeeker = jobSeekerService.getJobseeker(jwtParsedUser.getName());
 		return ResponseEntity.status(HttpStatus.OK).body("Valid User");
+=======
+		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.getJobseeker(jwtParsedUser.getName()));
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 	}
 
 	// Delete a Job Seeker by Email extracted from JWT Token

@@ -5,11 +5,16 @@ import Address from './Address';
 import Education from './Education';
 import Personal from './Personal';
 import { useSelector } from 'react-redux';
-import { getAddress, getExperience, getGraduationEducation, getHscEducation, getPersonal, getSscEducation } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { getAddress, getExperience, getGraduationEducation, getHscEducation, getPersonal, getSscEducation } from '../../../redux/slices/JobSeeker/RegisterJobSeekerSlice';
 import Other from './Other';
 import axios from 'axios';
+import JobSeekerService from '../../../service/JobSeekerService';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 function RegisterJobSeeker() {
+
+    const navigate = useNavigate();
 
     const personal = useSelector(getPersonal);
     const address = useSelector(getAddress);
@@ -27,7 +32,7 @@ function RegisterJobSeeker() {
     }
 
     const sendDataToAPI = () => {
-        
+
         var apiRequestData = {
             "personal": personal,
             "address": address,
@@ -41,16 +46,29 @@ function RegisterJobSeeker() {
 
         console.log(apiRequestData)
 
-        axios.post("http://localhost:8080/jobseeker", apiRequestData)
+        const formData = new FormData();
+        formData.append("image", profilePicture);
+        formData.append("resume", resume);
+
+        JobSeekerService.registerJobSeeker(apiRequestData)
             .then((response) => {
-                console.log(response);
+                var registeredJobSeekerID = response.data;
+                JobSeekerService.uploadJobSeekerFiles(registeredJobSeekerID, formData)
+                    .then((response) => {
+                        toast.success("Registration Successful");
+                        navigate("/login");
+                    }).catch((error) => {
+                        console.log(error);
+                        toast.error("Files were not uploaded");
+                    })
             }).catch((error) => {
-                console.log(error.data) 
+                console.log(error.data)
+                toast.error("Registration Failed");
             })
     }
 
     return (
-        <div className='p-2 p-sm-5 p-md-5'>
+        <div className='p-2 p-sm-5 mt-2 p-md-5'>
             <Tabs
                 defaultActiveKey={currentTab}
                 id="justify-tab-example"
@@ -75,7 +93,7 @@ function RegisterJobSeeker() {
                     <Experience></Experience>
                 </Tab>
 
-                <Tab eventKey="other" title="Other" disabled={experiences.length === 0 ? true : false}
+                <Tab eventKey="other" title="Upload" disabled={experiences.length === 0 ? true : false}
                 >
                     <Other handleFiles={handleFiles} ></Other>
                 </Tab>

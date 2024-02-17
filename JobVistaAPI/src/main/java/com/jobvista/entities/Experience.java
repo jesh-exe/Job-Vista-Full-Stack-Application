@@ -83,7 +83,7 @@ public class Experience {
 	}
     
     //Checking if duplicate experience exists or not
-    //On basis of - CompanyName, StartDate, EndDate, Role
+    //On basis of - CompanyName, Role
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -91,7 +91,7 @@ public class Experience {
 		if (!(obj instanceof Experience))
 			return false;
 		Experience other = (Experience) obj;
-		if(companyName.equals(other.companyName) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && role.equals(other.role))
+		if(companyName.equals(other.companyName) && role.equals(other.role))
 			return true;
 		return false;
 	}

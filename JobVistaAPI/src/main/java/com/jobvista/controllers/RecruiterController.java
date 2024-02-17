@@ -22,6 +22,10 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
+=======
+import com.jobvista.exception.ApiCustomException;
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 import com.jobvista.requestDTO.RecruiterRequestDTO;
 import com.jobvista.responseDTO.JwtResponeDTO;
 import com.jobvista.responseDTO.RecruiterResponseDTO;
@@ -64,6 +68,11 @@ public class RecruiterController {
 	public ResponseEntity<?> signInValidation(@RequestParam("email") String email
 			, @RequestParam("password") String password)
 	{
+<<<<<<< HEAD
+=======
+		if(!recruiterService.checkEmail(email))
+			throw new ApiCustomException("Invalid Credentials");
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 		Authentication principal = manager
 				.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 		String jwtToken = utils.generateJwtToken(principal);

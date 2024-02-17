@@ -4,6 +4,11 @@ import { getLoggedRecruiterJobs, resetRecruiterDetails, setRecruiterDetails } fr
 import { NavLink, useNavigate } from "react-router-dom";
 import RecruiterService from "../../service/RecruiterService";
 import { toast } from "react-toastify";
+<<<<<<< HEAD
+=======
+import JobService from "../../service/JobService";
+import { setJobs } from "../../redux/slices/JobsSlice";
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
 
 export default function JobList() {
 
@@ -11,8 +16,13 @@ export default function JobList() {
   const jobs = useSelector(getLoggedRecruiterJobs);
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   useEffect(()=>{
     window.scrollTo(0,0);
+=======
+  useEffect(() => {
+    window.scrollTo(0, 0);
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
   })
 
   const handleDelete = (id) => {
@@ -31,6 +41,13 @@ export default function JobList() {
             RecruiterService.loadUserByJwtToken(jwtToken.jwtToken)
               .then((response) => {
                 dispatch(setRecruiterDetails(response.data));
+<<<<<<< HEAD
+=======
+                JobService.getAllJobs()
+                  .then((response) => {
+                    dispatch(setJobs(response.data))
+                  })
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
               })
               .catch((error) => {
                 console.log(error)
@@ -80,7 +97,11 @@ export default function JobList() {
                           Type
                         </th>
                         <th scope="col" >
+<<<<<<< HEAD
                           Applies
+=======
+                          Applicants
+>>>>>>> b6a88b25a912e0f6e5cd6921eb79d64173063759
                         </th>
                         <th scope="col" >
                           Action

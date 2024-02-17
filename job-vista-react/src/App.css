@@ -6,6 +6,7 @@
 
 .App {
   /* text-align: center; */
+  
 }
 
 .App-logo {
@@ -41,5 +42,38 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+
+.blob {
+  width: 112px;
+  height: 112px;
+  display: grid;
+  background: #fff;
+  filter: blur(4.5px) contrast(10);
+  padding: 11.2px;
+  mix-blend-mode: darken;
+}
+
+.blob:before {
+  content: "";
+  margin: auto;
+  width: 33.6px;
+  height: 33.6px;
+  border-radius: 50%;
+  color: #474bff;
+  background: currentColor;
+  box-shadow: -33.6px 0, 33.6px 0, 0 33.6px, 0 -33.6px;
+  animation: blob-031hhgmd 1s infinite alternate;
+}
+
+@keyframes blob-031hhgmd {
+
+  90%,
+  100% {
+    box-shadow: -11.2px 0, 11.2px 0, 0 11.2px, 0 -11.2px;
+    transform: rotate(180deg);
   }
 }
