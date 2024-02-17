@@ -230,7 +230,7 @@ export default function ApplicantCard() {
                                                 {applicant.skills}
                                             </span>
                                             <div className='col-12 text-center mt-5'>
-                                                <button className='btn btn-outline-success mx-2 my-2' onClick={handleHire}>
+                                                <button className='btn btn-outline-success mx-2 my-2' onClick={handleHire} disabled = {applicant.status === "REJECT" ? true : false}>
                                                     {applicant.status === "HIRED" ? "Hired" : "Hire"}
                                                 </button>
                                                 <button className='btn btn-secondary mx-2 my-2' onClick={getResume}>
@@ -238,8 +238,8 @@ export default function ApplicantCard() {
                                                 </button>
                                                 {
                                                     applicant.status === "HIRED" ? "" :
-                                                        <button className='btn btn-outline-danger mx-2 my-2' onClick={handleReject}>
-                                                            Reject
+                                                        <button className='btn btn-outline-danger mx-2 my-2' onClick={handleReject} disabled={applicant.status === "REJECT" ? true : false}>
+                                                            {applicant.status === "REJECT" ? "Rejected" : "Reject" }
                                                         </button>
                                                 }
                                             </div>

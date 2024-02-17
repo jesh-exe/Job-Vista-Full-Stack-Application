@@ -24,10 +24,10 @@ const Header = () => {
 
   // Get the logged in user information from Redux store
   const recruiter = useSelector(getLoggedRecruiter);
-  console.log("Recruiter: ", recruiter)
+  // console.log("Recruiter: ", recruiter)
 
   const jobSeeker = useSelector(getLoggedJobSeeker);
-  console.log("JobSeeker: ", jobSeeker);
+  // console.log("JobSeeker: ", jobSeeker);
 
 
   useEffect(() => {
@@ -66,7 +66,6 @@ const Header = () => {
             <Nav className="me-auto">
               {/* Home Button */}
               <NavLink to="/" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item' >Home</NavLink>
-
               {/* Find Jobs Button */}
               <NavLink to="/jobs" className='ps-4 pe-4 navlinks-middle text-decoration-none menu-item'  >Find a Job</NavLink>
 

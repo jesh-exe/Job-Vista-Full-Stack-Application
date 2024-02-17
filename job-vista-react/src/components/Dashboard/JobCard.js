@@ -53,14 +53,14 @@ export default function JobCard() {
     if (jwtToken) {
       if (jwtToken.holder === "RECRUITER") {
         var jobId = getJobFromArray();
-        console.log(jobId);
+        // console.log(jobId);
         RecruiterService.getApplicantsOfJob(jobId, jwtToken.jwtToken)
           .then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             setApplicants([...response.data]);
             // dispatch(setRecruiterDetails(response.data));
           }).catch((error) => {
-            console.log(error)
+            // console.log(error)
           })
       }
       else {
@@ -95,7 +95,7 @@ export default function JobCard() {
 
   const handleApplicant = (e) => {
     var applicant = JSON.parse(e.target.value);
-    console.log(applicant);
+    // console.log(applicant);
     dispatch(setApplicant(applicant));
     navigate("/dashboard/applicant");
   }

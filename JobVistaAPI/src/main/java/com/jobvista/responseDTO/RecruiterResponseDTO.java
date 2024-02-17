@@ -21,4 +21,5 @@ public class RecruiterResponseDTO {
 	private int totalApplicants;
 	private int activeJobs;
 	private String companyLogoBase64;
+	private int totalHired;
 }

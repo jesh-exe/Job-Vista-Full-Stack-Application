@@ -30,7 +30,8 @@ const initState = {
 		"jobs": [],
 		"totalApplicants": 0,
 		"activeJobs": 0,
-		"companyLogoBase64" : ""
+		"companyLogoBase64" : "",
+		"totalHired" : 0,
 	}
 }
 

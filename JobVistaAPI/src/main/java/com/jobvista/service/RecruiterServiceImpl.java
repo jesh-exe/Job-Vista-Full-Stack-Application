@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jobvista.entities.Job;
+import com.jobvista.entities.JobApplication;
 import com.jobvista.entities.Recruiter;
 import com.jobvista.exception.ApiCustomException;
 import com.jobvista.repositories.RecruiterRepository;
@@ -73,6 +74,7 @@ public class RecruiterServiceImpl implements RecruiterService {
 
 		int jobApplicants = 0;
 		int activeJobs = 0;
+		int totalHired = 0;
 
 		// Fetching the list of Jobs to be mapped with JobResponseDTO to be sent to the
 		// Recruiter
@@ -82,6 +84,12 @@ public class RecruiterServiceImpl implements RecruiterService {
 			// Adding the Size of Job Application List of each job to get the Total
 			// application count
 			jobApplicants += job.getJobApplications().size();
+			
+			//Hired Applicants
+			for(JobApplication jobApplication : job.getJobApplications())
+				if(jobApplication.getStatus().equals("HIRED"))
+					++totalHired;
+			
 			// Job Status -> OPEN or CLOSE
 			// To add the cound of Active Jobs(OPEN)
 			if (job.getStatus().equals("OPEN"))
@@ -107,6 +115,7 @@ public class RecruiterServiceImpl implements RecruiterService {
 		String base64Logo = Base64.getEncoder().encodeToString(recruiter.getCompanyLogo());
 		recruiterResponseDTO.setCompanyLogoBase64(base64Logo);
 		
+		recruiterResponseDTO.setTotalHired(totalHired);
 		recruiterResponseDTO.setJobs(jobResponseDTOList);
 		recruiterResponseDTO.setTotalApplicants(jobApplicants);
 		recruiterResponseDTO.setActiveJobs(activeJobs);
