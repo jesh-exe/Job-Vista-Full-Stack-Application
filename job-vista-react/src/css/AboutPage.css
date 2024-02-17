@@ -1,0 +1,14 @@
+.bg-img-solid{
+    background-image: url("../assets/job_details_page_main_image.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    height: 90vh;
+}
+
+.bg-img-blur {
+    background-image: url("../assets/job_details_page_main_image.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    height: 35vh;
+    filter: blur(8px);
+}
