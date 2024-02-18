@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setGraduationEducationDetails, setHscEducationDetails, setSscEducationDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
+
 
 export default function Education() {
 
@@ -65,6 +67,7 @@ export default function Education() {
         dispatch(setSscEducationDetails(sscEducation));
         dispatch(setHscEducationDetails(hscEducation));
         dispatch(setGraduationEducationDetails(graduationEducation));
+        toast.success("Success, Experience unlocked")
     }
 
 
@@ -78,11 +81,11 @@ export default function Education() {
                     <div className="row">
                         <div className="col-sm-12 col-md-6">
                             <div className="form-group">
-                                <label htmlFor="schoolName">School Name</label>
+                                <label htmlFor="schoolName">School Name<span className='text-danger'> *</span></label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="schoolName"
+                                    id="schoolNameSsc"
                                     name="schoolName"
                                     defaultValue={sscEducation.schoolName}
                                     onChange={sscEducationChange}
@@ -93,11 +96,11 @@ export default function Education() {
                         </div>
                         <div className="col-sm-12 col-md-6">
                             <div className="form-group">
-                                <label htmlFor="boardName">Board Name</label>
+                                <label htmlFor="boardName">Board Name<span className='text-danger'> *</span></label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="boardName"
+                                    id="boardNameSsc"
                                     name="boardName"
                                     defaultValue={sscEducation.boardName}
                                     onChange={sscEducationChange}
@@ -109,29 +112,34 @@ export default function Education() {
                     <div className="row">
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="percentage">Percentage </label>
+                                <label htmlFor="percentage">Percentage<span className='text-danger'> *</span></label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
-                                    id="percentage"
+                                    id="percentageSsc"
                                     name="percentage"
                                     defaultValue={sscEducation.percentage}
                                     onChange={sscEducationChange}
+                                    title='Enter Percentage between 0 to 100'
+                                    max={100}
+                                    min={0}
                                     required
                                 />
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="passingYear">Passing Year</label>
+                                <label htmlFor="passingYear">Passing Year<span className='text-danger'> *</span></label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
-                                    id="passingYear"
+                                    id="passingYearSsc"
                                     name="passingYear"
                                     defaultValue={sscEducation.passingYear}
                                     onChange={sscEducationChange}
                                     required
+                                    min={1950}
+                                    max={2024}
                                 />
                             </div>
                         </div>
@@ -147,11 +155,11 @@ export default function Education() {
                     <div className="row">
                         <div className="col-sm-12 col-md-6">
                             <div className="form-group">
-                                <label htmlFor="schoolName">School Name</label>
+                                <label htmlFor="schoolName">School Name<span className='text-danger'> *</span></label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="schoolName"
+                                    id="schoolNameHsc"
                                     name="schoolName"
                                     defaultValue={hscEducation.schoolName}
                                     onChange={hscEducationChange}
@@ -162,11 +170,11 @@ export default function Education() {
                         </div>
                         <div className="col-sm-12 col-md-6">
                             <div className="form-group">
-                                <label htmlFor="boardName">Board Name</label>
+                                <label htmlFor="boardName">Board Name<span className='text-danger'> *</span></label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="boardName"
+                                    id="boardNameHsc"
                                     name="boardName"
                                     defaultValue={hscEducation.boardName}
                                     onChange={hscEducationChange}
@@ -178,11 +186,11 @@ export default function Education() {
                     <div className="row">
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="boardName">Stream</label>
+                                <label htmlFor="boardName">Stream<span className='text-danger'> *</span></label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="stream"
+                                    id="streamSsc"
                                     name="stream"
                                     defaultValue={hscEducation.stream}
                                     onChange={hscEducationChange}
@@ -192,29 +200,33 @@ export default function Education() {
                         </div>
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="percentage">Percentage </label>
+                                <label htmlFor="percentage">Percentage<span className='text-danger'> *</span></label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
                                     id="percentage"
                                     name="percentage"
                                     defaultValue={hscEducation.percentage}
                                     onChange={hscEducationChange}
                                     required
+                                    min={0}
+                                    max={100}
                                 />
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="passingYear">Passing Year</label>
+                                <label htmlFor="passingYear">Passing Year<span className='text-danger'> *</span></label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
-                                    id="passingYear"
+                                    id="passingYearHsc"
                                     name="passingYear"
                                     defaultValue={hscEducation.passingYear}
                                     onChange={hscEducationChange}
                                     required
+                                    min={1950}
+                                    max={2030}
                                 />
                             </div>
                         </div>
@@ -230,11 +242,11 @@ export default function Education() {
                     <div className="row">
                         <div className="col-sm-12 col-md-6">
                             <div className="form-group">
-                                <label htmlFor="collegeName">College Name</label>
+                                <label htmlFor="collegeName">College Name<span className='text-danger'> *</span></label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="collegeName"
+                                    id="collegeNameGrad"
                                     name="collegeName"
                                     defaultValue={graduationEducation.collegeName}
                                     onChange={graduationEducationChange}
@@ -245,11 +257,11 @@ export default function Education() {
                         </div>
                         <div className="col-sm-12 col-md-6">
                             <div className="form-group">
-                                <label htmlFor="universityName">University Name</label>
+                                <label htmlFor="universityName">University Name<span className='text-danger'> *</span></label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="universityName"
+                                    id="universityNameGrad"
                                     name="universityName"
                                     defaultValue={graduationEducation.universityName}
                                     onChange={graduationEducationChange}
@@ -261,11 +273,11 @@ export default function Education() {
                     <div className="row">
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="specialization">Specialization</label>
+                                <label htmlFor="specialization">Specialization<span className='text-danger'> *</span></label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="specialization"
+                                    id="specializationGrad"
                                     name="specialization"
                                     defaultValue={graduationEducation.specialization}
                                     onChange={graduationEducationChange}
@@ -275,15 +287,17 @@ export default function Education() {
                         </div>
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="duration">Duration</label>
+                                <label htmlFor="duration">Duration<span className='text-danger'> *</span></label>
                                 <input
                                     type="number"
                                     className="form-control"
-                                    id="duration"
+                                    id="durationGrad"
                                     name="duration"
                                     defaultValue={graduationEducation.duration}
                                     onChange={graduationEducationChange}
                                     required
+                                    min={1}
+                                    max={4}
                                 />
                             </div>
                         </div>
@@ -291,39 +305,43 @@ export default function Education() {
                     <div className="row">
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="addmissionYear">Addmission Year </label>
+                                <label htmlFor="addmissionYear">Addmission Year<span className='text-danger'> *</span></label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
-                                    id="addmissionYear"
+                                    id="addmissionYearGrad"
                                     name="addmissionYear"
                                     defaultValue={graduationEducation.addmissionYear}
                                     onChange={graduationEducationChange}
                                     required
+                                    min={2000}
+                                    max={2050}
                                 />
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="passingYear">Passing Year</label>
+                                <label htmlFor="passingYear">Passing Year<span className='text-danger'> *</span></label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
-                                    id="passingYear"
+                                    id="passingYearGrad"
                                     name="passingYear"
                                     defaultValue={graduationEducation.passingYear}
                                     onChange={graduationEducationChange}
                                     required
+                                    min={2000}
+                                    max={2050}
                                 />
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="status">Status</label>
+                                <label htmlFor="status">Status<span className='text-danger'> *</span></label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="status"
+                                    id="statusGrad"
                                     name="status"
                                     defaultValue={graduationEducation.status}
                                     onChange={graduationEducationChange}
@@ -335,43 +353,47 @@ export default function Education() {
                     <div className="row">
                         <div className="col-sm-4 col-4 col-md-4 ">
                             <div className="form-group">
-                                <label htmlFor="attempts">Attempt</label>
+                                <label htmlFor="attempts">Attempt<span className='text-danger'> *</span></label>
                                 <input
                                     type="number"
                                     className="form-control"
-                                    id="attempts"
+                                    id="attemptsGrad"
                                     name="attempts"
                                     defaultValue={graduationEducation.attempts}
                                     onChange={graduationEducationChange}
                                     required
+                                    min={1}
                                 />
                             </div>
                         </div>
                         <div className="col-sm-4 col-4 col-md-4 ">
                             <div className="form-group">
-                                <label htmlFor="backlogs">Backlogs</label>
+                                <label htmlFor="backlogs">Backlogs<span className='text-danger'> *</span></label>
                                 <input
                                     type="number"
                                     className="form-control"
-                                    id="backlogs"
+                                    id="backlogsGrad"
                                     name="backlogs"
                                     defaultValue={graduationEducation.backlogs}
                                     onChange={graduationEducationChange}
                                     required
+                                    min={0}
                                 />
                             </div>
                         </div>
                         <div className="col-sm-4 col-4 col-md-4 ">
                             <div className="form-group">
-                                <label htmlFor="percentage">Percentage</label>
+                                <label htmlFor="percentage">Percentage<span className='text-danger'> *</span></label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
-                                    id="percentage"
+                                    id="percentageGrad"
                                     name="percentage"
                                     defaultValue={graduationEducation.percentage}
                                     onChange={graduationEducationChange}
                                     required
+                                    min={0}
+                                    max={100}
                                 />
                             </div>
                         </div>

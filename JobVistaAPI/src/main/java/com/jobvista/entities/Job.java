@@ -20,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import com.jobvista.exception.ApiCustomException;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,24 +40,20 @@ public class Job {
     @Column(name = "job_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "job_rec_id",nullable = false)
     private Recruiter recruiter;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "job_jc_id", nullable = false)
     private JobCategory category;
 
-    @Size(max = 100)    
-    @Column(name = "job_title", nullable = false, length = 100)
-    private String title;
-
-    @Size(max = 100)
-    @Column(name = "job_exp", length = 100)
+    @Lob
+    @Column(name = "job_exp",length = 8000,columnDefinition = "TEXT")
     private String experience;
 
-    @Size(max = 100)
-    @Column(name = "job_min_edu", nullable = false, length = 100)
+    @Lob
+    @Column(name = "job_min_edu", nullable = false,length = 8000,columnDefinition = "TEXT")
     private String minimumEducation;
 
     @Lob
@@ -68,7 +66,7 @@ public class Job {
 
     @Lob
     @Column(name = "job_respo",length = 5000,columnDefinition = "TEXT")
-    private String responsiblity;
+    private String responsibility;
 
     @Size(max = 100)
     
@@ -97,11 +95,11 @@ public class Job {
     private LocalDate postingDate = LocalDate.now();
     
     @Column(name = "job_views", nullable = false)
-    private Integer views;
+    private Integer views = 0;
 
     @Size(max = 45)
     @Column(name = "job_status", nullable = false, length = 45)
-    private String status;
+    private String status = "OPEN";
     
     @Column(name = "job_creation_timestamp", nullable = false)
     private LocalDateTime creationTimestamp = LocalDateTime.now();
@@ -114,7 +112,7 @@ public class Job {
     {
     	jobApplication.setJob(this);
     	if(!jobApplications.add(jobApplication))
-    		throw new RuntimeException("Job Already exists!");
+    		throw new ApiCustomException("Job Already exists!");
     }
     public List<JobApplication> getJobApplications(){
     	return new ArrayList<>(jobApplications);

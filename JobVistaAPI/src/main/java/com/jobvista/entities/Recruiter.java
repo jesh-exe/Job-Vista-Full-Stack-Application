@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,8 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.jobvista.exception.ApiCustomException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +29,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 @Table(name = "recruiter_dtls")
+
 public class Recruiter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,43 +63,50 @@ public class Recruiter {
 	private String password;
 
 	@Size(max = 100)
-	@Column(name = "rc_Company_name", nullable = false, length = 100)
+	@Column(name = "rc_company_name", nullable = false, length = 100)
 	private String companyName;
 
 	@Size(max = 20)
-	@Column(name = "rc_Company_contact", nullable = false, length = 20)
+	@Column(name = "rc_company_contact", nullable = false, length = 20)
 	private String companyContact;
 
 	@Lob
-	@Column(name = "rc_Company_addr", nullable = false, length = 750, columnDefinition = "TEXT")
+	@Column(name = "rc_company_addr", nullable = false, length = 750, columnDefinition = "TEXT")
 	private String companyAddr;
 
 	@Size(max = 100)
-	@Column(name = "rc_Company_url", nullable = false, length = 100, unique = true)
+	@Column(name = "rc_company_url", nullable = false, length = 100, unique = true)
 	private String companyUrl;
 
 	@Size(max = 50)
-	@Column(name = "rc_Company_fax", length = 50)
+	@Column(name = "rc_company_fax", length = 50)
 	private String companyFax;
 
 	@Lob
-	@Column(name = "rc_Company_logo", length = 1000000, columnDefinition = "MEDIUMBLOB")
+	@Column(name = "rc_company_logo", length = 1000000, columnDefinition = "MEDIUMBLOB")
 	private byte[] companyLogo;
 
 	@Lob
-	@Column(name = "rc_Company_desc", nullable = false, length = 3500, columnDefinition = "TEXT")
+	@Column(name = "rc_company_desc", nullable = false, length = 3500, columnDefinition = "TEXT")
 	private String companyDesc;
 
 	@Column(name = "rc_creation_timestamp")
 	private LocalDateTime creationTimestamp = LocalDateTime.now();
 
-	@OneToMany(mappedBy = "recruiter")
+	@OneToMany(mappedBy = "recruiter",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<Job> jobs = new LinkedHashSet<>();
 
 	public void setJob(Job job) {
 		job.setRecruiter(this);
 		if (!jobs.add(job))
-			throw new RuntimeException("Job Already Exists");
+			throw new ApiCustomException("Job Already Exists");
+	}
+	
+	public void deleteJob(Job job)
+	{
+		if(!jobs.remove(job))
+			throw new ApiCustomException("Job Does Not Exist");
+		job.setRecruiter(null);
 	}
 
 	public List<Job> getJobs() {
@@ -121,7 +133,5 @@ public class Recruiter {
 		this.companyLogo = companyLogo;
 		this.companyDesc = companyDesc;
 	}
-
-	
 
 }

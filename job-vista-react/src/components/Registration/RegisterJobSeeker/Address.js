@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setAddressDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
+
 
 export default function Address() {
 
@@ -28,6 +30,7 @@ export default function Address() {
         e.preventDefault();
         console.log(address);
         dispatch(setAddressDetails(address));
+        toast.success("Success, Education unlocked")
     }
 
     return (
@@ -38,16 +41,17 @@ export default function Address() {
                     <div className='row'>
                         <div className='col-sm-12 col-md-12'>
                             <div className='form-group'>
-                                <label htmlFor='lane1'>Lane 1:</label>
+                                <label htmlFor='lane1'>Lane 1<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='lane1'
                                     name='lane1'
                                     className='form-control'
-                                    pattern='[a-zA-Z0-9,]{5,40}'
+                                    pattern='^(?=.*[a-z])(?=.*[^\s])(?=.*[\S])[^\s]{5,}$'
                                     value={address.lane1}
                                     required
                                     onChange={handleChange}
+                                    title='Lane must have atleast 5 alphabets or numbers or ,'
                                 ></input>
                             </div>
                         </div>
@@ -59,7 +63,8 @@ export default function Address() {
                                     id='lane2'
                                     name='lane2'
                                     className=' form-control'
-                                    pattern='[a-zA-Z0-9,]{5,40}'
+                                    pattern='^(?=.*[a-z])(?=.*[^\s])(?=.*[\S])[^\s]{5,}$'
+                                    title='Lane must have atleast 5 alphabets or numbers or ,'
                                     value={address.lane2}
                                     onChange={handleChange}
                                 ></input>
@@ -67,15 +72,17 @@ export default function Address() {
                         </div>
                         <div className='col-sm-12 col-md-6'>
                             <div className='form-group'>
-                                <label htmlFor='country'>Country:</label>
+                                <label htmlFor='country'>Country<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='country'
                                     name='country'
                                     className=' form-control'
                                     pattern='[a-zA-Z]{3,40}'
+                                    title='Country should be between 3 and 40 characters of Alphabets'
                                     value={address.country}
                                     onChange={handleChange}
+                                    required
                                 ></input>
                             </div>
                         </div>
@@ -83,13 +90,14 @@ export default function Address() {
                     <div className='row'>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='city'>City:</label>
+                                <label htmlFor='city'>City<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='city'
                                     name='city'
                                     className=' form-control'
                                     pattern='[a-zA-Z]{3,40}'
+                                    title='City should be between 3 and 40 characters of Alphabets'
                                     value={address.city}
                                     required
                                     onChange={handleChange}
@@ -98,12 +106,13 @@ export default function Address() {
                         </div>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='state'>State:</label>
+                                <label htmlFor='state'>State<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='state'
                                     name='state'
                                     pattern='[a-zA-Z]{3,40}'
+                                    title='State should be between 3 and 40 characters of Alphabets'
                                     className=' form-control'
                                     value={address.state}
                                     required
@@ -113,15 +122,17 @@ export default function Address() {
                         </div>
                         <div className='col-sm-12 col-md-4'>
                             <div className='form-group'>
-                                <label htmlFor='pincode'>Pincode:</label>
+                                <label htmlFor='pincode'>Pincode<span className='text-danger'> *</span></label>
                                 <input
                                     type='text'
                                     id='pincode'
                                     name='pincode'
                                     pattern='[0-9]{6,6}'
+                                    title="Pin code should contain only numbers and it should be 6 digits"
                                     className=' form-control'
                                     value={address.pincode}
                                     onChange={handleChange}
+                                    required
                                 ></input>
                             </div>
                         </div>

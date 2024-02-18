@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPersonalDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
 
 
 export default function Personal() {
@@ -18,6 +19,8 @@ export default function Personal() {
         contactNumber: "",
         gender: "",
         portfolioLink: "",
+        skills: "",
+        gitRepositoryLink: ""
     });
 
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -37,13 +40,15 @@ export default function Personal() {
     const savePersonalDetails = (e) => {
         e.preventDefault();
         if (confirmPassword !== personal.password)
-            alert("Password Do Not Match!");
+            toast.error("Password Do Not Match!");
         else if (personal.gender === "none" || personal.gender === "")
-            alert("Select Valid Gender");
+            toast.error("Select Valid Gender");
+        else if(personal.contactNumber.length != 10)
+            toast.error("Contact Number must have 10 digits only")
         else {
             console.log(personal)
             dispatch(setPersonalDetails(personal));
-            alert("Success!");
+            toast.success("Success!");
         }
     }
 
@@ -56,7 +61,7 @@ export default function Personal() {
                 <div className="row">
                     <div className="col-sm-12 col-md-4">
                         <div className="form-group">
-                            <label htmlFor="firstName">First Name</label>
+                            <label htmlFor="firstName">First Name <span className='text-danger'>*</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -64,6 +69,7 @@ export default function Personal() {
                                 name="firstName"
                                 pattern='[a-zA-Z]{2,50}'
                                 defaultValue={personal.firstName}
+                                title="Please Enter Valid First Name"
                                 onChange={personalDetailChange}
                                 required
                                 autoFocus
@@ -86,7 +92,7 @@ export default function Personal() {
                     </div>
                     <div className="col-sm-12 col-md-4">
                         <div className="form-group">
-                            <label htmlFor="lastName">Last Name</label>
+                            <label htmlFor="lastName">Last Name<span className='text-danger'> *</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -103,13 +109,14 @@ export default function Personal() {
                 <div className="row">
                     <div className="col-sm-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="username">Username<span className='text-danger'> *</span></label>
                             <input
                                 type="text"
                                 className="form-control"
                                 id="username"
                                 name="username"
-                                pattern='[a-zA-Z0-9]{2,50}'
+                                pattern='[a-zA-Z0-9_]{2,50}'
+                                title='Enter Username containing Alphabets, Numbers or Underscore'
                                 defaultValue={personal.username}
                                 onChange={personalDetailChange}
                                 required
@@ -118,7 +125,7 @@ export default function Personal() {
                     </div>
                     <div className="col-sm-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Email<span className='text-danger'> *</span></label>
                             <input
                                 type="email"
                                 className="form-control"
@@ -134,25 +141,29 @@ export default function Personal() {
                 <div className="row">
                     <div className="col-sm-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Password<span className='text-danger'> *</span></label>
                             <input
                                 type="password"
                                 className="form-control"
                                 id="password"
                                 name="password"
                                 onChange={personalDetailChange}
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\s])(?=.*[\S])[^\s]{8,}$"
+                                title="Password must contain at least one uppercase letter, one lowercase letter, one digit, and no spaces"
                                 required
                             />
                         </div>
                     </div>
                     <div className="col-sm-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="password">Confirm Password</label>
+                            <label htmlFor="password">Confirm Password<span className='text-danger'> *</span></label>
                             <input
                                 type="password"
                                 className="form-control"
-                                id="password"
+                                id="confirmPassword"
                                 name="password"
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\s])(?=.*[\S])[^\s]{8,}$"
+                                title="Password must contain at least one uppercase letter, one lowercase letter, one digit, and no spaces"
                                 required
                                 onChange={handleConfirmPassword}
                                 readOnly={personal.password === "" ? true : false}
@@ -163,7 +174,7 @@ export default function Personal() {
                 <div className="row">
                     <div className="col-sm-12 col-md-4">
                         <div className="form-group">
-                            <label htmlFor='gender'>Gender</label>
+                            <label htmlFor='gender'>Gender<span className='text-danger'> *</span></label>
                             <select className='form-select' name='gender' onChange={personalDetailChange}>
                                 <option value="none">Select Gender</option>
                                 <option value="male">Male</option>
@@ -174,7 +185,7 @@ export default function Personal() {
                     </div>
                     <div className="col-sm-12 col-md-4">
                         <div className="form-group">
-                            <label htmlFor="contactNumber">Contact Number </label>
+                            <label htmlFor="contactNumber">Contact Number<span className='text-danger'> *</span></label>
                             <input
                                 type="number"
                                 className="form-control"
@@ -197,6 +208,38 @@ export default function Personal() {
                                 id="portfolioLink"
                                 name="portfolioLink"
                                 defaultValue={personal.portfolioLink}
+                                onChange={personalDetailChange}
+                                maxLength={10}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-sm-12 col-md-6'>
+                        <div className='form-group'>
+                            <label htmlFor="skills">Skills<span className='text-danger'> *</span></label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="skills"
+                                name="skills"
+                                pattern='[a-zA-Z,]{1,}'
+                                defaultValue={personal.skills}
+                                onChange={personalDetailChange}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className='col-sm-12 col-md-6'>
+                        <div className='form-group'>
+                            <label htmlFor="gitRepositoryLink">GitHub Link</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="gitRepositoryLink"
+                                name="gitRepositoryLink"
+                                pattern='[a-zA-Z]{1,}'
+                                defaultValue={personal.gitRepositoryLink}
                                 onChange={personalDetailChange}
                             />
                         </div>

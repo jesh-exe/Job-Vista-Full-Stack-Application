@@ -30,17 +30,17 @@ public class JobApplication {
     @Column(name = "ja_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne
     @JoinColumn(name = "ja_js_id", nullable = false)
     private JobSeeker jobSeeker;
     
-    @ManyToOne(cascade = CascadeType.ALL,optional = false)
+    @ManyToOne
     @JoinColumn(name = "ja_j_id", nullable = false)
     private Job job;
 
     @Size(max = 45)
     @Column(name = "ja_status", nullable = false, length = 45)
-    private String status;
+    private String status = "INPROCESS";
 
     @Column(name = "ja_apply_date", nullable = false)
     private LocalDate applyDate = LocalDate.now();
@@ -57,6 +57,7 @@ public class JobApplication {
 		return result;
 	}
 
+	//Checking if the ID of Job Seeker matches with 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -64,10 +65,10 @@ public class JobApplication {
 		if (!(obj instanceof JobApplication))
 			return false;
 		JobApplication other = (JobApplication) obj;
-		if (job == null) {
-			if (other.job != null)
+		if (jobSeeker.getId() == null) {
+			if (other.jobSeeker.getId() != null)
 				return false;
-		} else if (!job.equals(other.job))
+		} else if (!jobSeeker.getId().equals(other.jobSeeker.getId()))
 			return false;
 		return true;
 	}

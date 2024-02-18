@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setExperiencesDetails } from '../../../redux/slices/RegisterJobSeekerSlice';
+import { toast } from "react-toastify";
 
 
 export default function Experience() {
 
+    const dispatch = useDispatch();
 
     const [experience, setExperience] = useState({
         role: "",
@@ -45,6 +49,7 @@ export default function Experience() {
         experiences.push(experience)
         setExperiences([...experiences])
         console.log(experiences)
+        dispatch(setExperiencesDetails(experience));
         resetExperience()
     }
 
@@ -62,7 +67,7 @@ export default function Experience() {
                                     id='role'
                                     name='role'
                                     className='form-control'
-                                    pattern='[a-zA-Z]{3,40}'
+                                    pattern='[a-zA-Z ]{3,40}'
                                     // value={experience.role}
                                     value={experience.role}
                                     required
@@ -78,7 +83,7 @@ export default function Experience() {
                                     id='companyName'
                                     name='companyName'
                                     className=' form-control'
-                                    pattern='[a-zA-Z0-9]{3,70}'
+                                    pattern='[a-zA-Z0-9 ]{3,70}'
                                     value={experience.companyName}
                                     required
                                     onChange={handleChange}
@@ -96,7 +101,7 @@ export default function Experience() {
                                     id='industry'
                                     name='industry'
                                     className=' form-control'
-                                    pattern='[a-zA-Z]{3,40}'
+                                    pattern='[a-zA-Z ]{2,40}'
                                     value={experience.industry}
                                     required
                                     onChange={handleChange}
@@ -110,7 +115,7 @@ export default function Experience() {
                                     type='text'
                                     id='location'
                                     name='location'
-                                    pattern='[a-zA-Z]{3,40}'
+                                    pattern='[a-zA-Z ]{3,40}'
                                     className=' form-control'
                                     value={experience.location}
                                     required
