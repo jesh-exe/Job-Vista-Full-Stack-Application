@@ -26,17 +26,17 @@ export default function Working() {
                                 {/* Card 1 */}
                                 <div className='card-main col p-md-5 p-3 pt-5 pb-5 m-4 rounded-5 emerge'>
                                     <div className='fs-4 mb-2'>Search a job </div>
-                                    <span className='fs-6 muted-data'> The graphic and typographic operators know this well, in reality all the professions dealing with the universe of communication have a stable</span>
+                                    <span className='fs-6 muted-data'>Are you ready to take the next step in your career journey? Look no further  exciting opportunities waiting for you. Search where your skills meet opportunities.</span>
                                 </div>
                                 {/* Card 2 */}
                                 <div className='card-main col p-md-5 p-3 pt-5 pb-5 m-4 rounded-5 emerge'>
                                     <div className='fs-4 mb-2'>Apply for job</div>
-                                    <span className='fs-6 muted-data'> The graphic and typographic operators know this well, in reality all the professions dealing with the universe of communication have a stable</span>
+                                    <span className='fs-6 muted-data'>If you're ready to take on exciting challenges and make a meaningful impact in the world of technology. Apply now to join our dynamic team and embark on a rewarding career journey.</span>
                                 </div>
                                 {/* Card 3 */}
                                 <div className='card-main col p-md-5 p-3 pt-5 pb-5 m-4 rounded-5 emerge'>
                                     <div className='fs-4 mb-2'>Get your job </div>
-                                    <span className='fs-6 muted-data'> The graphic and typographic operators know this well, in reality all the professions dealing with the universe of communication have a stable</span>
+                                    <span className='fs-6 muted-data'>Don't let your dream job slip away. Join our job portal today and embark on a journey towards fulfilling career opportunities. Start your journey to a fulfilling career today!</span>
                                 </div>
                             </div>
                         </div>

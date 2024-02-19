@@ -71,7 +71,7 @@ export default function Contact() {
                                                     </div>
                                                     <div className="col-md-12 pt-3">
                                                         <div className="form-group">
-                                                            <input type="submit" value="Send Message" className="btn btn-success" />
+                                                            <input type="button" value="Send Message" className="btn btn-success" />
                                                             <div className="submitting"></div>
                                                         </div>
                                                     </div>
@@ -87,7 +87,7 @@ export default function Contact() {
                                                     <span className="fa fa-map-marker"></span>
                                                 </div>
                                                 <div className="text pl-3 p-3">
-                                                    <span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016
+                                                    <span>Address:</span> Pune, Maharashtra, India 
                                                 </div>
                                             </div>
                                             <div className="dbox w-100 d-flex align-items-center">
@@ -95,7 +95,7 @@ export default function Contact() {
                                                     <span className="fa fa-phone"></span>
                                                 </div>
                                                 <div className="text pl-3 p-3">
-                                                    <span>Phone :</span> +91 7276802008
+                                                    <span>Phone :</span> +91 9283029328
                                                 </div>
                                             </div>
                                             <div className="dbox w-100 d-flex align-items-center">
@@ -111,7 +111,7 @@ export default function Contact() {
                                                     <span className="fa fa-globe"></span>
                                                 </div>
                                                 <div className="text pl-3 p-3">
-                                                    <span>Website : </span> www.jobvista.com
+                                                    <span>Website : </span>  job-vista.netlify.app
                                                 </div>
                                             </div>
                                         </div>

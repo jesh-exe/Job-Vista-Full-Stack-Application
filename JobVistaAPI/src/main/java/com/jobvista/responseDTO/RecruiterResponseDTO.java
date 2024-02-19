@@ -17,6 +17,9 @@ public class RecruiterResponseDTO {
 	private String email;
 	private String companyName;
 	private String companyUrl;
+	private String companyDescription;
+	private String companyAddress;
+	private String companyContact;
 	private List<JobResponseDTO> jobs;
 	private int totalApplicants;
 	private int activeJobs;

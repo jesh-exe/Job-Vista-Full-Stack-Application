@@ -136,9 +136,14 @@ const Header = () => {
                       } className="navlinks-middle text-center text-decoration-none menu-item">
                         <button className="dropdown-item" type="button">{recruiter.email != "" ? "Dashboard" : "Applied Jobs"}</button>
                       </NavLink>
-                      <NavLink className="navlinks-middle text-center text-decoration-none menu-item">
+                      {
+                        jobSeeker.email == "" ? 
+                      <NavLink to="/dashboard/profile" className="navlinks-middle text-center text-decoration-none menu-item">
                         <button className="dropdown-item" type="button">Profile</button>
                       </NavLink>
+                      : 
+                      ""
+                      }
                       <button className="dropdown-item text-center" type="button" onClick={handleLogout}>Logout</button>
                     </div>
                   </div>

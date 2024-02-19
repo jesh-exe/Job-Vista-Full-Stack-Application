@@ -15,15 +15,15 @@ export default function Sidebar() {
             <CDBSidebarContent className="sidebar-content">
               <CDBSidebarMenu>
                 <NavLink exact to="/dashboard" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
+                  <CDBSidebarMenuItem icon="th-large">Dashboard</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to="/dashboard/new_job" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="table">New Job</CDBSidebarMenuItem>
+                  <CDBSidebarMenuItem icon="plus">New Job</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to="/dashboard/jobs" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="table">Job List</CDBSidebarMenuItem>
+                  <CDBSidebarMenuItem icon="book">Job List</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/analytics" activeClassName="activeClicked">
+                <NavLink exact to="/dashboard" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
                 </NavLink>
               </CDBSidebarMenu>

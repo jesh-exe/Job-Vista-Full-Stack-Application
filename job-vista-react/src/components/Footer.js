@@ -18,16 +18,10 @@ export default function Footer() {
             <footer className="footer">
                 <div className="footer-left col-md-4 col-sm-6">
                     <p className="about">
-                        <span> About the company</span> Ut congue augue non tellus bibendum, in varius tellus condimentum. In scelerisque nibh tortor, sed rhoncus odio condimentum in. Sed sed est ut sapien ultrices eleifend. Integer tellus est, vehicula eu lectus tincidunt,
-                        ultricies feugiat leo. Suspendisse tellus elit, pharetra in hendrerit ut, aliquam quis augue. Nam ut nibh mollis, tristique ante sed, viverra massa.
+                        <span> About the company</span> The purpose of Job Vista - Your Gateway to Career Horizons is to provide individualswitha comprehensive and user-friendly platform for navigating the job market. Job Vista aims tosimplify the job search process, offering a panoramic view of career opportunities and guidingusers through their unique career journeys. By offering a diverse range of job listings andresources, Job Vista aims to empower individuals in their pursuit of fulfilling employment
+opportunities.
                     </p>
-                    <div className="icons">
-                        <a href="#"><i className="fa fa-facebook"></i></a>
-                        <a href="#"><i className="fa fa-twitter"></i></a>
-                        <a href="#"><i className="fa fa-linkedin"></i></a>
-                        <a href="#"><i className="fa fa-google-plus"></i></a>
-                        <a href="#"><i className="fa fa-instagram"></i></a>
-                    </div>
+                    
                 </div>
                 <div className="footer-center col-md-4 col-sm-6">
                     <div>

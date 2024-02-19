@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react'
 import "../../css/MainPage/Welcome.css"
 import ScrollReveal from 'scrollreveal'
+import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { getLoggedRecruiter } from '../../redux/slices/Recruiter/RecruiterSlice'
+import { getLoggedJobSeeker } from '../../redux/slices/JobSeeker/JobSeekerSlice'
+import { toast } from 'react-toastify'
 
 export default function Welcome() {
+
+    const recruiter = useSelector(getLoggedRecruiter);
+    const jobSeeker = useSelector(getLoggedJobSeeker);
 
     useEffect(()=>{
         ScrollReveal().reveal(".headingMain",{
@@ -24,7 +32,11 @@ export default function Welcome() {
                             <span>Embark on your career journey with JobVista, your one-stop destination for finding the perfect job match. We understand that your career is more than just a job.Our user-friendly homepage is designed to make your job search seamless, intuitive, and tailored to your unique aspirations.</span>
                         </div>
                         <div className='mt-5 '>
-                            <button className='btn btn-warning btn-lg me-4'>Get a Job</button>
+                        <NavLink to={recruiter.email == "" && jobSeeker.email=="" ? "/register/jobseeker" : ""}>
+                            <button className='btn btn-warning btn-lg me-4' onClick={() =>
+                                recruiter.email == "" && jobSeeker.email=="" ? "" : toast.warn("Already Logged In") 
+                            }>Get a Job</button>
+                        </NavLink>
                         </div>
                     </div>
                 </div>

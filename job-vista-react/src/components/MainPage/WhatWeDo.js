@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import ScrollReveal from 'scrollreveal';
 import second_image_mainpage from "../../assets/WhatWeDoImage.png";
 import "../../css/MainPage/WhatWeDo.css"
+import { NavLink } from 'react-router-dom';
 
 export default function WhatWeDo() {
 
@@ -33,14 +34,15 @@ export default function WhatWeDo() {
                             <h2 className='text-start'>24K Talented people are <br />getting jobs</h2>
                         </div>
                         <div>
-                            <p className="text-start">Mollit anim laborum duis ou dolor in voluptate velit esss cillium doore eu lore dsu quality mallit anim laborumuis au dolor in valuptate velit cillum.</p>
+                            <p className="text-start mt-2">Looking for Top Talent? Let Us Help You! Post Your Jobs Here and Reach Thousands of Job Seekers!</p>
                         </div>
 
                         <div className='text-start text-secondary'>
-                            <p >Mollit anim laborum duis ou dolor in voluptate velit esss cillium doore eu lore dsu quality mallit anim laborumuis au dolor in valuptate velit cillum.</p>
+                            <p >Open for Business: Showcase Your Jobs on Our Platform and Discover Your Next Team Member</p>
                         </div>
-
-                        <button className='btn btn-primary btn-lg mt-2'>Post a Job</button>
+                        <NavLink to="/register/recruiter">
+                            <button className='btn btn-primary btn-lg mt-2'>Post a Job</button>
+                        </NavLink>
                     </div>
                 </div>
             </div>

@@ -31,6 +31,7 @@ import { error } from 'jquery';
 import { getJobs, setJobs } from './redux/slices/JobsSlice';
 import AllJobs from './components/AllJobs';
 import AboutUs from './components/AboutUs';
+import ProfilePage from './components/Dashboard/ProfilePage';
 
 
 
@@ -121,6 +122,7 @@ function App() {
           <Route path='new_job' element={<NewJob></NewJob>}></Route>
           <Route path='jobs' element={<JobList></JobList>}></Route>
           <Route path=':id' element={<JobCard></JobCard>}></Route>
+          <Route path='profile' element={<ProfilePage></ProfilePage>}></Route>
           <Route path='applicant' element={<ApplicantCard></ApplicantCard>}></Route>
         </Route>
         <Route path='/jobseeker'>

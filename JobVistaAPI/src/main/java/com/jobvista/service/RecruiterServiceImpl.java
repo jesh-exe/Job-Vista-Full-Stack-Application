@@ -119,6 +119,9 @@ public class RecruiterServiceImpl implements RecruiterService {
 		recruiterResponseDTO.setJobs(jobResponseDTOList);
 		recruiterResponseDTO.setTotalApplicants(jobApplicants);
 		recruiterResponseDTO.setActiveJobs(activeJobs);
+		recruiterResponseDTO.setCompanyDescription(recruiter.getCompanyDesc());
+		recruiterResponseDTO.setCompanyAddress(recruiter.getCompanyAddr());
+		recruiterResponseDTO.setCompanyContact(recruiter.getCompanyContact());
 		return recruiterResponseDTO;
 	}
 
