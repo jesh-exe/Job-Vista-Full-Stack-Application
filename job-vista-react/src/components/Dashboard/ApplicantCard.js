@@ -6,6 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import RecruiterService from '../../service/RecruiterService';
+import emailjs from "emailjs-com";
 
 export default function ApplicantCard() {
 
@@ -21,6 +22,29 @@ export default function ApplicantCard() {
 
     const [resume, setResume] = useState();
     const containerRef = useRef();
+
+    const sendEmail = (message) => {
+        const templateParams = {
+            to_email: `${applicant.email}`,
+            to_name: `${applicant.name}`,
+            from_name: 'Job Vista',
+            message: `Hello, Your application status has been changed to ${message}!
+                     Check out now!`,
+        };
+
+        emailjs.send(
+            'service_zppuvz3',
+            'template_pv0154e',
+            templateParams,
+            'eKCczjq-sU5_7ib6H'
+        )
+            .then((response) => {
+                console.log('Email sent successfully:', response);
+            })
+            .catch((error) => {
+                console.error('Error sending email:', error);
+            });
+    };
 
     //To fetch Resume from backend
     const getResume = () => {
@@ -40,6 +64,8 @@ export default function ApplicantCard() {
                                         ...applicant,
                                         status: "RESUME VIEWED"
                                     })
+                                    sendEmail("Resume Viewed");
+
                                 })
                                 .catch((error) => {
                                     console.log(error)
@@ -72,6 +98,7 @@ export default function ApplicantCard() {
                                     ...applicant,
                                     status: "HIRED"
                                 })
+                                sendEmail("Hired");
                             }).catch((error) => {
                                 console.log(error)
                                 toast.error("Error Please try again later!")
@@ -102,6 +129,7 @@ export default function ApplicantCard() {
                             ...applicant,
                             status: "REJECT"
                         })
+                        sendEmail("Reject");
                     })
                     .catch((error) => {
                         console.log(error)
@@ -230,7 +258,7 @@ export default function ApplicantCard() {
                                                 {applicant.skills}
                                             </span>
                                             <div className='col-12 text-center mt-5'>
-                                                <button className='btn btn-outline-success mx-2 my-2' onClick={handleHire} disabled = {applicant.status === "REJECT" ? true : false}>
+                                                <button className='btn btn-outline-success mx-2 my-2' onClick={handleHire} disabled={applicant.status === "REJECT" ? true : false}>
                                                     {applicant.status === "HIRED" ? "Hired" : "Hire"}
                                                 </button>
                                                 <button className='btn btn-secondary mx-2 my-2' onClick={getResume}>
@@ -239,7 +267,7 @@ export default function ApplicantCard() {
                                                 {
                                                     applicant.status === "HIRED" ? "" :
                                                         <button className='btn btn-outline-danger mx-2 my-2' onClick={handleReject} disabled={applicant.status === "REJECT" ? true : false}>
-                                                            {applicant.status === "REJECT" ? "Rejected" : "Reject" }
+                                                            {applicant.status === "REJECT" ? "Rejected" : "Reject"}
                                                         </button>
                                                 }
                                             </div>
