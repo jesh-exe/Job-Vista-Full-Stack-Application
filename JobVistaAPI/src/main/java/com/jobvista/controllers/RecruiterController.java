@@ -31,7 +31,6 @@ import com.jobvista.utils.JwtUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
-//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/recruiter")
 public class RecruiterController {

@@ -1,0 +1,12 @@
+node_modules
+build
+.dockerignore
+Dockerfile
+.git
+.gitignore
+.env
+*.log
+npm-debug.log
+*.md
+*.zip
+*.tar.gz
