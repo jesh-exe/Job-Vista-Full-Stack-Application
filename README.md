@@ -1,2 +1,2 @@
 ## Frontend Demo
-https://jobvista.vercel.app/
+https://jobvista.icecloud.in/
